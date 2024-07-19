@@ -27,9 +27,9 @@ public class BalloonController : MonoBehaviour
             stateMachine.curState.FixedUpdate();
     }
 
-    public IEnumerator WaitForExplosion()
+    public IEnumerator ChangeStateAfterTime(float time, BalloonStateEnums state)
     {
-        yield return new WaitForSeconds(waitTime);
-        stateMachine.ChangeState(BalloonStateEnums.POP);
+        yield return new WaitForSeconds(time);
+        stateMachine.ChangeState(state);
     }
 }
