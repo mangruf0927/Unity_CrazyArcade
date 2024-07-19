@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    public PlayerController controller;
+    public PlayerController playerController;
 
     [HideInInspector] public IPlayerState curState; // 현재 상태
     public Dictionary<PlayerStateEnums, IPlayerState> stateDictionary;
@@ -13,7 +13,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         stateDictionary = new Dictionary<PlayerStateEnums, IPlayerState>
         {
-
+            { PlayerStateEnums.IDLE, new PlayerIdleState(this) },
         };
 
         if(stateDictionary.TryGetValue(PlayerStateEnums.IDLE, out IPlayerState newState))

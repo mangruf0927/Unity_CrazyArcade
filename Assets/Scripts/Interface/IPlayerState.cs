@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IPlayerState 
 {
-    PlayerController controller{get; set;}
+    PlayerController playerController{get; set;}
     PlayerStateMachine stateMachine{get; set;}
 
     // >> : 리스트로 자기자신이 변경 가능한 상태 목록 보유 \ get : 값을 가져오는 것만 가능

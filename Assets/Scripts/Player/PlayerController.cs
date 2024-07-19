@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
     [Header("이동 속도")]
     public float speed;
 
-    [Header("물풍선에 갇혔을 때 이동 속도")]
-    public float trapSpeed;
+    // [Header("물풍선에 갇혔을 때 이동 속도")]
+    // public float trapSpeed;
 
-    [Header("최대 풍선 개수")]
-    public int maxBalloonNum;
-    private int balloonNum; // 현재 풍선 개수
+    // [Header("최대 풍선 개수")]
+    // public int maxBalloonNum;
+    // private int balloonNum; // 현재 풍선 개수
 
     private void Update()
     {
