@@ -11,27 +11,33 @@ public class InputHandler : MonoBehaviour
     public delegate void InputBoolHandler(bool value);
     public event InputBoolHandler OnCheckHorizontal; // 대각선 이동 불가함으로 체크해야 함
 
+    public delegate void InputVectorHandler(Vector2 value);
+    public event InputVectorHandler OnCheckDirection; 
 
     private void Update() 
     {
-        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0 )
-            {
-                OnPlayerIdle?.Invoke();
-            }
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (horizontal == 0 && vertical == 0 )
         {
-            OnPlayerMove?.Invoke();
+            OnPlayerIdle?.Invoke();
         }
 
-        if(Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Vertical"))
+        if (horizontal != 0 || vertical != 0)
+        {
+            OnPlayerMove?.Invoke();
+            OnCheckDirection?.Invoke(new Vector2(horizontal, vertical));
+        }
+
+        if(Input.GetButtonDown("Horizontal") || (Input.GetButtonUp("Vertical") && horizontal != 0))
         {
             OnCheckHorizontal?.Invoke(true);
         }
-        else if(Input.GetButtonDown("Vertical") || Input.GetButtonUp("Horizontal"))
+
+        if(Input.GetButtonDown("Vertical") || (Input.GetButtonUp("Horizontal") && vertical != 0))
         {
             OnCheckHorizontal?.Invoke(false);
         }
-
     }
 }

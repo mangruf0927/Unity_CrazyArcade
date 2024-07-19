@@ -174,6 +174,8 @@ MonoBehaviour:
   animator: {fileID: 148191957}
   stateMachine: {fileID: 148191955}
   speed: 3
+  moveDirection: {x: 0, y: 0, z: 0}
+  isHorizontal: 0
 --- !u!95 &148191957
 Animator:
   serializedVersion: 5
@@ -445,6 +447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23d5f5b39e434edc90896ddda08900a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputHandler: {fileID: 1078188432}
+  controller: {fileID: 148191956}
+  stateMachine: {fileID: 148191955}
 --- !u!4 &842212122
 Transform:
   m_ObjectHideFlags: 0

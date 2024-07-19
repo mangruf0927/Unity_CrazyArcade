@@ -38,6 +38,7 @@ public class PlayerIdleState : IPlayerState
     public void OnEnter()
     {
         playerController.animator.Play("Idle");
+        playerController.rigid.velocity = Vector2.zero;
     }
 
     public void OnExit()

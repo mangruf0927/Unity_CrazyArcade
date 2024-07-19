@@ -16,22 +16,61 @@ public class PlayerController : MonoBehaviour
     [Header("이동 속도")]
     public float speed;
 
+    [Header("이동 방향")]
+    public Vector3 moveDirection;
+    public bool isHorizontal;
+
     // [Header("물풍선에 갇혔을 때 이동 속도")]
     // public float trapSpeed;
-
-    // [Header("최대 풍선 개수")]
-    // public int maxBalloonNum;
-    // private int balloonNum; // 현재 풍선 개수
 
     private void Update()
     {
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
+
+        Debug.Log(stateMachine.curState);
     }
 
     private void FixedUpdate() 
     {
         if(stateMachine.curState != null)
             stateMachine.curState.FixedUpdate();
+    }
+
+    public void Move()
+    {
+        Vector2 moveVector = isHorizontal ? new Vector2(moveDirection.x, 0) : new Vector2(0, moveDirection.y);
+        rigid.velocity = moveVector * speed;
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        moveDirection = direction;
+    }
+
+    public void PlayMoveAnimation()
+    {
+        if (isHorizontal)
+        {
+            if (moveDirection.x > 0)
+            {
+                animator.Play("Move_Right");
+            }
+            else if (moveDirection.x < 0)
+            {
+                animator.Play("Move_Left");
+            }
+        }
+        else
+        {
+            if(moveDirection.y > 0)
+            {
+                animator.Play("Move_Up");
+            }
+            else if(moveDirection.y < 0)
+            {
+                animator.Play("Move_Down");
+            }
+        }
     }
 }

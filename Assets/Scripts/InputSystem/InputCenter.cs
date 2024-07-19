@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class InputCenter : MonoBehaviour
 {
-    public InputHandler inputHander;
+    public InputHandler inputHandler ;
     public PlayerController controller;
     public PlayerStateMachine stateMachine;
 
     void Start()
     {
-        inputHander.OnPlayerIdle += ChangeIdleState;
-        inputHander.OnPlayerMove += ChangeMoveState;
-        // inputHander.OnCheckHorizontal += CheckHorizontal;
+        inputHandler.OnPlayerIdle += ChangeIdleState;
+        inputHandler.OnPlayerMove += ChangeMoveState;
+        
+        inputHandler.OnCheckHorizontal += CheckHorizontal;
+        inputHandler.OnCheckDirection += CheckDirection;
     }
 
     public void ChangeIdleState()
@@ -23,5 +25,15 @@ public class InputCenter : MonoBehaviour
     public void ChangeMoveState()
     {
         stateMachine.ChangeInputState(PlayerStateEnums.MOVE);
+    }
+
+    public void CheckHorizontal(bool isTrue)
+    {
+        controller.isHorizontal = isTrue;
+    }
+
+    public void CheckDirection(Vector2 direction)
+    {
+        controller.SetDirection(direction);
     }
 }

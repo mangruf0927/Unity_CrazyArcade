@@ -27,12 +27,12 @@ public class PlayerMoveState : IPlayerState
 
     public void Update()
     {
-
+        playerController.PlayMoveAnimation();
     }
 
     public void FixedUpdate()
     {
-
+        playerController.Move();
     }
 
     public void OnEnter()
