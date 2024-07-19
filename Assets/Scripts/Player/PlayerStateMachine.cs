@@ -14,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
         stateDictionary = new Dictionary<PlayerStateEnums, IPlayerState>
         {
             { PlayerStateEnums.IDLE, new PlayerIdleState(this) },
+            { PlayerStateEnums.MOVE, new PlayerMoveState(this) },
         };
 
         if(stateDictionary.TryGetValue(PlayerStateEnums.IDLE, out IPlayerState newState))
