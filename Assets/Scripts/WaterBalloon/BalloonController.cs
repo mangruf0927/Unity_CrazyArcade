@@ -10,6 +10,9 @@ public class BalloonController : MonoBehaviour
     [Header("물풍선 상태 머신")]
     public BalloonStateMachine stateMachine;
 
+    [Header("물풍선 대기 시간")]
+    public float waitTime;
+
     private void Update() 
     {
         if(stateMachine.curState != null)
@@ -22,5 +25,11 @@ public class BalloonController : MonoBehaviour
     {
         if(stateMachine.curState != null)
             stateMachine.curState.FixedUpdate();
+    }
+
+    public IEnumerator WaitForExplosion()
+    {
+        yield return new WaitForSeconds(waitTime);
+        stateMachine.ChangeState(BalloonStateEnums.POP);
     }
 }

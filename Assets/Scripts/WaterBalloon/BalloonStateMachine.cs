@@ -13,7 +13,7 @@ public class BalloonStateMachine : MonoBehaviour
     {
         stateDictionary = new Dictionary<BalloonStateEnums, IBalloonState>
         {
-
+            { BalloonStateEnums.WAIT, new BalloonWaitState(this) }, // this : 현재 인스턴스를 참조하는 것
         };
 
         if(stateDictionary.TryGetValue(BalloonStateEnums.SET, out IBalloonState newState))
