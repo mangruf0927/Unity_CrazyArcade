@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour
     public Vector3 moveDirection;
     public bool isHorizontal;
 
-    // [Header("물풍선에 갇혔을 때 이동 속도")]
-    // public float trapSpeed;
+    [Header("물풍선 프리팹")]
+    public GameObject balloonPrefab;
+
+    [Header("물풍선 개수")]
+    public int balloonNum;
 
     private void Update()
     {
@@ -71,6 +74,17 @@ public class PlayerController : MonoBehaviour
             {
                 animator.Play("Move_Down");
             }
+        }
+    }
+
+    public void SetWaterBalloon()
+    {
+        if(balloonNum > 0)
+        {
+            balloonNum -= 1;
+
+            GameObject waterBalloon = Instantiate<GameObject>(balloonPrefab);
+            waterBalloon.transform.position = rigid.position;
         }
     }
 }

@@ -12,6 +12,7 @@ public class InputCenter : MonoBehaviour
     {
         inputHandler.OnPlayerIdle += ChangeIdleState;
         inputHandler.OnPlayerMove += ChangeMoveState;
+        inputHandler.OnWaterBalloonSet += SetWaterBalloon;
         
         inputHandler.OnCheckHorizontal += CheckHorizontal;
         inputHandler.OnCheckDirection += CheckDirection;
@@ -35,5 +36,13 @@ public class InputCenter : MonoBehaviour
     public void CheckDirection(Vector2 direction)
     {
         controller.SetDirection(direction);
+    }
+
+    public void SetWaterBalloon()
+    {
+        if(stateMachine.curState is PlayerIdleState || stateMachine.curState is PlayerMoveState)
+        {
+            controller.SetWaterBalloon();
+        }
     }
 }
