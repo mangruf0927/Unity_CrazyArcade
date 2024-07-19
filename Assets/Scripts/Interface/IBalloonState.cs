@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IBalloonState
 {
-    PlayerController playerController{get; set;}
-    PlayerStateMachine stateMachine{get; set;}
+    BalloonController balloonController{get; set;}
+    BalloonStateMachine stateMachine{get; set;}
 
     void Update();
     void FixedUpdate();
