@@ -19,6 +19,12 @@ public class BalloonController : MonoBehaviour
     [Header("물풍선 설치 위치")]
     public Vector3 setPosition;
 
+    [Header("물줄기 프리팹")]
+    public GameObject popPrefab;
+
+    [Header("물줄기 길이")]
+    public int streamLength;
+
     public GameObject currentWaterBalloon;
 
     private void Start() 
@@ -41,10 +47,41 @@ public class BalloonController : MonoBehaviour
             stateMachine.curState.FixedUpdate();
     }
 
+    // : 만든 함수들
     public IEnumerator ChangeStateAfterTime(float time, BalloonStateEnums state)
     {
         yield return new WaitForSeconds(time);
         stateMachine.ChangeState(state);
+    }
+
+    public void Explode()
+    {
+        Vector3[] directions = {Vector3.up, Vector3.down, Vector3.left, Vector3.right};
+        string[] midAnimNames = {"Pop_Up", "Pop_Down", "Pop_Left", "Pop_Right"};
+        string[] edgeAnimNames = {"Pop_Up_Edge", "Pop_Down_Edge", "Pop_Left_Edge", "Pop_Right_Edge"};
+
+        for(int i = 0; i < directions.Length; i++)
+        {
+            Vector3 direction = directions[i];
+            string midAnimName = midAnimNames[i];
+            string edgeAnimName = edgeAnimNames[i];
+
+            for(int j = 1; j <= streamLength; j++)
+            {
+                Vector3 spawnPosition = transform.position + direction * j;
+                GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
+                Animator animator = waterStream.GetComponent<Animator>();
+
+                if(j == streamLength)
+                {
+                    animator.Play(edgeAnimName);
+                }
+                else
+                {
+                    animator.Play(midAnimName);
+                }
+            }
+        }
     }
 
     public void StartChangeState(float time, BalloonStateEnums state)
