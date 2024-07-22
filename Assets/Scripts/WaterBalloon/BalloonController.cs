@@ -93,10 +93,18 @@ public class BalloonController : MonoBehaviour
                     animator.Play(midAnimName);
                 }
 
-                StartCoroutine(DestroyAfterAnimation(animator, waterStream));
+                StartCoroutine(ChangeStateAfterDestroy(centerAnimator, waterStreamCenter));
             }
         }
     }
+
+    private IEnumerator ChangeStateAfterDestroy(Animator animator, GameObject gameObject)
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
+        stateMachine.ChangeState(BalloonStateEnums.DESTROY);
+    }
+
     private IEnumerator DestroyAfterAnimation(Animator animator, GameObject gameObject)
     {
         // 애니메이션 길이를 가져와 대기
