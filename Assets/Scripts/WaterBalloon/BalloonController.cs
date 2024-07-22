@@ -13,6 +13,18 @@ public class BalloonController : MonoBehaviour
     [Header("물풍선 대기 시간")]
     public float waitTime;
 
+    [Header("물풍선 프리팹")]
+    public GameObject balloonPrefab;
+
+    [Header("물풍선 설치 위치")]
+    public Vector3 setPosition;
+
+    private void Start() 
+    {
+        setPosition = transform.position;
+        Debug.Log("Start : " + setPosition);
+    }
+    
     private void Update() 
     {
         if(stateMachine.curState != null)

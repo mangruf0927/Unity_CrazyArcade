@@ -16,12 +16,15 @@ public class BalloonStateMachine : MonoBehaviour
             { BalloonStateEnums.SET, new BalloonSetState(this) }, // this : 현재 인스턴스를 참조하는 것
             { BalloonStateEnums.WAIT, new BalloonWaitState(this) }, 
         };
+    }
 
+    private void Start() 
+    {
         if(stateDictionary.TryGetValue(BalloonStateEnums.SET, out IBalloonState newState))
         {
             curState = newState;
             curState.OnEnter();
-        }
+        }    
     }
 
     public void ChangeState(BalloonStateEnums newStateType)

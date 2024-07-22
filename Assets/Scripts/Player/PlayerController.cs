@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool isHorizontal;
 
     [Header("물풍선 프리팹")]
-    public GameObject balloonPrefab;
+    public GameObject bombPrefab;
 
     [Header("물풍선 개수")]
     public int balloonNum;
@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
         {
             balloonNum -= 1;
 
-            GameObject waterBalloon = Instantiate<GameObject>(balloonPrefab);
-            waterBalloon.transform.position = rigid.position;
+            GameObject waterBalloon = Instantiate<GameObject>(bombPrefab);
+            waterBalloon.transform.position = transform.position;
         }
     }
 }
