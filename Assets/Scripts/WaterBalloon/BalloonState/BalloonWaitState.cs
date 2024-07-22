@@ -25,11 +25,11 @@ public class BalloonWaitState : IBalloonState
 
     public void OnEnter()
     {
-        
+        balloonController.StartChangeState(2.5f, BalloonStateEnums.POP);
     }
 
     public void OnExit()
     {
-
+        balloonController.DestroyObject();
     }
 }

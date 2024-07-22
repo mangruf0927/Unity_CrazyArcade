@@ -19,12 +19,14 @@ public class BalloonController : MonoBehaviour
     [Header("물풍선 설치 위치")]
     public Vector3 setPosition;
 
+    public GameObject currentWaterBalloon;
+
     private void Start() 
     {
         setPosition = transform.position;
         Debug.Log("Start : " + setPosition);
     }
-    
+
     private void Update() 
     {
         if(stateMachine.curState != null)
@@ -43,5 +45,16 @@ public class BalloonController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         stateMachine.ChangeState(state);
+    }
+
+    public void StartChangeState(float time, BalloonStateEnums state)
+    {
+        StartCoroutine(ChangeStateAfterTime(time, state));
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(currentWaterBalloon);
+        currentWaterBalloon = null;
     }
 }
