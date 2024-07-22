@@ -13,19 +13,30 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 상태머신")]
     public PlayerStateMachine stateMachine;
 
-    [Header("이동 속도")]
-    public float speed;
-
     [Header("이동 방향")]
     public Vector3 moveDirection;
     public bool isHorizontal;
 
     [Header("물풍선 프리팹")]
-    public GameObject bombPrefab;
+    public GameObject waterBalloonPrefab;
 
-    [Header("물풍선 개수")]
-    public int balloonNum;
+    // : 플레이어 스탯
+    [Header("이동 속도")]
+    public float speed;
 
+    [Header("물풍선 최대 개수")]
+    public int maxBalloonNum;
+    private int curBalloonNum;
+
+    [Header("물줄기 세기")]
+    public int maxPopLength;
+    private int curPopLength;
+
+    private void Start() 
+    {
+        curBalloonNum = 1;
+        curPopLength = 1;    
+    }
     private void Update()
     {
         if(stateMachine.curState != null)
@@ -79,12 +90,22 @@ public class PlayerController : MonoBehaviour
 
     public void SetWaterBalloon()
     {
-        if(balloonNum > 0)
+        if(curBalloonNum > 0)
         {
-            balloonNum -= 1;
+            curBalloonNum -= 1;
 
-            GameObject waterBalloon = Instantiate<GameObject>(bombPrefab);
-            waterBalloon.transform.position = transform.position;
+            GameObject waterBalloon = Instantiate(waterBalloonPrefab, transform.position, Quaternion.identity);
+            BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
+            balloonController.InitializeBalloon(this, curPopLength);
         }
     }
+    
+    public void GetBalloon()
+    {
+        if (curBalloonNum < maxBalloonNum)
+        {
+            curBalloonNum++;
+        }
+    }
+
 }

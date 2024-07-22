@@ -22,10 +22,11 @@ public class BalloonController : MonoBehaviour
     [Header("물줄기 프리팹")]
     public GameObject popPrefab;
 
-    [Header("물줄기 길이")]
-    public int streamLength;
-
+    [HideInInspector]
     public GameObject currentWaterBalloon;
+
+    private int popLength;
+    private PlayerController playerController;
 
     private void Start() 
     {
@@ -48,6 +49,12 @@ public class BalloonController : MonoBehaviour
     }
 
     // : 만든 함수들
+    public void InitializeBalloon(PlayerController controller, int length)
+    {
+        playerController = controller;
+        popLength = length;
+    }
+
     public IEnumerator ChangeStateAfterTime(float time, BalloonStateEnums state)
     {
         yield return new WaitForSeconds(time);
@@ -57,6 +64,7 @@ public class BalloonController : MonoBehaviour
     public void DestroyWaterBalloon()
     {
         Destroy(gameObject);
+        playerController.GetBalloon();
     }
 
     public void Explode()
@@ -78,13 +86,13 @@ public class BalloonController : MonoBehaviour
             string midAnimName = midAnimNames[i];
             string edgeAnimName = edgeAnimNames[i];
 
-            for(int j = 1; j <= streamLength; j++)
+            for(int j = 1; j <= popLength; j++)
             {
                 Vector3 spawnPosition = transform.position + direction * j;
                 GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
                 Animator animator = waterStream.GetComponent<Animator>();
 
-                if(j == streamLength)
+                if(j == popLength)
                 {
                     animator.Play(edgeAnimName);
                 }
