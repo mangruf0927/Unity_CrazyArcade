@@ -54,4 +54,5 @@ public class PlayerStateMachine : MonoBehaviour
             curState.OnEnter();
         }
     }
+
 }

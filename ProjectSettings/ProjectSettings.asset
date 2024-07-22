@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 72c18e57709d741fd90837e6dd5848c7
+  productGUID: 5be279714d9984d8188d8712f1ce7f47
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -704,10 +704,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: cbea22b8-7340-43db-85fb-e9aef515059d
+  cloudProjectId: 9e594c5a-d970-4f41-b9a6-49e9de656b04
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: CrazyArcade 2024-07-19_00-03-47
+  projectName: CrazyArcade
   organizationId: mangruf
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

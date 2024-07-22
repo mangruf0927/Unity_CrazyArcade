@@ -24,12 +24,16 @@ public class PlayerIdleState : IPlayerState
         PlayerStateEnums.TRAP,
     };
 
-
+    
     public void Update()
     {
-
+        if(playerController.CheckTrap())
+        {
+            Debug.Log("키키키");
+            stateMachine.ChangeLogicState(PlayerStateEnums.TRAP);
+        }
     }
-
+    
     public void FixedUpdate()
     {
 

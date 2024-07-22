@@ -21,15 +21,21 @@ public class PlayerMoveState : IPlayerState
 
     public HashSet<PlayerStateEnums> logicHash { get; } = new HashSet<PlayerStateEnums>()
     {
-
+        PlayerStateEnums.TRAP,
     };
 
-
+    
     public void Update()
     {
         playerController.PlayMoveAnimation();
-    }
 
+        if(playerController.CheckTrap())
+        {
+            Debug.Log("케케케");
+            stateMachine.ChangeLogicState(PlayerStateEnums.TRAP);
+        }
+    }
+    
     public void FixedUpdate()
     {
         playerController.Move();
@@ -42,6 +48,5 @@ public class PlayerMoveState : IPlayerState
 
     public void OnExit()
     {
-
     }
 }

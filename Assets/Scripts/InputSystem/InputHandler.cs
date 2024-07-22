@@ -7,14 +7,13 @@ public class InputHandler : MonoBehaviour
     public delegate void InputStateHandler();
     public event InputStateHandler OnPlayerIdle;
     public event InputStateHandler OnPlayerMove;
+    public event InputStateHandler OnWaterBalloonSet;
 
     public delegate void InputBoolHandler(bool value);
     public event InputBoolHandler OnCheckHorizontal; // 대각선 이동 불가함으로 체크해야 함
 
     public delegate void InputVectorHandler(Vector2 value);
     public event InputVectorHandler OnCheckDirection; 
-
-    public event InputStateHandler OnWaterBalloonSet;
 
     private void Update() 
     {
@@ -36,7 +35,7 @@ public class InputHandler : MonoBehaviour
         {
             OnCheckHorizontal?.Invoke(true);
         }
-
+        
         if(Input.GetButtonDown("Vertical") || (Input.GetButtonUp("Horizontal") && vertical != 0))
         {
             OnCheckHorizontal?.Invoke(false);
@@ -48,3 +47,4 @@ public class InputHandler : MonoBehaviour
         }
     }
 }
+

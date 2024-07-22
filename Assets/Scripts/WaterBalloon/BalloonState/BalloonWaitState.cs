@@ -30,6 +30,7 @@ public class BalloonWaitState : IBalloonState
 
     public void OnExit()
     {
+        balloonController.balloonCollider.isTrigger = true;
         balloonController.DestroyObject();
     }
 }

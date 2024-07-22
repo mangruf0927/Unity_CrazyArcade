@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputCenter : MonoBehaviour
 {
-    public InputHandler inputHandler ;
+    public InputHandler inputHandler;
     public PlayerController controller;
     public PlayerStateMachine stateMachine;
 
@@ -13,7 +13,7 @@ public class InputCenter : MonoBehaviour
         inputHandler.OnPlayerIdle += ChangeIdleState;
         inputHandler.OnPlayerMove += ChangeMoveState;
         inputHandler.OnWaterBalloonSet += SetWaterBalloon;
-        
+
         inputHandler.OnCheckHorizontal += CheckHorizontal;
         inputHandler.OnCheckDirection += CheckDirection;
     }
@@ -22,7 +22,7 @@ public class InputCenter : MonoBehaviour
     {
         stateMachine.ChangeInputState(PlayerStateEnums.IDLE);
     }
-
+    
     public void ChangeMoveState()
     {
         stateMachine.ChangeInputState(PlayerStateEnums.MOVE);
@@ -46,3 +46,4 @@ public class InputCenter : MonoBehaviour
         }
     }
 }
+
