@@ -30,8 +30,7 @@ public class BalloonController : MonoBehaviour
 
     private void Start() 
     {
-        setPosition = transform.position;
-        Debug.Log("Start : " + setPosition);
+        Debug.Log("물풍선 위치 : " + transform.position);   
     }
 
     private void Update() 

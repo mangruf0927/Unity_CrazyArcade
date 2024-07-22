@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             curBalloonNum -= 1;
 
-            GameObject waterBalloon = Instantiate(waterBalloonPrefab, transform.position, Quaternion.identity);
+            GameObject waterBalloon = Instantiate(waterBalloonPrefab, new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y)), Quaternion.identity);
             BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
             balloonController.InitializeBalloon(this, curPopLength);
         }
