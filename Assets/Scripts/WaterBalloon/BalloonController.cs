@@ -56,6 +56,13 @@ public class BalloonController : MonoBehaviour
 
     public void Explode()
     {
+        // 중간
+        GameObject waterStreamCenter = Instantiate(popPrefab, transform.position, Quaternion.identity);
+        Animator centerAnimator = waterStreamCenter.GetComponent<Animator>();
+        centerAnimator.Play("Pop_Center");
+        StartCoroutine(DestroyAfterAnimation(centerAnimator, waterStreamCenter));
+
+        // 중간 기점으로 4방향
         Vector3[] directions = {Vector3.up, Vector3.down, Vector3.left, Vector3.right};
         string[] midAnimNames = {"Pop_Up", "Pop_Down", "Pop_Left", "Pop_Right"};
         string[] edgeAnimNames = {"Pop_Up_Edge", "Pop_Down_Edge", "Pop_Left_Edge", "Pop_Right_Edge"};
@@ -80,10 +87,20 @@ public class BalloonController : MonoBehaviour
                 {
                     animator.Play(midAnimName);
                 }
+
+                StartCoroutine(DestroyAfterAnimation(animator, waterStream));
             }
         }
     }
+    private IEnumerator DestroyAfterAnimation(Animator animator, GameObject gameObject)
+    {
+        // 애니메이션 길이를 가져와 대기
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
+        // 오브젝트 파괴
+        Destroy(gameObject);
+    }
+    
     public void StartChangeState(float time, BalloonStateEnums state)
     {
         StartCoroutine(ChangeStateAfterTime(time, state));
