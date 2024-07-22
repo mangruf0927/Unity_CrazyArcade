@@ -54,6 +54,11 @@ public class BalloonController : MonoBehaviour
         stateMachine.ChangeState(state);
     }
 
+    public void DestroyWaterBalloon()
+    {
+        Destroy(gameObject);
+    }
+
     public void Explode()
     {
         // 중간
@@ -100,7 +105,7 @@ public class BalloonController : MonoBehaviour
         // 오브젝트 파괴
         Destroy(gameObject);
     }
-    
+
     public void StartChangeState(float time, BalloonStateEnums state)
     {
         StartCoroutine(ChangeStateAfterTime(time, state));

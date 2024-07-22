@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BalloonPopState : IBalloonState
+public class BalloonDestroyState : IBalloonState
 {
     public BalloonController balloonController{get; set;}
     public BalloonStateMachine stateMachine{get; set;}
 
-    public BalloonPopState(BalloonStateMachine _stateMachine)
+    public BalloonDestroyState(BalloonStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
         balloonController = stateMachine.balloonController;
@@ -25,9 +25,7 @@ public class BalloonPopState : IBalloonState
 
     public void OnEnter()
     {
-        balloonController.Explode();
-
-        balloonController.StartChangeState(0.9f, BalloonStateEnums.DESTROY);
+        balloonController.DestroyWaterBalloon();
     }
 
     public void OnExit()
