@@ -23,26 +23,31 @@ public class PlayerController : MonoBehaviour
     // : 플레이어 스탯
     [Header("이동 속도")]
     public float moveSpeed;
+    private float speed; 
 
     [Header("물풍선에 갇혔을 때 속도")]
     public float trapSpeed;
-
-    public float speed; 
     
     [Header("물풍선 최대 개수")]
     public int maxBalloonNum;
+
+    [Header("물풍선 초기 개수")]
+    public int initBalloonNum;
     private int curBalloonNum;
 
-    [Header("물줄기 세기")]
+    [Header("물줄기 최대 세기")]
     public int maxPopLength;
+
+    [Header("물줄기 초기 세기")]
+    public int initPopLength;
     private int curPopLength;
 
     private bool isTrap = false;
 
     private void Start() 
     {
-        curBalloonNum = 3;
-        curPopLength = 2;    
+        curBalloonNum = initBalloonNum;
+        curPopLength = initPopLength;    
         speed = moveSpeed;
     }
 
@@ -66,6 +71,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveVector = isHorizontal ? new Vector2(moveDirection.x, 0) : new Vector2(0, moveDirection.y);
         rigid.velocity = moveVector * speed;
+    }
+
+    public void SetSpeed(float playerSpeed)
+    {
+        speed = playerSpeed;
     }
 
     public void SetDirection(Vector2 direction)

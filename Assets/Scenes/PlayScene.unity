@@ -292,9 +292,12 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   isHorizontal: 0
   waterBalloonPrefab: {fileID: 2621648777414964752, guid: e04f411f963ab41f989b1f228447c36b, type: 3}
-  speed: 3
+  moveSpeed: 3
+  trapSpeed: 0.3
   maxBalloonNum: 5
+  initBalloonNum: 3
   maxPopLength: 5
+  initPopLength: 2
 --- !u!70 &133841248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
