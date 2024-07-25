@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour
         if (horizontal == 0 && vertical == 0 )
         {
             OnPlayerIdle?.Invoke();
+            OnCheckDirection?.Invoke(new Vector2(horizontal, vertical));
         }
 
         if (horizontal != 0 || vertical != 0)
