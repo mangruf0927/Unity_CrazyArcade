@@ -31,15 +31,19 @@ public class PlayerTrapState : IPlayerState
     
     public void FixedUpdate()
     {
+        playerController.Move();
     }
 
     public void OnEnter()
     {
+        playerController.speed /= 3;
+
         playerController.animator.Play("Trap");
-        playerController.StartChangeState(playerController.animator);
+        playerController.StartChangeState(playerController.animator, PlayerStateEnums.DEAD);
     }
 
     public void OnExit()
     {
+        playerController.speed *= 3;
     }
 }

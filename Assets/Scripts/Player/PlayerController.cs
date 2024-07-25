@@ -147,19 +147,20 @@ public class PlayerController : MonoBehaviour
         int popLayer = LayerMask.NameToLayer("Pop");
         if(other.gameObject.layer == popLayer)
         {
-            Debug.Log("부딪혔당");
             isTrap = true;
         }
     }
     
-    public void StartChangeState(Animator animator)
+    public void StartChangeState(Animator animator, PlayerStateEnums state)
     {
-        StartCoroutine(PlayAnimation(animator));
+        StartCoroutine(PlayAnimation(animator, state));
     }
 
-    private IEnumerator PlayAnimation(Animator animator)
+    private IEnumerator PlayAnimation(Animator animator, PlayerStateEnums state)
     {
+        yield return new WaitForSeconds(0.1f); // 애니메이션이 시작될 시간을 확보
+
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        stateMachine.ChangeLogicState(PlayerStateEnums.DEAD);
+        stateMachine.ChangeLogicState(state);
     }
 }

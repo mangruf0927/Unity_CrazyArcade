@@ -31,7 +31,6 @@ public class PlayerMoveState : IPlayerState
 
         if(playerController.CheckTrap())
         {
-            Debug.Log("케케케");
             stateMachine.ChangeLogicState(PlayerStateEnums.TRAP);
         }
     }

@@ -29,7 +29,6 @@ public class PlayerIdleState : IPlayerState
     {
         if(playerController.CheckTrap())
         {
-            Debug.Log("키키키");
             stateMachine.ChangeLogicState(PlayerStateEnums.TRAP);
         }
     }

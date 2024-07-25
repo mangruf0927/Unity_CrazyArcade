@@ -35,6 +35,7 @@ public class PlayerDeadState : IPlayerState
     public void OnEnter()
     {
         playerController.animator.Play("Dead");
+        playerController.rigid.velocity = Vector2.zero;
     }
 
     public void OnExit()
