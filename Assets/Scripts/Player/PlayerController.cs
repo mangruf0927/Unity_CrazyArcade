@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
     // : 플레이어 스탯
     [Header("이동 속도")]
     public float moveSpeed;
-    private float speed; 
+
+    [Header("최대 속도")]
+    public float maxSpeed;
 
     [Header("물풍선에 갇혔을 때 속도")]
     public float trapSpeed;
@@ -31,24 +33,21 @@ public class PlayerController : MonoBehaviour
     [Header("물풍선 최대 개수")]
     public int maxBalloonNum;
 
-    [Header("물풍선 초기 개수")]
-    public int initBalloonNum;
+    [Header("물풍선 개수")]
+    public int balloonNum;
     private int curBalloonNum;
 
     [Header("물줄기 최대 세기")]
     public int maxPopLength;
 
-    [Header("물줄기 초기 세기")]
-    public int initPopLength;
-    private int curPopLength;
+    [Header("물줄기 세기")]
+    public int popLength;
 
     private bool isTrap = false;
 
     private void Start() 
     {
-        curBalloonNum = initBalloonNum;
-        curPopLength = initPopLength;    
-        speed = moveSpeed;
+        curBalloonNum = balloonNum; 
     }
 
     private void Update()
@@ -67,15 +66,10 @@ public class PlayerController : MonoBehaviour
 
 
     // >> :
-    public void Move()
+    public void Move(float speed)
     {
         Vector2 moveVector = isHorizontal ? new Vector2(moveDirection.x, 0) : new Vector2(0, moveDirection.y);
         rigid.velocity = moveVector * speed;
-    }
-
-    public void SetSpeed(float playerSpeed)
-    {
-        speed = playerSpeed;
     }
 
     public void SetDirection(Vector2 direction)
@@ -123,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 curBalloonNum -= 1;
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
-                balloonController.InitializeBalloon(this, curPopLength);
+                balloonController.InitializeBalloon(this, popLength);
             }
         }
     }
@@ -145,9 +139,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void GetBalloon()
+    public void ChargeBalloon()
     {
-        if (curBalloonNum < maxBalloonNum)
+        if (curBalloonNum < balloonNum)
         {
             curBalloonNum++;
         }
@@ -178,5 +172,29 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         stateMachine.ChangeLogicState(state);
+    }
+
+    public void GetBalloon()
+    {
+        if(balloonNum < maxBalloonNum)
+        {
+            balloonNum ++;
+        }
+    }
+
+    public void GetSpeed()
+    {
+        if(moveSpeed < maxSpeed)
+        {
+            moveSpeed ++;
+        }
+    }
+
+    public void GetPotionPower()
+    {
+        if(popLength < maxPopLength)
+        {
+            popLength++;
+        }
     }
 }
