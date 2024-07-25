@@ -36,7 +36,7 @@ public class PlayerTrapState : IPlayerState
 
     public void OnEnter()
     {
-        playerController.speed /= 3;
+        playerController.speed = playerController.trapSpeed;
 
         playerController.animator.Play("Trap");
         playerController.StartChangeState(playerController.animator, PlayerStateEnums.DEAD);
@@ -44,6 +44,6 @@ public class PlayerTrapState : IPlayerState
 
     public void OnExit()
     {
-        playerController.speed *= 3;
+        playerController.speed = playerController.moveSpeed;
     }
 }

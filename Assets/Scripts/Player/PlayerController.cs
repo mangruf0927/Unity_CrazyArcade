@@ -22,7 +22,12 @@ public class PlayerController : MonoBehaviour
 
     // : 플레이어 스탯
     [Header("이동 속도")]
-    public float speed;
+    public float moveSpeed;
+
+    [Header("물풍선에 갇혔을 때 속도")]
+    public float trapSpeed;
+
+    public float speed; 
     
     [Header("물풍선 최대 개수")]
     public int maxBalloonNum;
@@ -38,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         curBalloonNum = 3;
         curPopLength = 2;    
+        speed = moveSpeed;
     }
 
     private void Update()
