@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start() 
     {
-        curBalloonNum = balloonNum; 
+        curBalloonNum = 0; 
     }
 
     private void Update()
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetWaterBalloon()
     {
-        if(curBalloonNum > 0)
+        if(curBalloonNum < balloonNum)
         {
             Vector2 setPosition = new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y - 0.25f));
             if(CheckForBalloon(setPosition)) 
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                curBalloonNum -= 1;
+                curBalloonNum++;
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
                 balloonController.InitializeBalloon(this, popLength);
@@ -141,9 +141,9 @@ public class PlayerController : MonoBehaviour
 
     public void ChargeBalloon()
     {
-        if (curBalloonNum < balloonNum)
+        if (curBalloonNum > 0)
         {
-            curBalloonNum++;
+            curBalloonNum--;
         }
     }
 
