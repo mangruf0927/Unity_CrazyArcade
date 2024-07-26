@@ -37,7 +37,7 @@ public class PlayerMoveState : IPlayerState
     
     public void FixedUpdate()
     {
-        playerController.Move(playerController.moveSpeed);
+        playerController.Move(playerController.stat.moveSpeed);
     }
 
     public void OnEnter()

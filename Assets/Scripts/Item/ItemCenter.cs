@@ -14,19 +14,19 @@ public class ItemCenter : MonoBehaviour
     public void GetSpeed()
     {
         Debug.Log("스피드 업");
-        player.GetSpeed();
+        player.stat.AddSpeed();
     }
 
     public void GetPower()
     {
         Debug.Log("물줄기 세짐");
-        player.GetPotionPower();
+        player.stat.AddPotion();
     }
 
     public void GetBalloon()
     {
         Debug.Log("물풍선 겟");
-        player.GetBalloon();
+        player.stat.AddBalloon();
     }
 
     public void RegisterSkate(Skate skate)

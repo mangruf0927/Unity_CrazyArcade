@@ -20,35 +20,11 @@ public class PlayerController : MonoBehaviour
     [Header("물풍선 프리팹")]
     public GameObject waterBalloonPrefab;
 
-    // : 플레이어 스탯
-    [Header("이동 속도")]
-    public float moveSpeed;
-
-    [Header("최대 속도")]
-    public float maxSpeed;
-
-    [Header("물풍선에 갇혔을 때 속도")]
-    public float trapSpeed;
-    
-    [Header("물풍선 최대 개수")]
-    public int maxBalloonNum;
-
-    [Header("물풍선 개수")]
-    public int balloonNum;
-    private int curBalloonNum;
-
-    [Header("물줄기 최대 세기")]
-    public int maxPopLength;
-
-    [Header("물줄기 세기")]
-    public int popLength;
+    [Header("플레이어 스탯")]
+    public PlayerStat stat;
 
     private bool isTrap = false;
 
-    private void Start() 
-    {
-        curBalloonNum = 0; 
-    }
 
     private void Update()
     {
@@ -105,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetWaterBalloon()
     {
-        if(curBalloonNum < balloonNum)
+        if(stat.GetCurBalloon() < stat.balloonNum)
         {
             Vector2 setPosition = new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y - 0.25f));
             if(CheckForBalloon(setPosition)) 
@@ -114,10 +90,10 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                curBalloonNum++;
+                stat.UseBalloon();
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
-                balloonController.InitializeBalloon(this, popLength);
+                balloonController.InitializeBalloon(this, stat.popLength);
             }
         }
     }
@@ -136,14 +112,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             return false;
-        }
-    }
-
-    public void ChargeBalloon()
-    {
-        if (curBalloonNum > 0)
-        {
-            curBalloonNum--;
         }
     }
 
@@ -172,29 +140,5 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         stateMachine.ChangeLogicState(state);
-    }
-
-    public void GetBalloon()
-    {
-        if(balloonNum < maxBalloonNum)
-        {
-            balloonNum ++;
-        }
-    }
-
-    public void GetSpeed()
-    {
-        if(moveSpeed < maxSpeed)
-        {
-            moveSpeed ++;
-        }
-    }
-
-    public void GetPotionPower()
-    {
-        if(popLength < maxPopLength)
-        {
-            popLength++;
-        }
     }
 }

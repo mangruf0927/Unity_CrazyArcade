@@ -66,7 +66,7 @@ public class BalloonController : MonoBehaviour
     public void DestroyWaterBalloon()
     {
         Destroy(gameObject);
-        playerController.ChargeBalloon();
+        playerController.stat.ChargeBalloon();
     }
 
     public void Explode()

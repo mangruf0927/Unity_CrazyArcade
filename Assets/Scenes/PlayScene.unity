@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 133841243}
   - component: {fileID: 133841241}
   - component: {fileID: 133841240}
+  - component: {fileID: 133841249}
   - component: {fileID: 133841246}
   - component: {fileID: 133841245}
   - component: {fileID: 133841248}
@@ -292,13 +293,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   isHorizontal: 0
   waterBalloonPrefab: {fileID: 2621648777414964752, guid: e04f411f963ab41f989b1f228447c36b, type: 3}
-  moveSpeed: 3
-  maxSpeed: 7
-  trapSpeed: 0.3
-  maxBalloonNum: 5
-  balloonNum: 1
-  maxPopLength: 5
-  popLength: 1
+  stat: {fileID: 133841249}
 --- !u!70 &133841248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -334,6 +329,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.2}
   m_Size: {x: 0.73, y: 0.85}
   m_Direction: 0
+--- !u!114 &133841249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133841238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99c160acd589417fb8b212e7c2be36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  maxSpeed: 7
+  trapSpeed: 0.3
+  maxBalloonNum: 5
+  balloonNum: 2
+  maxPopLength: 5
+  popLength: 1
 --- !u!1 &138145743
 GameObject:
   m_ObjectHideFlags: 0
