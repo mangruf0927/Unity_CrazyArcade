@@ -7,17 +7,9 @@ public class ItemCenter : MonoBehaviour
     [Header("플레이어")]
     public PlayerController player;
 
-    [Header("아이템")]
-    public Skate skate;
-    public Potion potion;
-    public Balloon balloon;
-
-    private void Start() 
-    {
-        skate.OnSpeedUp += GetSpeed;
-        potion.OnPowerUp += GetPower;    
-        balloon.OnBalloonUp += GetBalloon;
-    }
+    private List<Skate> skateList = new List<Skate>();
+    private List<Balloon> balloonList = new List<Balloon>();
+    private List<Potion> potionList = new List<Potion>();
 
     public void GetSpeed()
     {
@@ -35,5 +27,32 @@ public class ItemCenter : MonoBehaviour
     {
         Debug.Log("물풍선 겟");
         player.GetBalloon();
+    }
+
+    public void RegisterSkate(Skate skate)
+    {
+        if (!skateList.Contains(skate))
+        {
+            skateList.Add(skate);
+            skate.OnSpeedUp += GetSpeed;
+        }
+    }
+
+    public void RegisterPotion(Potion potion)
+    {
+        if(!potionList.Contains(potion))
+        {
+            potionList.Add(potion);
+            potion.OnPowerUp += GetPower;    
+        }
+    }
+
+    public void RegisterBalloon(Balloon balloon)
+    {
+        if(!balloonList.Contains(balloon))
+        {
+            balloonList.Add(balloon);
+            balloon.OnBalloonUp += GetBalloon;
+        }
     }
 }
