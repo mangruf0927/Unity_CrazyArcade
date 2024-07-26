@@ -19,6 +19,11 @@ public class Skate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        {
+            Destroy(gameObject, 0.1f);
+        }
+        
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             OnSpeedUp?.Invoke();
