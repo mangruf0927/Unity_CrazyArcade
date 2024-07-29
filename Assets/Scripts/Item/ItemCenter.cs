@@ -11,22 +11,20 @@ public class ItemCenter : MonoBehaviour
     private List<Balloon> balloonList = new List<Balloon>();
     private List<Potion> potionList = new List<Potion>();
 
+
     public void GetSpeed()
     {
-        Debug.Log("스피드 업");
         player.stat.AddSpeed();
-    }
-
-    public void GetPower()
-    {
-        Debug.Log("물줄기 세짐");
-        player.stat.AddPotion();
     }
 
     public void GetBalloon()
     {
-        Debug.Log("물풍선 겟");
         player.stat.AddBalloon();
+    }
+
+    public void GetPower()
+    {
+        player.stat.AddPotion();
     }
 
     public void RegisterSkate(Skate skate)
@@ -38,21 +36,21 @@ public class ItemCenter : MonoBehaviour
         }
     }
 
-    public void RegisterPotion(Potion potion)
-    {
-        if(!potionList.Contains(potion))
-        {
-            potionList.Add(potion);
-            potion.OnPowerUp += GetPower;    
-        }
-    }
-
     public void RegisterBalloon(Balloon balloon)
     {
         if(!balloonList.Contains(balloon))
         {
             balloonList.Add(balloon);
             balloon.OnBalloonUp += GetBalloon;
+        }
+    }
+
+    public void RegisterPotion(Potion potion)
+    {
+        if(!potionList.Contains(potion))
+        {
+            potionList.Add(potion);
+            potion.OnPowerUp += GetPower;    
         }
     }
 }
