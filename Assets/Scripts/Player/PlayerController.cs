@@ -23,8 +23,15 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 스탯")]
     public PlayerStat stat;
 
+    [Header("플레이어 히트 스캔")]
+    public PlayerHitScan hitScan;
+
     private bool isTrap = false;
 
+    private void Start() 
+    {
+        hitScan.OnDamage += Hit;    
+    }
 
     private void Update()
     {
@@ -115,18 +122,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Hit()
+    {
+        isTrap = true;
+    }
+
     public bool CheckTrap()
     {
         return isTrap;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        int popLayer = LayerMask.NameToLayer("Pop");
-        if(other.gameObject.layer == popLayer)
-        {
-            isTrap = true;
-        }
     }
     
     public void StartChangeState(Animator animator, PlayerStateEnums state)
