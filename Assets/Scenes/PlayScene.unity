@@ -255,10 +255,11 @@ Transform:
   m_GameObject: {fileID: 133841238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 6.15, z: 0}
+  m_LocalPosition: {x: 0.28, y: 3.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 522366433}
   - {fileID: 1054983729}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -294,6 +295,7 @@ MonoBehaviour:
   isHorizontal: 0
   waterBalloonPrefab: {fileID: 2621648777414964752, guid: e04f411f963ab41f989b1f228447c36b, type: 3}
   stat: {fileID: 133841249}
+  hitScan: {fileID: 522366434}
 --- !u!70 &133841248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -326,8 +328,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 0.7, y: 0.8}
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 0.75, y: 0.9}
   m_Direction: 0
 --- !u!114 &133841249
 MonoBehaviour:
@@ -534,10 +536,11 @@ GameObject:
   m_Component:
   - component: {fileID: 206606553}
   - component: {fileID: 206606552}
+  - component: {fileID: 206606555}
   - component: {fileID: 206606551}
   - component: {fileID: 206606554}
   m_Layer: 0
-  m_Name: Box
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -667,6 +670,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb5914bca5654c0ea144564619df9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 206606555}
+--- !u!95 &206606555
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206606550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5383314a5487442b8a59faa30344a7e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &247641855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1033,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07df3bdcb0a604ebe87fe0f84d17282d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &522366432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522366433}
+  - component: {fileID: 522366435}
+  - component: {fileID: 522366434}
+  m_Layer: 3
+  m_Name: HitScan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &522366433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522366432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 133841244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &522366434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522366432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66cd8166d4d854bbbaa97229fef34550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &522366435
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522366432}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15}
+  m_Size: {x: 0.6, y: 0.75}
+  m_Direction: 0
 --- !u!1 &672266189
 GameObject:
   m_ObjectHideFlags: 0
@@ -4367,7 +4472,7 @@ GameObject:
   - component: {fileID: 1988172030}
   - component: {fileID: 1988172029}
   m_Layer: 0
-  m_Name: MovableBox
+  m_Name: MovableBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
