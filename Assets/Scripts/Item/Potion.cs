@@ -7,6 +7,8 @@ public class Potion : MonoBehaviour
     public delegate void PotionHandle();
     public event PotionHandle OnPowerUp;
 
+    public ItemTypeEnums itemTypeEnums;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))

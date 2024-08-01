@@ -7,6 +7,8 @@ public class Balloon : MonoBehaviour
     public delegate void BalloonHandle();
     public event BalloonHandle OnBalloonUp;
 
+    public ItemTypeEnums itemTypeEnums;
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))

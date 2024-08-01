@@ -7,6 +7,8 @@ public class Skate : MonoBehaviour
     public delegate void SkateHandle();
     public event SkateHandle OnSpeedUp;
 
+    public ItemTypeEnums itemTypeEnums;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
