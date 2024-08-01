@@ -62,6 +62,9 @@ public class SpawnItemLoader : MonoBehaviour
         {
             itemCenter.RegisterPotion(potion);
         }
+
+        // TryGetComponent :해당 컴퍼넌트를 찾지 못했을 때 memory allocation이 발생하지 않고 
+        // Gabage Collection을 걱정할 필요없다.
     }
 
 }
