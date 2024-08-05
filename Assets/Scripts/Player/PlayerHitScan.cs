@@ -24,7 +24,7 @@ public class PlayerHitScan : MonoBehaviour
             
             if (overlapArea >= overlapPercent * playerArea) // 70% 이상 겹치는 경우
             {
-                Debug.Log(overlapArea + " % 충돌 !");
+                Debug.Log(overlapArea / playerArea + " % 충돌 !");
                 OnDamage?.Invoke();
             }
         }
