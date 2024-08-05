@@ -14,7 +14,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         stateDictionary = new Dictionary<EnemyStateEnums, IEnemyState>
         {
-            
+            {EnemyStateEnums.MOVE, new EnemyMoveState(this)},
         };
 
         if(stateDictionary.TryGetValue(EnemyStateEnums.MOVE, out IEnemyState newState))

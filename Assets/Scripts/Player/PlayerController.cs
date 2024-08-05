@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
 
-        Debug.Log("플레이어 상태" + stateMachine.curState);
+        // Debug.Log("플레이어 상태" + stateMachine.curState);
     }
 
     private void FixedUpdate() 
