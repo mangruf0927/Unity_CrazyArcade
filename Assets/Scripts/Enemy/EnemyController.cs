@@ -24,7 +24,8 @@ public class EnemyController : MonoBehaviour
 
     private bool isConfined = false;
 
-    private float rayDistance = 0.6f;
+    private float rayDistance = 0.3f;
+    private Vector2 boxSize = new Vector2(0.5f, 0.5f);
 
     private void Update() 
     {
@@ -51,7 +52,7 @@ public class EnemyController : MonoBehaviour
 
     public void CheckForObstacle()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, moveDirection, rayDistance);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0f, moveDirection, rayDistance);
     
         foreach (RaycastHit2D hit in hits)
         {
@@ -118,11 +119,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
     private void OnDrawGizmos()
     {
-        // Raycast 시각화
+        // 박스의 중심을 현재 위치로 설정
+        Vector2 center = (Vector2)transform.position + moveDirection.normalized * rayDistance;
+
+        // 기즈모 색상 설정
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)moveDirection * rayDistance);
+
+        // 박스를 그리기
+        Gizmos.DrawWireCube(center, boxSize); // 박스의 외곽선을 그립니다
+
+        // 캐스트 선 그리기
+        Gizmos.color = Color.green; // 캐스트 선 색상 설정
+        Gizmos.DrawLine(transform.position, center); // 박스 캐스트의 끝점을 선으로 연결합니다
     }
+    
 }
