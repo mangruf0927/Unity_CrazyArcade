@@ -23,7 +23,6 @@ public class EnemyController : MonoBehaviour
     public Vector2 moveDirection;
 
     private bool isConfined = false;
-
     private float rayDistance = 0.3f;
     private Vector2 boxSize = new Vector2(0.5f, 0.5f);
 
@@ -58,7 +57,6 @@ public class EnemyController : MonoBehaviour
         {
             if (hit.collider != null && hit.collider.CompareTag("Obstacle"))
             {
-                // Debug.Log(hit.collider + " 와 충돌");
                 SetDirection();
                 break; // 첫 번째 장애물에 충돌하면 루프 종료
             }
