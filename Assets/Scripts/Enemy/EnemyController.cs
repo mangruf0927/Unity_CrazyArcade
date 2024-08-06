@@ -22,6 +22,9 @@ public class EnemyController : MonoBehaviour
     [Header("이동 방향")]
     public Vector2 moveDirection;
 
+    [Header("플레이어 탐지 범위")]
+    public float sensinGRange;
+
     private bool isConfined = false;
     private float rayDistance = 0.3f;
     private Vector2 boxSize = new Vector2(0.5f, 0.5f);
@@ -90,10 +93,31 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Debug.Log("가능한 방향 없음");
             isConfined = true;
+            Debug.Log("가능한 방향 없음");
         }
     }
+
+    public void CheckForPlayer()
+    {
+        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+
+        foreach (Vector2 direction in directions)
+        {
+            // 현재 이동 중인 방향은 제외
+            if (direction == moveDirection) continue;
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, sensinGRange, LayerMask.GetMask("Player"));
+
+            // 플레이어를 감지한 경우
+            if (hit.collider != null)
+            {
+                moveDirection = direction;
+                break; // 한 번 감지되면 다른 방향은 검사하지 않음
+            }
+        }
+    }
+
 
     public void PlayMoveAnimation()
     {

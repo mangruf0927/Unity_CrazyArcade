@@ -17,6 +17,7 @@ public class EnemyMoveState : IEnemyState
 
     public void Update()
     {
+        enemyController.CheckForPlayer();
         enemyController.CheckForObstacle();
         enemyController.PlayMoveAnimation();
     }
