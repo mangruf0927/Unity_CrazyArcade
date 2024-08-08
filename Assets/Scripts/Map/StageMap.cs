@@ -3,9 +3,34 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
+public struct MapNode
+{
+    private ObjectTypeEnums objectType;
+    private bool hasObject;
+
+    // 생성자
+    public MapNode(ObjectTypeEnums type, bool hasObject)
+    {
+        this.objectType = type;
+        this.hasObject = hasObject;
+    }
+
+    public ObjectTypeEnums ObjectType
+    {
+        get { return objectType; }
+        set { objectType = value; }
+    }
+
+    public bool HasObject
+    {
+        get { return hasObject; }
+        set { hasObject = value; } // setter를 통해 상태 변경 가능
+    }
+}
+
 public class StageMap : MonoBehaviour
 {
-    private bool[,] map = new bool[13, 15]; // 13x15 맵
+    private MapNode[,] map = new MapNode[13, 15]; // 13x15 맵
 
     private void Awake() 
     {   
@@ -18,26 +43,33 @@ public class StageMap : MonoBehaviour
         {
             for(int j = 0; j < 15; j++)
             {
-                map[i, j] = false;
+                map[i, j].ObjectType = ObjectTypeEnums.None;
+                map[i, j].HasObject = false;
             }
         }
     }
 
-    public void SetStageObjcet(int x, int y)
+    public void SetStageObjcet(ObjectTypeEnums type, int x, int y)
     {
-        map[x, -y] = true;
+        map[x, -y].ObjectType = type;
+        map[x, -y].HasObject = true;
     }
 
     public void DestroyStageObject(int x, int y)
     {
-        map[x, -y] = false;
+        map[x, -y].ObjectType = ObjectTypeEnums.None;
+        map[x, -y].HasObject = false;
     }
 
     public bool CheckObjectInstallation(int x, int y)
     {
-        return map[x, -y];
+        return map[x, -y].HasObject;
     }
 
+    public ObjectTypeEnums CheckObjectType(int x, int y)
+    {
+        return map[x, -y].ObjectType;
+    }
 }
 
 

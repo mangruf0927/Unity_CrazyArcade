@@ -21,14 +21,14 @@ public class MapSettingCenter : MonoBehaviour
         player.OnGetBalloon += GetBalloonController;
     }
 
-    public void SetStageObject(Vector2 pos)
+    public void SetStageObject(ObjectTypeEnums type, Vector2 pos)
     {
         int x = Mathf.FloorToInt(pos.x); 
         int y = Mathf.FloorToInt(pos.y);
 
-        stageMap.SetStageObjcet(x, y);
+        stageMap.SetStageObjcet(type, x, y);
 
-        Debug.Log(x + ", " + -y);
+        Debug.Log("[" + type + "]" + x + ", " + -y);
     }
 
     public void DestroyStageObject(Vector2 pos)

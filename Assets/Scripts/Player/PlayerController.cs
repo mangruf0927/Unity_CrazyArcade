@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public delegate bool playerHandle(Vector2 position);
     public event playerHandle OnCheckForBalloon;
 
-    public delegate void GivePositionHandle(Vector2 position);
+    public delegate void GivePositionHandle(ObjectTypeEnums type, Vector2 position);
     public event GivePositionHandle OnSetBalloon; 
 
     public delegate void GetControllerHandler(BalloonController balloon);
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                OnSetBalloon?.Invoke(setPosition);
+                OnSetBalloon?.Invoke(ObjectTypeEnums.Balloon, setPosition);
                 stat.UseBalloon();
 
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);

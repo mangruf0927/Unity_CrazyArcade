@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StageBlock : MonoBehaviour
 {
-    public delegate void blockHandler(Vector2 pos);
+    public delegate void blockHandler(ObjectTypeEnums type, Vector2 pos);
     public event blockHandler OnGivePosition;
 
     public List<GameObject> ObjectList;
@@ -13,7 +13,7 @@ public class StageBlock : MonoBehaviour
     {
         foreach(GameObject obj in ObjectList)
         {
-            OnGivePosition?.Invoke(obj.transform.position);
+            OnGivePosition?.Invoke(ObjectTypeEnums.Object, obj.transform.position);
         }    
     }
 }
