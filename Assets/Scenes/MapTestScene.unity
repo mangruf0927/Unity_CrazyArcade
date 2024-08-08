@@ -1030,6 +1030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageBlock: {fileID: 1885306197}
   stageMap: {fileID: 887869721}
+  player: {fileID: 133841246}
 --- !u!4 &597938440
 Transform:
   m_ObjectHideFlags: 0

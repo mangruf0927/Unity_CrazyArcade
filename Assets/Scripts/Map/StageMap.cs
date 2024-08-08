@@ -3,6 +3,47 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
+public class StageMap : MonoBehaviour
+{
+    private bool[,] map = new bool[13, 15]; // 13x15 맵
+
+    private void Awake() 
+    {   
+        InitializeMap();
+    }
+
+    public void InitializeMap()
+    {
+        for(int i = 0; i < 13; i++)
+        {
+            for(int j = 0; j < 15; j++)
+            {
+                map[i, j] = false;
+            }
+        }
+    }
+
+    public void SetStageObjcet(int x, int y)
+    {
+        map[x, -y] = true;
+    }
+
+    public void DestroyStageObject(int x, int y)
+    {
+        map[x, -y] = false;
+    }
+
+    public bool CheckObjectInstallation(int x, int y)
+    {
+        return map[x, -y];
+    }
+
+}
+
+
+
+
+
 /* public struct MapNode
 {
     private Vector2 position;
@@ -29,30 +70,3 @@ using UnityEngine;
         set { hasObject = value; } // setter를 통해 상태 변경 가능
     }
 } */
-
-
-public class StageMap : MonoBehaviour
-{
-    private bool[,] map = new bool[13, 15]; // 13x15 맵
-
-    private void Awake() 
-    {   
-        InitializeMap();
-    }
-
-    public void InitializeMap()
-    {
-        for(int i = 0; i < 13; i++)
-        {
-            for(int j = 0; j < 15; j++)
-            {
-                map[i, j] = false;
-            }
-        }
-    }
-
-    public void SetStageMap(int x, int y)
-    {
-        map[x, -y] = true;
-    }
-}

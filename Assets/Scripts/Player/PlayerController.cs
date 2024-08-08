@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -26,6 +27,16 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 히트 스캔")]
     public PlayerHitScan hitScan;
 
+    public delegate bool playerHandle(Vector2 position);
+    public event playerHandle OnCheckForBalloon;
+
+    public delegate void GivePositionHandle(Vector2 position);
+    public event GivePositionHandle OnSetBalloon; 
+
+    public delegate void GetControllerHandler(BalloonController balloon);
+    public event GetControllerHandler OnGetBalloon;
+
+    private bool isInstallation = false;
     private bool isTrap = false;
 
     private void Start() 
@@ -91,34 +102,23 @@ public class PlayerController : MonoBehaviour
         if(stat.GetCurBalloon() < stat.balloonNum)
         {
             Vector2 setPosition = new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y - 0.25f));
-            if(CheckForBalloon(setPosition)) 
+            isInstallation = OnCheckForBalloon?.Invoke(setPosition) ?? false;
+
+            if(isInstallation) 
             {
                 return; // 해당 위치에 다른 오브젝트가 있으면 Return
             }
             else
             {
+                OnSetBalloon?.Invoke(setPosition);
                 stat.UseBalloon();
+
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
                 balloonController.InitializeBalloon(this, stat.popLength);
+
+                OnGetBalloon?.Invoke(balloonController);
             }
-        }
-    }
-
-    public bool CheckForBalloon(Vector2 pos)
-    {
-        LayerMask layer = LayerMask.GetMask("WaterBalloon");
-
-        // 체크할 위치에서 반경 내에 다른 오브젝트가 있는지 확인
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(pos, 0.3f, layer);
-
-        if (hitColliders.Length > 0) // 해당 위치에 오브젝트 있음
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 

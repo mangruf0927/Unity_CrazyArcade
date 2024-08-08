@@ -25,6 +25,9 @@ public class BalloonController : MonoBehaviour
     private int popLength;
     private PlayerController playerController;
 
+    public delegate void DestroyHandler(Vector2 pos);
+    public event DestroyHandler OnDestroyBalloon;
+
     private void Update() 
     {
         if(stateMachine.curState != null)
@@ -65,6 +68,7 @@ public class BalloonController : MonoBehaviour
 
     public void DestroyWaterBalloon()
     {
+        OnDestroyBalloon?.Invoke(transform.position);
         Destroy(gameObject);
         playerController.stat.ChargeBalloon();
     }
