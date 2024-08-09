@@ -16,9 +16,9 @@ public class MapSettingCenter : MonoBehaviour
     {
         stageBlock.OnGivePosition += SetStageObject;
 
-        player.OnCheckForBalloon += CheckInstallation;
-        player.OnSetBalloon += SetStageObject;
-        player.OnGetBalloon += GetBalloonController;
+        player.OnBalloonCheck += CheckInstallation;
+        player.OnBalloonPlaced += SetStageObject;
+        player.OnControllerReceived += GetBalloonController;
     }
 
     public void SetStageObject(ObjectTypeEnums type, Vector2 pos)
@@ -52,6 +52,6 @@ public class MapSettingCenter : MonoBehaviour
     public void GetBalloonController(BalloonController controller)
     { 
         balloon = controller; 
-        balloon.OnDestroyBalloon += DestroyStageObject;
+        balloon.OnBalloonDestroyed += DestroyStageObject;
     }
 }

@@ -25,8 +25,14 @@ public class BalloonController : MonoBehaviour
     private int popLength;
     private PlayerController playerController;
 
-    public delegate void DestroyHandler(Vector2 pos);
-    public event DestroyHandler OnDestroyBalloon;
+    // 물풍선 설치 가능 여부 확인
+    public delegate bool StreamCheck(Vector2 position);
+    public event StreamCheck OnStreamCheck;
+
+    // 물풍선 파괴 이벤트
+    public delegate void BalloonDestroyHandler(Vector2 position);
+    public event BalloonDestroyHandler OnBalloonDestroyed;
+
 
     private void Update() 
     {
@@ -68,7 +74,7 @@ public class BalloonController : MonoBehaviour
 
     public void DestroyWaterBalloon()
     {
-        OnDestroyBalloon?.Invoke(transform.position);
+        OnBalloonDestroyed?.Invoke(transform.position);
         Destroy(gameObject);
         playerController.stat.ChargeBalloon();
     }
@@ -82,13 +88,13 @@ public class BalloonController : MonoBehaviour
         StartCoroutine(ChangeStateAfterDestroy(centerAnimator, waterStreamCenter));
 
         // 중간 기점으로 4방향
-        Vector3[] directions = {Vector3.up, Vector3.down, Vector3.left, Vector3.right};
+        Vector2[] directions = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};
         string[] midAnimNames = {"Pop_Up", "Pop_Down", "Pop_Left", "Pop_Right"};
         string[] edgeAnimNames = {"Pop_Up_Edge", "Pop_Down_Edge", "Pop_Left_Edge", "Pop_Right_Edge"};
         
         for(int i = 0; i < directions.Length; i++)
         {
-            Vector3 direction = directions[i];
+            Vector2 direction = directions[i];
             string midAnimName = midAnimNames[i];
             string edgeAnimName = edgeAnimNames[i];
 
@@ -100,7 +106,7 @@ public class BalloonController : MonoBehaviour
                 if(hit.collider != null) break;
 
                 // 장애물 없으면 물줄기 설치
-                Vector3 spawnPosition = transform.position + direction * j;
+                Vector3 spawnPosition = (Vector2)transform.position + direction * j;
                 GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
                 Animator animator = waterStream.GetComponent<Animator>();
 

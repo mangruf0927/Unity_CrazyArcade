@@ -27,14 +27,17 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 히트 스캔")]
     public PlayerHitScan hitScan;
 
-    public delegate bool playerHandle(Vector2 position);
-    public event playerHandle OnCheckForBalloon;
+    // 물풍선 설치 가능 여부 확인
+    public delegate bool BalloonCheckHandler(Vector2 position);
+    public event BalloonCheckHandler OnBalloonCheck;
 
-    public delegate void GivePositionHandle(ObjectTypeEnums type, Vector2 position);
-    public event GivePositionHandle OnSetBalloon; 
+    // 물풍선 설치 이벤트
+    public delegate void BalloonPositionHandler(ObjectTypeEnums type, Vector2 position);
+    public event BalloonPositionHandler OnBalloonPlaced; 
 
-    public delegate void GetControllerHandler(BalloonController balloon);
-    public event GetControllerHandler OnGetBalloon;
+    // balloonController 등록 
+    public delegate void BalloonControllerHandler(BalloonController balloon);
+    public event BalloonControllerHandler OnControllerReceived;
 
     private bool isInstallation = false;
     private bool isTrap = false;
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if(stat.GetCurBalloon() < stat.balloonNum)
         {
             Vector2 setPosition = new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y - 0.25f));
-            isInstallation = OnCheckForBalloon?.Invoke(setPosition) ?? false;
+            isInstallation = OnBalloonCheck?.Invoke(setPosition) ?? false;
 
             if(isInstallation) 
             {
@@ -110,14 +113,14 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                OnSetBalloon?.Invoke(ObjectTypeEnums.Balloon, setPosition);
+                OnBalloonPlaced?.Invoke(ObjectTypeEnums.Balloon, setPosition);
                 stat.UseBalloon();
 
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
                 balloonController.InitializeBalloon(this, stat.popLength);
 
-                OnGetBalloon?.Invoke(balloonController);
+                OnControllerReceived?.Invoke(balloonController);
             }
         }
     }
