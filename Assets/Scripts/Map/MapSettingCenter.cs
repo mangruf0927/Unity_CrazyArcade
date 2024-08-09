@@ -46,6 +46,8 @@ public class MapSettingCenter : MonoBehaviour
         int x = Mathf.FloorToInt(pos.x); 
         int y = Mathf.FloorToInt(pos.y);
 
+        if(x < 0 || x >= 15 || y > 0 || y <= -13) return true;
+
         return stageMap.CheckObjectInstallation(x, y);
     }
 

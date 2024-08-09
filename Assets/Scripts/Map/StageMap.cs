@@ -3,34 +3,16 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public struct MapNode
+public class MapNode
 {
-    private ObjectTypeEnums objectType;
-    private bool hasObject;
-
-    // 생성자
-    public MapNode(ObjectTypeEnums type, bool hasObject)
-    {
-        this.objectType = type;
-        this.hasObject = hasObject;
-    }
-
-    public ObjectTypeEnums ObjectType
-    {
-        get { return objectType; }
-        set { objectType = value; }
-    }
-
-    public bool HasObject
-    {
-        get { return hasObject; }
-        set { hasObject = value; } // setter를 통해 상태 변경 가능
-    }
+    public ObjectTypeEnums ObjectType { get; set; } = ObjectTypeEnums.None; // 기본값 설정
+    public bool HasObject { get; set; } = false; // 기본값 설정
 }
+
 
 public class StageMap : MonoBehaviour
 {
-    private MapNode[,] map = new MapNode[13, 15]; // 13x15 맵
+    private MapNode[,] map = new MapNode[15, 13]; // 13x15 맵
 
     private void Awake() 
     {   
@@ -39,12 +21,11 @@ public class StageMap : MonoBehaviour
 
     public void InitializeMap()
     {
-        for(int i = 0; i < 13; i++)
+        for(int i = 0; i < 15; i++)
         {
-            for(int j = 0; j < 15; j++)
+            for(int j = 0; j < 13; j++)
             {
-                map[i, j].ObjectType = ObjectTypeEnums.None;
-                map[i, j].HasObject = false;
+                map[i, j] = new MapNode();
             }
         }
     }
