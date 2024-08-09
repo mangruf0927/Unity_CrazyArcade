@@ -26,8 +26,12 @@ public class BalloonController : MonoBehaviour
     private PlayerController playerController;
 
     // 물풍선 설치 가능 여부 확인
-    public delegate bool StreamCheck(Vector2 position);
+    public delegate ObjectTypeEnums StreamCheck(Vector2 position);
     public event StreamCheck OnStreamCheck;
+
+    // box 설치 시 제거
+    public delegate void BoxRemoveHandler(Vector2 position);
+    public event BoxRemoveHandler OnRemoveBox;
 
     // 물풍선 파괴 이벤트
     public delegate void BalloonDestroyHandler(Vector2 position);
@@ -104,21 +108,28 @@ public class BalloonController : MonoBehaviour
                 Vector2 spawnPosition = (Vector2)transform.position + direction * j;
 
                 // 4방향으로 장애물 있는지 확인
-                bool isInstallation = OnStreamCheck?.Invoke(spawnPosition) ?? false;
-                if(isInstallation) break;
+                ObjectTypeEnums type = OnStreamCheck?.Invoke(spawnPosition) ?? ObjectTypeEnums.None;
+                if(type == ObjectTypeEnums.Object)
+                {
+                    break;
+                }
+                else if(type == ObjectTypeEnums.Balloon)
+                {
+                    break;
+                }
+                else if(type == ObjectTypeEnums.Box)
+                {
+                    OnRemoveBox?.Invoke(spawnPosition);
+                    break;
+                }
 
                 // 장애물 없으면 물줄기 설치
                 GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
                 Animator animator = waterStream.GetComponent<Animator>();
 
-                if(j == popLength) 
-                {
-                    animator.Play(edgeAnimName);
-                }
-                else
-                {
-                    animator.Play(midAnimName);
-                }
+                // 물줄기 애니메이션
+                if(j == popLength) animator.Play(edgeAnimName);
+                else animator.Play(midAnimName);
 
                 StartCoroutine(DestroyAfterAnimation(animator, waterStream));
             }

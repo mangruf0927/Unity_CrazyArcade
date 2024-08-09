@@ -14,7 +14,7 @@ public class MapSettingCenter : MonoBehaviour
 
     private void Awake() 
     {
-        stageBlock.OnGivePosition += SetStageObject;
+        stageBlock.OnBlockInstall += SetStageObject;
 
         player.OnBalloonCheck += CheckInstallation;
         player.OnBalloonPlaced += SetStageObject;
@@ -51,11 +51,31 @@ public class MapSettingCenter : MonoBehaviour
         return stageMap.CheckObjectInstallation(x, y);
     }
 
+    public ObjectTypeEnums CheckObjectType(Vector2 pos)
+    {
+        int x = Mathf.FloorToInt(pos.x); 
+        int y = Mathf.FloorToInt(pos.y);
+
+        if(x < 0 || x >= 15 || y > 0 || y <= -13) return ObjectTypeEnums.Object;
+
+        return stageMap.CheckObjectType(x, y);
+    }
+
+    public void RemoveBox(Vector2 pos)
+    {
+        int x = Mathf.FloorToInt(pos.x); 
+        int y = Mathf.FloorToInt(pos.y);
+
+        stageBlock.RemoveBox(pos);
+        stageMap.DestroyStageObject(x, y);
+    }
+
     public void GetBalloonController(BalloonController controller)
     { 
         balloon = controller; 
 
-        balloon.OnStreamCheck += CheckInstallation;
+        balloon.OnStreamCheck += CheckObjectType;
+        balloon.OnRemoveBox += RemoveBox;
         balloon.OnBalloonDestroyed += DestroyStageObject;
     }
 }

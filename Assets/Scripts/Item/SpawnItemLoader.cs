@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnItemLoader : MonoBehaviour
 {
     [Header("블록 리스트")]
-    public List<Block> blockList;
+    public StageBlock block;
 
     [Header("스폰될 아이템 목록")]
     public GameObject[] spawnItemArray;
@@ -20,10 +20,7 @@ public class SpawnItemLoader : MonoBehaviour
 
     private void Start() 
     {
-        foreach (Block block in blockList)
-        {
-            block.OnCheckPosition+=SpawnItem;
-        }
+        block.OnBlockDestruction+=SpawnItem;
     }
 
     public void SpawnItem(Vector2 position)

@@ -1,19 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class StageBlock : MonoBehaviour
 {
-    public delegate void blockHandler(ObjectTypeEnums type, Vector2 pos);
-    public event blockHandler OnGivePosition;
+    // 블록 설치
+    public delegate void BlockInstallHandler(ObjectTypeEnums blockType, Vector2 position);
+    public event BlockInstallHandler OnBlockInstall;
+
+    // 블록 파괴
+    public delegate void BlockDestructionHandler(Vector2 position);
+    public event BlockDestructionHandler OnBlockDestruction; 
 
     public List<GameObject> ObjectList;
+    public List<GameObject> BoxList;
+
+    private Dictionary<Vector2, GameObject> boxDictionary = new Dictionary<Vector2, GameObject>();
 
     private void Start() 
     {
         foreach(GameObject obj in ObjectList)
         {
-            OnGivePosition?.Invoke(ObjectTypeEnums.Object, obj.transform.position);
+            OnBlockInstall?.Invoke(ObjectTypeEnums.Object, obj.transform.position);
         }    
+
+        foreach(GameObject box in BoxList)
+        {
+            OnBlockInstall?.Invoke(ObjectTypeEnums.Box, box.transform.position);
+            boxDictionary[box.transform.position] = box; // 위치를 키로 하고 박스를 값으로 추가
+        }
+    }
+
+    public void RemoveBox(Vector2 pos)
+    {
+        if (boxDictionary.TryGetValue(pos, out GameObject box))
+        {
+            boxDictionary.Remove(pos);
+            BoxList.Remove(box);
+            OnBlockDestruction?.Invoke(pos);
+
+            Animator animator = box.GetComponent<Animator>();
+            animator.Play("Pop");
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99f) return;
+
+            Destroy(box, 0.2f);
+        }
     }
 }
