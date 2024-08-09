@@ -100,13 +100,14 @@ public class BalloonController : MonoBehaviour
 
             for(int j = 1; j <= popLength; j++)
             {
+                // 물줄기 설치 위치
+                Vector2 spawnPosition = (Vector2)transform.position + direction * j;
+
                 // 4방향으로 장애물 있는지 확인
-                Debug.DrawRay(transform.position, direction * j, Color.red, 2f);
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, j, LayerMask.GetMask("Border"));
-                if(hit.collider != null) break;
+                bool isInstallation = OnStreamCheck?.Invoke(spawnPosition) ?? false;
+                if(isInstallation) break;
 
                 // 장애물 없으면 물줄기 설치
-                Vector3 spawnPosition = (Vector2)transform.position + direction * j;
                 GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
                 Animator animator = waterStream.GetComponent<Animator>();
 
@@ -124,6 +125,8 @@ public class BalloonController : MonoBehaviour
         }
     }
 
+
+   
     private void OnTriggerExit2D(Collider2D other) 
     {
         if(other.gameObject == playerController.gameObject)  

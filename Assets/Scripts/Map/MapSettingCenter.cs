@@ -54,6 +54,8 @@ public class MapSettingCenter : MonoBehaviour
     public void GetBalloonController(BalloonController controller)
     { 
         balloon = controller; 
+
+        balloon.OnStreamCheck += CheckInstallation;
         balloon.OnBalloonDestroyed += DestroyStageObject;
     }
 }
