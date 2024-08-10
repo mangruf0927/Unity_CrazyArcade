@@ -51,35 +51,10 @@ public class StageMap : MonoBehaviour
     {
         return map[x, -y].ObjectType;
     }
+
+    public void ChangeObjectType(ObjectTypeEnums type, int x, int y)
+    {
+        map[x, -y].ObjectType = type;
+    }
 }
 
-
-
-
-
-/* public struct MapNode
-{
-    private Vector2 position;
-    private bool hasObject;
-
-    // 생성자
-    public MapNode(Vector2 position, bool hasObject)
-    {
-        this.position = position;
-        this.hasObject = hasObject;
-    }
-
-    // 위치 접근자
-    public Vector2 Position
-    {
-        get { return position; }
-        set { position = value; }
-    }
-
-    // 오브젝트 존재 여부 접근자
-    public bool HasObject
-    {
-        get { return hasObject; }
-        set { hasObject = value; } // setter를 통해 상태 변경 가능
-    }
-} */

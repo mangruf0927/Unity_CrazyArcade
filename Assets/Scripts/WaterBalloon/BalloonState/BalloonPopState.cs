@@ -15,7 +15,6 @@ public class BalloonPopState : IBalloonState
 
     public void Update()
     {
-        
     }
 
     public void FixedUpdate()

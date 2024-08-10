@@ -20,7 +20,7 @@ public class SpawnItemLoader : MonoBehaviour
 
     private void Start() 
     {
-        block.OnBlockDestruction+=SpawnItem;
+        block.OnBlockDestruction += SpawnItem;
     }
 
     public void SpawnItem(Vector2 position)

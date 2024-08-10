@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class BalloonController : MonoBehaviour
@@ -29,6 +30,10 @@ public class BalloonController : MonoBehaviour
     public delegate ObjectTypeEnums StreamCheck(Vector2 position);
     public event StreamCheck OnStreamCheck;
 
+    // 물풍선 pop 상태
+    public delegate void BalloonPopHandler(Vector2 position);
+    public event BalloonPopHandler OnBalloonPop;
+
     // box 설치 시 제거
     public delegate void BoxRemoveHandler(Vector2 position);
     public event BoxRemoveHandler OnRemoveBox;
@@ -36,6 +41,8 @@ public class BalloonController : MonoBehaviour
     // 물풍선 파괴 이벤트
     public delegate void BalloonDestroyHandler(Vector2 position);
     public event BalloonDestroyHandler OnBalloonDestroyed;
+
+    public event BalloonDestroyHandler OnChangePopState;
 
 
     private void Update() 
@@ -76,6 +83,8 @@ public class BalloonController : MonoBehaviour
         currentWaterBalloon = null;
     }
 
+    public bool istest = true;
+
     public void DestroyWaterBalloon()
     {
         OnBalloonDestroyed?.Invoke(transform.position);
@@ -85,58 +94,78 @@ public class BalloonController : MonoBehaviour
 
     public void Explode()
     {
-        // 중간 
-        GameObject waterStreamCenter = Instantiate(popPrefab, transform.position, Quaternion.identity);
-        Animator centerAnimator = waterStreamCenter.GetComponent<Animator>();
-        centerAnimator.Play("Pop_Center");
-        StartCoroutine(ChangeStateAfterDestroy(centerAnimator, waterStreamCenter));
+        // 4방향 검사 후 생성할 위치 저장 (시계방향으로 검사)
+        Vector2[] directions = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
+        string[] midAnimNames = { "Pop_Up", "Pop_Right", "Pop_Down", "Pop_Left" };
+        string[] edgeAnimNames = { "Pop_Up_Edge","Pop_Right_Edge", "Pop_Down_Edge", "Pop_Left_Edge"};
 
-        // 중간 기점으로 4방향
-        Vector2[] directions = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};
-        string[] midAnimNames = {"Pop_Up", "Pop_Down", "Pop_Left", "Pop_Right"};
-        string[] edgeAnimNames = {"Pop_Up_Edge", "Pop_Down_Edge", "Pop_Left_Edge", "Pop_Right_Edge"};
-        
-        for(int i = 0; i < directions.Length; i++)
+        // 생성할 위치와 애니메이션을 저장할 리스트 (<> : 튜플)
+        List<(Vector2 position, string animationName)> spawnList = new List<(Vector2, string)>();
+
+        for (int i = 0; i < directions.Length; i++)
         {
             Vector2 direction = directions[i];
             string midAnimName = midAnimNames[i];
             string edgeAnimName = edgeAnimNames[i];
 
-            for(int j = 1; j <= popLength; j++)
+            for (int j = 1; j <= popLength; j++)
             {
-                // 물줄기 설치 위치
                 Vector2 spawnPosition = (Vector2)transform.position + direction * j;
 
-                // 4방향으로 장애물 있는지 확인
-                ObjectTypeEnums type = OnStreamCheck?.Invoke(spawnPosition) ?? ObjectTypeEnums.None;
-                if(type == ObjectTypeEnums.Object)
+                // 위치 체크 후 필요한 경우 리스트에 추가
+                if (CheckPosition(spawnPosition, ref spawnList, j == popLength ? edgeAnimName : midAnimName)) 
                 {
                     break;
                 }
-                else if(type == ObjectTypeEnums.Balloon)
-                {
-                    break;
-                }
-                else if(type == ObjectTypeEnums.Box)
-                {
-                    OnRemoveBox?.Invoke(spawnPosition);
-                    break;
-                }
-
-                // 장애물 없으면 물줄기 설치
-                GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
-                Animator animator = waterStream.GetComponent<Animator>();
-
-                // 물줄기 애니메이션
-                if(j == popLength) animator.Play(edgeAnimName);
-                else animator.Play(midAnimName);
-
-                StartCoroutine(DestroyAfterAnimation(animator, waterStream));
             }
+        }
+
+        // 중앙 팝 오브젝트 생성
+        CreateWaterStream(transform.position, "Pop_Center", true);
+
+        // 모든 방향을 검사한 후, 한 번에 오브젝트 생성
+        foreach (var obj in spawnList)
+        {
+            CreateWaterStream(obj.position, obj.animationName, false);
         }
     }
 
+    private bool CheckPosition(Vector2 position, ref List<(Vector2, string)> spawnList, string animationName)
+    {
+        ObjectTypeEnums type = OnStreamCheck?.Invoke(position) ?? ObjectTypeEnums.None;
 
+        if (type == ObjectTypeEnums.Object || type == ObjectTypeEnums.Pop) 
+        {
+            return true; // 더 이상 진행 불가
+        }
+        else if (type == ObjectTypeEnums.Balloon)
+        {
+            OnBalloonPop?.Invoke(position);
+            return true;
+        }
+        else if (type == ObjectTypeEnums.Box)
+        {
+            OnRemoveBox?.Invoke(position);
+            return true;
+        }
+        else if (type == ObjectTypeEnums.None)
+        {
+            // 리스트에 위치와 애니메이션을 저장
+            spawnList.Add((position, animationName));
+            return false;
+        }
+
+        return false;
+    }
+
+    private void CreateWaterStream(Vector2 position, string animationName, bool isCenter)
+    {
+        GameObject waterStream = Instantiate(popPrefab, position, Quaternion.identity);
+        Animator animator = waterStream.GetComponent<Animator>();
+        animator.Play(animationName);
+
+        if(isCenter) StartCoroutine(ChangeStateAfterDestroy(animator));
+    }
    
     private void OnTriggerExit2D(Collider2D other) 
     {
@@ -152,10 +181,10 @@ public class BalloonController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator ChangeStateAfterDestroy(Animator animator, GameObject gameObject)
+    private IEnumerator ChangeStateAfterDestroy(Animator animator)
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        Destroy(gameObject);
+        // Destroy(gameObject);
         stateMachine.ChangeState(BalloonStateEnums.DESTROY);
     }
 }

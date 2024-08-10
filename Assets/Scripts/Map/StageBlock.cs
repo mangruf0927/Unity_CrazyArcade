@@ -5,11 +5,11 @@ using System.Linq;
 
 public class StageBlock : MonoBehaviour
 {
-    // 블록 설치
+    // 블록 맵에 설치
     public delegate void BlockInstallHandler(ObjectTypeEnums blockType, Vector2 position);
     public event BlockInstallHandler OnBlockInstall;
 
-    // 블록 파괴
+    // 박스 파괴
     public delegate void BlockDestructionHandler(Vector2 position);
     public event BlockDestructionHandler OnBlockDestruction; 
 
@@ -34,17 +34,19 @@ public class StageBlock : MonoBehaviour
 
     public void RemoveBox(Vector2 pos)
     {
-        if (boxDictionary.TryGetValue(pos, out GameObject box))
-        {
-            boxDictionary.Remove(pos);
-            BoxList.Remove(box);
-            OnBlockDestruction?.Invoke(pos);
+        if (!boxDictionary.TryGetValue(pos, out GameObject box)) return;
+        
+        boxDictionary.Remove(pos);
+        BoxList.Remove(box);
+        OnBlockDestruction?.Invoke(pos);
 
-            Animator animator = box.GetComponent<Animator>();
-            animator.Play("Pop");
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99f) return;
+        // 애니메이션 실행
+        Animator animator = box.GetComponent<Animator>();
+        animator.Play("Pop");
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99f) return;
 
-            Destroy(box, 0.2f);
-        }
+        // 박스 파괴
+        Destroy(box, 0.2f);
+        
     }
 }

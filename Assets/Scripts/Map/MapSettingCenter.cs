@@ -10,6 +10,7 @@ public class MapSettingCenter : MonoBehaviour
     public PlayerController player;
     
     private BalloonController balloon;
+    private Dictionary<Vector2, BalloonController> balloonDictionary = new Dictionary<Vector2, BalloonController>();
 
 
     private void Awake() 
@@ -37,8 +38,6 @@ public class MapSettingCenter : MonoBehaviour
         int y = Mathf.FloorToInt(pos.y);
 
         stageMap.DestroyStageObject(x, y);
-
-        Debug.Log("파괴했어");
     }
 
     public bool CheckInstallation(Vector2 pos)
@@ -70,11 +69,30 @@ public class MapSettingCenter : MonoBehaviour
         stageMap.DestroyStageObject(x, y);
     }
 
-    public void GetBalloonController(BalloonController controller)
+    public void PopBalloon(Vector2 pos)
+    {
+        if (!balloonDictionary.TryGetValue(pos, out BalloonController balloon)) return;
+
+        balloonDictionary.Remove(pos);
+        balloon.StartChangeState(0.1f, BalloonStateEnums.POP);
+    }
+
+    public void ChangeState(Vector2 pos)
+    {
+        int x = Mathf.FloorToInt(pos.x); 
+        int y = Mathf.FloorToInt(pos.y);
+
+        stageMap.ChangeObjectType(ObjectTypeEnums.Pop, x, y);
+    }
+
+    public void GetBalloonController(Vector2 pos, BalloonController controller)
     { 
         balloon = controller; 
+        balloonDictionary[pos] = controller;
 
         balloon.OnStreamCheck += CheckObjectType;
+        balloon.OnChangePopState += ChangeState;
+        balloon.OnBalloonPop += PopBalloon;
         balloon.OnRemoveBox += RemoveBox;
         balloon.OnBalloonDestroyed += DestroyStageObject;
     }

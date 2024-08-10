@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public event BalloonPositionHandler OnBalloonPlaced; 
 
     // balloonController 등록 
-    public delegate void BalloonControllerHandler(BalloonController balloon);
+    public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
     public event BalloonControllerHandler OnControllerReceived;
 
     private bool isInstallation = false;
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
                 balloonController.InitializeBalloon(this, stat.popLength);
 
-                OnControllerReceived?.Invoke(balloonController);
+                OnControllerReceived?.Invoke(setPosition, balloonController);
             }
         }
     }
