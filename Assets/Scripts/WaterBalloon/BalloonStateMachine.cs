@@ -15,6 +15,7 @@ public class BalloonStateMachine : MonoBehaviour
         {
             { BalloonStateEnums.SET, new BalloonSetState(this) }, // this : 현재 인스턴스를 참조하는 것
             { BalloonStateEnums.WAIT, new BalloonWaitState(this) }, 
+            { BalloonStateEnums.READY, new BalloonReadyState(this) }, 
             { BalloonStateEnums.POP, new BalloonPopState(this) }, 
             { BalloonStateEnums.DESTROY, new BalloonDestroyState(this) }, 
         };

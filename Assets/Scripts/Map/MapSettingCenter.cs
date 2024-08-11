@@ -77,22 +77,12 @@ public class MapSettingCenter : MonoBehaviour
         balloon.StartChangeState(0.1f, BalloonStateEnums.POP);
     }
 
-    public void ChangeState(Vector2 pos)
-    {
-        int x = Mathf.FloorToInt(pos.x); 
-        int y = Mathf.FloorToInt(pos.y);
-
-        stageMap.ChangeObjectType(ObjectTypeEnums.Pop, x, y);
-    }
-
     public void GetBalloonController(Vector2 pos, BalloonController controller)
     { 
         balloon = controller; 
         balloonDictionary[pos] = controller;
 
         balloon.OnStreamCheck += CheckObjectType;
-        balloon.OnChangePopState += ChangeState;
-        balloon.OnBalloonPop += PopBalloon;
         balloon.OnRemoveBox += RemoveBox;
         balloon.OnBalloonDestroyed += DestroyStageObject;
     }

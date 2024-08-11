@@ -27,22 +27,16 @@ public class BalloonController : MonoBehaviour
     private PlayerController playerController;
 
     // 물풍선 설치 가능 여부 확인
-    public delegate ObjectTypeEnums StreamCheck(Vector2 position);
-    public event StreamCheck OnStreamCheck;
+    public delegate ObjectTypeEnums StreamCheckHandler(Vector2 position);
+    public event StreamCheckHandler OnStreamCheck;
 
-    // 물풍선 pop 상태
-    public delegate void BalloonPopHandler(Vector2 position);
-    public event BalloonPopHandler OnBalloonPop;
+    public delegate void BalloonHandler(Vector2 position);
+    public event BalloonHandler OnRemoveBox; // box 설치 시 제거
+    public event BalloonHandler OnChangeBalloonState; // 4방향 물풍선 찾기
+    public event BalloonHandler OnBalloonDestroyed; // 물풍선 파괴
 
-    // box 설치 시 제거
-    public delegate void BoxRemoveHandler(Vector2 position);
-    public event BoxRemoveHandler OnRemoveBox;
-
-    // 물풍선 파괴 이벤트
-    public delegate void BalloonDestroyHandler(Vector2 position);
-    public event BalloonDestroyHandler OnBalloonDestroyed;
-
-    public event BalloonDestroyHandler OnChangePopState;
+    // 생성할 위치와 애니메이션을 저장할 리스트 (<> : 튜플)
+    List<(Vector2 position, string animationName)> spawnList = new List<(Vector2, string)>();
 
 
     private void Update() 
@@ -83,8 +77,6 @@ public class BalloonController : MonoBehaviour
         currentWaterBalloon = null;
     }
 
-    public bool istest = true;
-
     public void DestroyWaterBalloon()
     {
         OnBalloonDestroyed?.Invoke(transform.position);
@@ -92,15 +84,12 @@ public class BalloonController : MonoBehaviour
         playerController.stat.ChargeBalloon();
     }
 
-    public void Explode()
+    public void CheckFourWays()
     {
         // 4방향 검사 후 생성할 위치 저장 (시계방향으로 검사)
         Vector2[] directions = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
         string[] midAnimNames = { "Pop_Up", "Pop_Right", "Pop_Down", "Pop_Left" };
         string[] edgeAnimNames = { "Pop_Up_Edge","Pop_Right_Edge", "Pop_Down_Edge", "Pop_Left_Edge"};
-
-        // 생성할 위치와 애니메이션을 저장할 리스트 (<> : 튜플)
-        List<(Vector2 position, string animationName)> spawnList = new List<(Vector2, string)>();
 
         for (int i = 0; i < directions.Length; i++)
         {
@@ -119,7 +108,10 @@ public class BalloonController : MonoBehaviour
                 }
             }
         }
+    }
 
+    public void Explode()
+    {
         // 중앙 팝 오브젝트 생성
         CreateWaterStream(transform.position, "Pop_Center", true);
 
@@ -134,13 +126,8 @@ public class BalloonController : MonoBehaviour
     {
         ObjectTypeEnums type = OnStreamCheck?.Invoke(position) ?? ObjectTypeEnums.None;
 
-        if (type == ObjectTypeEnums.Object || type == ObjectTypeEnums.Pop) 
+        if (type == ObjectTypeEnums.Object) 
         {
-            return true; // 더 이상 진행 불가
-        }
-        else if (type == ObjectTypeEnums.Balloon)
-        {
-            OnBalloonPop?.Invoke(position);
             return true;
         }
         else if (type == ObjectTypeEnums.Box)
@@ -148,13 +135,17 @@ public class BalloonController : MonoBehaviour
             OnRemoveBox?.Invoke(position);
             return true;
         }
+        else if(type == ObjectTypeEnums.Balloon)
+        {
+            OnChangeBalloonState?.Invoke(position);
+            return false;
+        }
         else if (type == ObjectTypeEnums.None)
         {
             // 리스트에 위치와 애니메이션을 저장
             spawnList.Add((position, animationName));
             return false;
         }
-
         return false;
     }
 
