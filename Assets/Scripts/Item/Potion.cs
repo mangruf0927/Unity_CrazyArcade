@@ -8,6 +8,7 @@ public class Potion : MonoBehaviour
     public event PotionHandle OnPowerUp;
 
     public ItemTypeEnums itemTypeEnums;
+    private bool isGet = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,8 +19,12 @@ public class Potion : MonoBehaviour
         
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            OnPowerUp?.Invoke();
-            Destroy(gameObject, 0.1f);
+            if(!isGet)
+            {
+                isGet = true;
+                OnPowerUp?.Invoke();
+                Destroy(gameObject, 0.1f);
+            }
         }
     }
 }

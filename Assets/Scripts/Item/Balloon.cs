@@ -8,6 +8,7 @@ public class Balloon : MonoBehaviour
     public event BalloonHandle OnBalloonUp;
 
     public ItemTypeEnums itemTypeEnums;
+    private bool isGet = false;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,8 +19,12 @@ public class Balloon : MonoBehaviour
 
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            OnBalloonUp?.Invoke();
-            Destroy(gameObject, 0.1f);
+            if(!isGet)
+            {
+                isGet = true;
+                OnBalloonUp?.Invoke();
+                Destroy(gameObject, 0.1f);
+            }
         }
     }
 }

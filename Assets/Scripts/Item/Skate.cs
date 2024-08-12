@@ -8,6 +8,7 @@ public class Skate : MonoBehaviour
     public event SkateHandle OnSpeedUp;
 
     public ItemTypeEnums itemTypeEnums;
+    private bool isGet = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,8 +19,12 @@ public class Skate : MonoBehaviour
         
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            OnSpeedUp?.Invoke();
-            Destroy(gameObject, 0.1f);
+            if(!isGet)
+            {
+                isGet = true;
+                OnSpeedUp?.Invoke();
+                Destroy(gameObject, 0.1f);
+            }
         }
     }
 }
