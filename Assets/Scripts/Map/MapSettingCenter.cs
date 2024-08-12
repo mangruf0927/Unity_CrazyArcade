@@ -10,7 +10,7 @@ public class MapSettingCenter : MonoBehaviour
     public PlayerController player;
     
     private List<BalloonController> balloonPopList = new List<BalloonController>();
-
+    private int count;
 
 
     private void Awake() 
@@ -57,6 +57,7 @@ public class MapSettingCenter : MonoBehaviour
         return stageMap.CheckObjectInstallation(x, y);
     }
 
+
     public ObjectTypeEnums CheckObjectType(Vector2 pos)
     {
         int x = Mathf.FloorToInt(pos.x); 
@@ -76,12 +77,9 @@ public class MapSettingCenter : MonoBehaviour
         stageMap.DestroyStageObject(x, y);
     }
 
-    int count;
     public void CheckFourWays(BalloonController balloon, Vector2 pos, int power)
     {
-        Debug.Log("CheckFourWays");
         count = 0;
-        balloon.initializeStreamList();
 
         balloonPopList.Add(balloon);
 
@@ -95,12 +93,11 @@ public class MapSettingCenter : MonoBehaviour
             for (int j = 1; j <= power; j++)
             {
                 Vector2 spawnPosition = pos + direction * j;
-                Debug.Log(spawnPosition);
+                //Debug.Log(spawnPosition);
+                
                 // 위치 체크 후 필요한 경우 리스트에 추가
                 if (CheckPosition(spawnPosition)) 
                 {
-
-                    
                     break;
                 }
                 else
@@ -115,7 +112,12 @@ public class MapSettingCenter : MonoBehaviour
             foreach(BalloonController pop in balloonPopList)
             {
                 stageMap.Return(pop.transform.position).balloon = null;
-                pop.ChangeStateAfterTime(0f, BalloonStateEnums.POP);
+                pop.StartChangeState(BalloonStateEnums.POP);
+            }
+
+            foreach(BalloonController pop in balloonPopList)
+            {
+                ChangeObjectType(pop.transform.position, ObjectTypeEnums.None);
             }
             
             balloonPopList.Clear();
@@ -139,7 +141,7 @@ public class MapSettingCenter : MonoBehaviour
         {
             if(!stageMap.Return(position).balloon.stateMachine.CheckCurState(BalloonStateEnums.READY))
             {
-                stageMap.Return(position).balloon.ChangeStateAfterTime(0f, BalloonStateEnums.READY);
+                stageMap.Return(position).balloon.stateMachine.ChangeState(BalloonStateEnums.READY);
                 count ++;
             }
             return false;
@@ -149,6 +151,14 @@ public class MapSettingCenter : MonoBehaviour
             return false;
         }
         return false;
+    }
+
+    public void ChangeObjectType(Vector2 pos, ObjectTypeEnums type)
+    {
+        int x = Mathf.FloorToInt(pos.x); 
+        int y = Mathf.FloorToInt(pos.y);
+
+        stageMap.ChangeObjectType(type, x, y);
     }
 
     public void GetBalloonController(Vector2 pos, BalloonController controller)

@@ -39,6 +39,11 @@ public class BalloonController : MonoBehaviour
     // 물줄기 저장 리스트
     public List<Vector2>[] streamList = new List<Vector2>[4]; 
 
+    private void Start() 
+    {
+        initializeStreamList();    
+    }
+
     private void Update() 
     {
         if(stateMachine.curState != null)
@@ -74,15 +79,15 @@ public class BalloonController : MonoBehaviour
         }
     }
 
-    public IEnumerator ChangeStateAfterTime(float time, BalloonStateEnums state)
+    private IEnumerator ChangeStateAfterTime(BalloonStateEnums state, float time = 0f)
     {
         yield return new WaitForSeconds(time);
         stateMachine.ChangeState(state);
     }
 
-    public void StartChangeState(float time, BalloonStateEnums state)
+    public void StartChangeState(BalloonStateEnums state, float time = 0f)
     {
-        StartCoroutine(ChangeStateAfterTime(time, state));
+        StartCoroutine(ChangeStateAfterTime(state, time));
     }
 
     public void DestroyObject()
@@ -101,8 +106,6 @@ public class BalloonController : MonoBehaviour
 
     public void Explode()
     {
-        SetStreamAnimations();
-
         // 중앙 팝 오브젝트 생성
         CreateWaterStream(transform.position, "Pop_Center");
 
@@ -122,7 +125,7 @@ public class BalloonController : MonoBehaviour
         animator.Play(animationName);
     }
 
-    private void SetStreamAnimations()
+    public void SetStreamAnimations()
     {
         string[] midAnimNames = { "Pop_Up", "Pop_Right", "Pop_Down", "Pop_Left" };
         string[] edgeAnimNames = { "Pop_Up_Edge", "Pop_Right_Edge", "Pop_Down_Edge", "Pop_Left_Edge" };

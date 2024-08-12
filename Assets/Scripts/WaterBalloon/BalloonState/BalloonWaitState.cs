@@ -17,15 +17,21 @@ public class BalloonWaitState : IBalloonState
     {
 
     }
-
+    float time;
     public void FixedUpdate()
     {
+        time += Time.fixedDeltaTime;
 
+        if (time >= 2.5f)
+        {
+            stateMachine.ChangeState(BalloonStateEnums.READY);
+        }
     }
 
     public void OnEnter()
     {
-        balloonController.StartChangeState(2.5f, BalloonStateEnums.READY);
+        time = 0;
+        // balloonController.StartChangeState(BalloonStateEnums.READY, 2.5f);
     }
 
     public void OnExit()

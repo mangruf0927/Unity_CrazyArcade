@@ -25,12 +25,12 @@ public class BalloonReadyState : IBalloonState
 
     public void OnEnter()
     {
-        Debug.Log("Ready");
         balloonController.CheckForReady();
     }
 
     public void OnExit()
     {
+        balloonController.SetStreamAnimations();
     }
 }
 

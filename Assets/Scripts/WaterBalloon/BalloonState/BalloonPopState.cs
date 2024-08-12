@@ -26,6 +26,7 @@ public class BalloonPopState : IBalloonState
     public void OnEnter()
     {
         balloonController.Explode();
+        balloonController.StartChangeState(BalloonStateEnums.DESTROY, 0.15f);
     }
 
     public void OnExit()

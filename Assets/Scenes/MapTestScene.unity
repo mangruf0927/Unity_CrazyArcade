@@ -2692,7 +2692,7 @@ MonoBehaviour:
   - {fileID: 5202752055745159258, guid: a996d1f4fcc804808a5abd4774ad051b, type: 3}
   - {fileID: 1465981284393244098, guid: 1ab3a81cce50d41ab94a25c66d782a84, type: 3}
   - {fileID: 3281815371301583209, guid: 2737f85210df54899982c789f1564b92, type: 3}
-  spawnProbability: 60
+  spawnProbability: 100
   itemCenter: {fileID: 247641857}
 --- !u!1 &1407705490
 GameObject:
