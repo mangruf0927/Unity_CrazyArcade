@@ -2200,8 +2200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d75bd1883c3e4a55ac1bee3d4f84daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushTime: 0.5
-  pushDirection: {x: 0, y: 0}
 --- !u!1 &1118092155
 GameObject:
   m_ObjectHideFlags: 0

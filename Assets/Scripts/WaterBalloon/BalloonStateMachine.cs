@@ -42,4 +42,13 @@ public class BalloonStateMachine : MonoBehaviour
             curState.OnEnter();
         }
     }
+
+    public bool CheckCurState(BalloonStateEnums newStateType)
+    {
+        if (stateDictionary.TryGetValue(newStateType, out IBalloonState stateValue))
+        {
+            return curState == stateValue;
+        }
+        return false; // 키가 존재하지 않는 경우 false 반환
+    }
 }

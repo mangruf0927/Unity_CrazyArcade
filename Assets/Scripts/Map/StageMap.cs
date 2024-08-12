@@ -7,6 +7,7 @@ public class MapNode
 {
     public ObjectTypeEnums ObjectType { get; set; } = ObjectTypeEnums.None; // 기본값 설정
     public bool HasObject { get; set; } = false; // 기본값 설정
+    public BalloonController balloon;
 }
 
 
@@ -17,6 +18,11 @@ public class StageMap : MonoBehaviour
     private void Awake() 
     {   
         InitializeMap();
+    }
+
+    public MapNode Return(Vector2 pos)
+    {
+        return map[(int)pos.x,(int)pos.y];
     }
 
     public void InitializeMap()

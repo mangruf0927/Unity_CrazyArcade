@@ -15,6 +15,7 @@ public class BalloonReadyState : IBalloonState
 
     public void Update()
     {
+
     }
 
     public void FixedUpdate()
@@ -24,7 +25,8 @@ public class BalloonReadyState : IBalloonState
 
     public void OnEnter()
     {
-        balloonController.Explode();
+        Debug.Log("Ready");
+        balloonController.CheckForReady();
     }
 
     public void OnExit()

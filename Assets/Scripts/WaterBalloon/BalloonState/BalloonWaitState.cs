@@ -25,7 +25,7 @@ public class BalloonWaitState : IBalloonState
 
     public void OnEnter()
     {
-        balloonController.StartChangeState(2.5f, BalloonStateEnums.POP);
+        balloonController.StartChangeState(2.5f, BalloonStateEnums.READY);
     }
 
     public void OnExit()
