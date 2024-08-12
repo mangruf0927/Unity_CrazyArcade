@@ -17,6 +17,13 @@ public class MapSettingCenter : MonoBehaviour
     {
         stageBlock.OnBlockInstall += SetStageObject;
 
+        foreach(MovableBox box in stageBlock.MovableBoxeList)
+        {
+            box.OnMoveCheck += CheckInstallation;
+            box.OnRegisterNewPos += SetStageObject;
+            box.OnRemoveOriginPos += DestroyStageObject;
+        }
+
         player.OnBalloonCheck += CheckInstallation;
         player.OnBalloonPlaced += SetStageObject;
         player.OnControllerReceived += GetBalloonController;
@@ -29,7 +36,7 @@ public class MapSettingCenter : MonoBehaviour
 
         stageMap.SetStageObjcet(type, x, y);
 
-        Debug.Log("[" + type + "]" + x + ", " + -y);
+        // Debug.Log("[" + type + "]" + x + ", " + -y);
     }
 
     public void DestroyStageObject(Vector2 pos)

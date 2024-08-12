@@ -166,12 +166,6 @@ public class BalloonController : MonoBehaviour
         } 
     }
 
-    private IEnumerator DestroyAfterAnimation(Animator animator, GameObject gameObject)
-    {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        Destroy(gameObject);
-    }
-
     private IEnumerator ChangeStateAfterDestroy(Animator animator)
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
