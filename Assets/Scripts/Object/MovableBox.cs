@@ -21,6 +21,8 @@ public class MovableBox : MonoBehaviour
     public delegate void ChangePositionHandler(Vector2 oldPos, Vector2 newPos);
     public event ChangePositionHandler OnChangePos;
 
+    public delegate Vector2 GetDirectionHandler();
+    public event GetDirectionHandler OnGetDirection;
 
     void OnCollisionStay2D(Collision2D collision) // 플레이어가 박스를 밀 때
     {
@@ -47,11 +49,28 @@ public class MovableBox : MonoBehaviour
 
     private IEnumerator PushBox(Collision2D collision)
     {
-        yield return new WaitForSeconds(1f);
-
+        float elapsedTime = 0f;
+        
         Vector2 direction = CalculatePushDirection(collision);
-        TryMove(direction);
+        Vector2 playerDirection;
 
+        // 1초 동안 방향이 일치하는지 체크
+        while (elapsedTime < 1f)
+        {
+            playerDirection = OnGetDirection?.Invoke() ?? Vector2.zero;
+
+            if (playerDirection != direction)
+            {
+                pushingCoroutine = null;
+                yield break; // 방향이 다르면 코루틴 종료
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        // 방향이 1초동안 같으면 박스 밀기
+        TryMove(direction);
         pushingCoroutine = null;
     }
 
@@ -69,7 +88,7 @@ public class MovableBox : MonoBehaviour
     {
         isMoving = true;
         float elapsedTime = 0f;
-        float moveDuration = 0.3f;
+        float moveDuration = 0.25f;
         Vector2 originalPosition = transform.position;
 
         while (elapsedTime < moveDuration)

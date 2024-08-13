@@ -72,6 +72,12 @@ public class PlayerController : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         moveDirection = direction;
+        // Debug.Log(direction);
+    }
+
+    public Vector2 GetDirection()
+    {
+        return moveDirection;
     }
 
     public void PlayMoveAnimation()

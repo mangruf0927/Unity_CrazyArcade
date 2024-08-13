@@ -19,6 +19,7 @@ public class MapSettingCenter : MonoBehaviour
 
         foreach(MovableBox box in stageBlock.MovableBoxeList)
         {
+            box.OnGetDirection += GetPlayerDirection;
             box.OnMoveCheck += CheckInstallation;
             box.OnRegisterNewPos += SetStageObject;
             box.OnRemoveOriginPos += DestroyStageObject;
@@ -159,6 +160,11 @@ public class MapSettingCenter : MonoBehaviour
         int y = Mathf.FloorToInt(pos.y);
 
         stageMap.ChangeObjectType(type, x, y);
+    }
+
+    public Vector2 GetPlayerDirection()
+    {
+        return player.GetDirection();
     }
 
     public void GetBalloonController(Vector2 pos, BalloonController controller)
