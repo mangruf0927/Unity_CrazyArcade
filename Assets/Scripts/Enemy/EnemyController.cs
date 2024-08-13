@@ -54,17 +54,19 @@ public class EnemyController : MonoBehaviour
 
     public void CheckForObstacle()
     {
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0f, moveDirection, rayDistance);
+        int obstacleLayer = LayerMask.GetMask("Obstacle");
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0f, moveDirection, rayDistance, obstacleLayer);
     
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider != null && hit.collider.CompareTag("Obstacle"))
+            if (hit.collider != null)
             {
                 SetDirection();
                 break; // 첫 번째 장애물에 충돌하면 루프 종료
             }
         }
     }
+
 
     public void SetDirection()
     {
@@ -74,14 +76,13 @@ public class EnemyController : MonoBehaviour
         // 현재 방향을 제외한 나머지 방향 체크
         foreach (Vector2 direction in directions)
         {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, rayDistance);
+            int obstacleLayer = LayerMask.GetMask("Obstacle");
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, rayDistance, obstacleLayer);
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.CompareTag("Obstacle")) // 장애물이 있으면 방향 제거
-                {
-                    availableDirections.Remove(direction);
-                }
+                // 장애물이 있으면 방향 제거
+                availableDirections.Remove(direction);
             }
         }
 
@@ -106,7 +107,7 @@ public class EnemyController : MonoBehaviour
         {
             // 현재 이동 중인 방향은 제외
             if (direction == moveDirection) continue;
-
+            
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, sensinGRange, LayerMask.GetMask("Player"));
 
             // 플레이어를 감지한 경우
