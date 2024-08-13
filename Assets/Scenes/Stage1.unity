@@ -2923,7 +2923,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 291086970}
   enemySpeed: 1
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &291086967
 Animator:
   serializedVersion: 5
@@ -3001,7 +3001,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -5816,7 +5816,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 702948218}
   enemySpeed: 1
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &702948215
 Animator:
   serializedVersion: 5
@@ -5894,7 +5894,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -9610,7 +9610,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1194784632}
   enemySpeed: 1
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &1194784629
 Animator:
   serializedVersion: 5
@@ -9688,7 +9688,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -9964,7 +9964,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1210755812}
   enemySpeed: 1.5
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &1210755809
 Animator:
   serializedVersion: 5
@@ -10042,7 +10042,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -10639,7 +10639,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1292138312}
   enemySpeed: 1.5
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &1292138309
 Animator:
   serializedVersion: 5
@@ -10717,7 +10717,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -11449,7 +11449,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1381445311}
   enemySpeed: 1
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &1381445308
 Animator:
   serializedVersion: 5
@@ -11527,7 +11527,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -12795,7 +12795,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1448633761}
   enemySpeed: 1
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &1448633758
 Animator:
   serializedVersion: 5
@@ -12873,7 +12873,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
@@ -18325,7 +18325,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1957633544}
   enemySpeed: 1
   moveDirection: {x: 0, y: 1}
-  sensinGRange: 1.5
+  sensingRange: 1.2
 --- !u!95 &1957633541
 Animator:
   serializedVersion: 5
@@ -18403,7 +18403,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}

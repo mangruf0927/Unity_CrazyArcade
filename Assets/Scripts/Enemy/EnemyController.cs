@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     public Vector2 moveDirection;
 
     [Header("플레이어 탐지 범위")]
-    public float sensinGRange;
+    public float sensingRange;
 
     private bool isConfined = false;
     private float rayDistance = 0.3f;
@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour
             // 현재 이동 중인 방향은 제외
             if (direction == moveDirection) continue;
             
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, sensinGRange, LayerMask.GetMask("Player"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, sensingRange, LayerMask.GetMask("Player"));
 
             // 플레이어를 감지한 경우
             if (hit.collider != null)
@@ -156,6 +156,19 @@ public class EnemyController : MonoBehaviour
         // 캐스트 선 그리기
         Gizmos.color = Color.green; // 캐스트 선 색상 설정
         Gizmos.DrawLine(transform.position, center); // 박스 캐스트의 끝점을 선으로 연결합니다
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        {
+            stateMachine.ChangeState(EnemyStateEnums.DEAD);
+        }
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(gameObject, 0.5f);
     }
     
 }

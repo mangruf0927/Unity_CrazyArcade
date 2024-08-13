@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5539478783654844000}
   - component: {fileID: 5701008244636334474}
   - component: {fileID: 6793206754247450739}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: WaterBalloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
