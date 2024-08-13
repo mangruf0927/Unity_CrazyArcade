@@ -13,6 +13,7 @@ public class PlayerHitScan : MonoBehaviour
 
     public delegate void HitScanHandle();
     public event HitScanHandle OnDamage;
+    public event HitScanHandle OnTouchEnemy;
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -27,6 +28,11 @@ public class PlayerHitScan : MonoBehaviour
                 Debug.Log(overlapArea / playerArea + " % 충돌 !");
                 OnDamage?.Invoke();
             }
+        }
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            OnTouchEnemy?.Invoke();
         }
     }
 

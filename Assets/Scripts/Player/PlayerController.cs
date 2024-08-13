@@ -44,7 +44,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start() 
     {
-        hitScan.OnDamage += Hit;    
+        hitScan.OnDamage += Hit;  
+        hitScan.OnTouchEnemy += OnDeath; 
     }
 
     private void Update()
@@ -139,6 +140,11 @@ public class PlayerController : MonoBehaviour
     public bool CheckTrap()
     {
         return isTrap;
+    }
+
+    public void OnDeath()
+    {
+        stateMachine.ChangeState(PlayerStateEnums.DEAD);
     }
     
     public void StartChangeState(Animator animator, PlayerStateEnums state)

@@ -56,4 +56,16 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
+    public void ChangeState(PlayerStateEnums newStateType) 
+    {
+        if(curState == null) return;
+
+        curState.OnExit();
+
+        if(stateDictionary.TryGetValue(newStateType, out IPlayerState newState))
+        {
+            curState = newState;
+            curState.OnEnter();
+        }
+    }
 }
