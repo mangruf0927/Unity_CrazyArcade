@@ -9,7 +9,7 @@ public class MovableBox : MonoBehaviour
     private bool isMoving = false;  
     private Coroutine pushingCoroutine = null;
 
-    public delegate bool MovableBoxBoolHandler(Vector2 pos);
+    public delegate ObjectTypeEnums MovableBoxBoolHandler(Vector2 pos);
     public event MovableBoxBoolHandler OnMoveCheck;
 
     public delegate void BoxRegisterHandler(ObjectTypeEnums type, Vector2 pos);
@@ -78,7 +78,7 @@ public class MovableBox : MonoBehaviour
     {
         Vector2 newPosition = (Vector2)transform.position + direction;
 
-        if (OnMoveCheck?.Invoke(newPosition) == false)
+        if (OnMoveCheck?.Invoke(newPosition) == ObjectTypeEnums.None)
         {
             StartCoroutine(MoveBox(newPosition));
         }

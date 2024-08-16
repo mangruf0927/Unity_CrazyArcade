@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     public float sensingRange;
 
     private bool isConfined = false;
-    private float rayDistance = 0.3f;
+    private float rayDistance = 0.6f;
     private Vector2 boxSize = new Vector2(0.5f, 0.5f);
 
     public delegate void EnemyHandler(ObjectTypeEnums type, Vector2 pos);
@@ -80,8 +80,6 @@ public class EnemyController : MonoBehaviour
             // 새로운 위치 등록 이벤트 호출
             currentPosition = position;
             OnUpdatePosition?.Invoke(ObjectTypeEnums.Enemy, currentPosition);
-            
-            Debug.Log("적 위치 업데이트 : " + currentPosition);
 
             // 이전 위치를 현재 위치로 업데이트
             previousPosition = currentPosition;

@@ -22,7 +22,7 @@ public class MapSettingCenter : MonoBehaviour
         foreach(MovableBox box in stageBlock.MovableBoxeList)
         {
             box.OnGetDirection += GetPlayerDirection;
-            box.OnMoveCheck += CheckInstallation;
+            box.OnMoveCheck += CheckObjectType;
             box.OnRegisterNewPos += SetStageObject;
             box.OnRemoveOriginPos += DestroyStageObject;
         }
@@ -54,8 +54,6 @@ public class MapSettingCenter : MonoBehaviour
         int y = Mathf.FloorToInt(pos.y);
 
         stageMap.SetStageEnemy(type, x, y);
-
-        Debug.Log("적의 위치 맵에 업뎃됐당 " + x + ", " + y);
     }
 
     public void DestroyStageObject(Vector2 pos)
