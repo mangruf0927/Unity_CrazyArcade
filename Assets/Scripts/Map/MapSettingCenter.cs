@@ -9,6 +9,8 @@ public class MapSettingCenter : MonoBehaviour
     public StageMap stageMap;
     public PlayerController player;
     
+    public List<EnemyController> enemyList;
+
     private List<BalloonController> balloonPopList = new List<BalloonController>();
     private int count;
 
@@ -25,6 +27,12 @@ public class MapSettingCenter : MonoBehaviour
             box.OnRemoveOriginPos += DestroyStageObject;
         }
 
+        foreach(EnemyController enemy in enemyList)
+        {
+            enemy.OnUpdatePosition += SetStageEnemy;
+            enemy.OnRemovePosition += DestroyStageObject;
+        }
+
         player.OnBalloonCheck += CheckInstallation;
         player.OnBalloonPlaced += SetStageObject;
         player.OnControllerReceived += GetBalloonController;
@@ -38,6 +46,16 @@ public class MapSettingCenter : MonoBehaviour
         stageMap.SetStageObjcet(type, x, y);
 
         // Debug.Log("[" + type + "]" + x + ", " + -y);
+    }
+
+    public void SetStageEnemy(ObjectTypeEnums type, Vector2 pos)
+    {
+        int x = Mathf.FloorToInt(pos.x); 
+        int y = Mathf.FloorToInt(pos.y);
+
+        stageMap.SetStageEnemy(type, x, y);
+
+        Debug.Log("적의 위치 맵에 업뎃됐당 " + x + ", " + y);
     }
 
     public void DestroyStageObject(Vector2 pos)

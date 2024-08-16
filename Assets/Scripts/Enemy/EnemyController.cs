@@ -29,6 +29,15 @@ public class EnemyController : MonoBehaviour
     private float rayDistance = 0.3f;
     private Vector2 boxSize = new Vector2(0.5f, 0.5f);
 
+    public delegate void EnemyHandler(ObjectTypeEnums type, Vector2 pos);
+    public event EnemyHandler OnUpdatePosition;
+
+    public delegate void EnemyRemovePosHandler(Vector2 pos);
+    public event EnemyRemovePosHandler OnRemovePosition;
+
+    private Vector2 currentPosition;
+    private Vector2 previousPosition;
+
     private void Update() 
     {
         if(stateMachine.curState != null)
@@ -41,6 +50,8 @@ public class EnemyController : MonoBehaviour
     {
         if(stateMachine.curState != null)
             stateMachine.curState.FixedUpdate();
+
+        UpdatePosition();
     }
 
     // >> :
@@ -50,6 +61,31 @@ public class EnemyController : MonoBehaviour
             rigid.velocity = moveDirection * enemySpeed;
         else
             rigid.velocity = Vector2.zero;
+    }
+
+    public void UpdatePosition()
+    {
+        // 현재 위치를 가져와서 반올림
+        Vector2 position = new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y));
+
+        // 현재 위치와 이전 위치가 다를 경우에만 업데이트
+        if (position != currentPosition)
+        {
+            // 이전 위치가 존재할 경우 해당 위치 삭제 이벤트 호출
+            if (previousPosition != null)
+            {
+                OnRemovePosition?.Invoke(previousPosition);
+            }
+
+            // 새로운 위치 등록 이벤트 호출
+            currentPosition = position;
+            OnUpdatePosition?.Invoke(ObjectTypeEnums.Enemy, currentPosition);
+            
+            Debug.Log("적 위치 업데이트 : " + currentPosition);
+
+            // 이전 위치를 현재 위치로 업데이트
+            previousPosition = currentPosition;
+        }
     }
 
     public void CheckForObstacle()
@@ -166,9 +202,14 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void DestroyObject()
+    public void StartDestroyEnemy()
     {
-        Destroy(gameObject, 0.5f);
+        StartCoroutine(DestroyEnemy());
     }
     
+    private IEnumerator DestroyEnemy()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject, 0.1f);
+    }
 }

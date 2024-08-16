@@ -37,7 +37,7 @@ public class PlayerTrapState : IPlayerState
     public void OnEnter()
     {
         playerController.animator.Play("Trap");
-        playerController.StartChangeState(playerController.animator, PlayerStateEnums.DEAD);
+        playerController.StartChangeState(PlayerStateEnums.DEAD);
     }
 
     public void OnExit()

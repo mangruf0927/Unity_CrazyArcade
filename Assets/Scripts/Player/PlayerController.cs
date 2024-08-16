@@ -147,12 +147,12 @@ public class PlayerController : MonoBehaviour
         stateMachine.ChangeState(PlayerStateEnums.DEAD);
     }
     
-    public void StartChangeState(Animator animator, PlayerStateEnums state)
+    public void StartChangeState(PlayerStateEnums state)
     {
-        StartCoroutine(PlayAnimation(animator, state));
+        StartCoroutine(PlayAnimation(state));
     }
 
-    private IEnumerator PlayAnimation(Animator animator, PlayerStateEnums state)
+    private IEnumerator PlayAnimation(PlayerStateEnums state)
     {
         yield return new WaitForSeconds(0.1f); // 애니메이션이 시작될 시간을 확보
 

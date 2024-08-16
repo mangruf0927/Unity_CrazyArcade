@@ -13,6 +13,7 @@ public class StageItemLoader : MonoBehaviour
     [Header("물약 아이템 목록")]
     public List<Potion> potionList;
 
+    [Header("아이템 센터")]
     public ItemCenter itemCenter;
 
     private void Start() 

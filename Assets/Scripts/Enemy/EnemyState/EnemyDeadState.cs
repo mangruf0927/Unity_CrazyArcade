@@ -27,7 +27,7 @@ public class EnemyDeadState : IEnemyState
     {
         enemyController.rigid.velocity = Vector2.zero;
         enemyController.animator.Play("Dead");
-        enemyController.DestroyObject();
+        enemyController.StartDestroyEnemy();
     }
 
     public void OnExit()

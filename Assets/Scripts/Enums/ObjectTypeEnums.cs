@@ -2,7 +2,7 @@ public enum ObjectTypeEnums
 {
     None,
     Balloon,
-    // Pop,
+    Enemy,
     Object,
     Box,
 }

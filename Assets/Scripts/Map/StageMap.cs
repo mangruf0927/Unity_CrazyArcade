@@ -42,6 +42,12 @@ public class StageMap : MonoBehaviour
         map[x, -y].HasObject = true;
     }
 
+    public void SetStageEnemy(ObjectTypeEnums type, int x, int y)
+    {
+        map[x, -y].ObjectType = type;
+        map[x, -y].HasObject = false;
+    }
+
     public void DestroyStageObject(int x, int y)
     {
         map[x, -y].ObjectType = ObjectTypeEnums.None;
