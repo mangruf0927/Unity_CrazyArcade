@@ -15,7 +15,7 @@ public class StageBlock : MonoBehaviour
 
     public List<GameObject> ObjectList;
     public List<GameObject> BoxList;
-    public List<MovableBox> MovableBoxeList;
+    public List<MovableBox> MovableBoxList;
 
     private Dictionary<Vector2, GameObject> boxDictionary = new Dictionary<Vector2, GameObject>();
 
@@ -32,7 +32,7 @@ public class StageBlock : MonoBehaviour
             boxDictionary[box.transform.position] = box; // 위치를 키로 하고 박스를 값으로 추가
         }
 
-        foreach(MovableBox box in MovableBoxeList)
+        foreach(MovableBox box in MovableBoxList)
         {
             OnBlockInstall?.Invoke(ObjectTypeEnums.Box, box.transform.position);
             boxDictionary[box.transform.position] = box.gameObject;

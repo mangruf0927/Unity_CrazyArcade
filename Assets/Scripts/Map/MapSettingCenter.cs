@@ -19,7 +19,7 @@ public class MapSettingCenter : MonoBehaviour
     {
         stageBlock.OnBlockInstall += SetStageObject;
 
-        foreach(MovableBox box in stageBlock.MovableBoxeList)
+        foreach(MovableBox box in stageBlock.MovableBoxList)
         {
             box.OnGetDirection += GetPlayerDirection;
             box.OnMoveCheck += CheckObjectType;
