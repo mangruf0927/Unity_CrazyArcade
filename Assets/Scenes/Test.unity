@@ -1114,9 +1114,9 @@ MonoBehaviour:
   moveSpeed: 2
   maxSpeed: 7
   trapSpeed: 0.3
-  maxBalloonNum: 5
-  balloonNum: 2
-  maxPopLength: 5
+  maxBalloonNum: 6
+  balloonNum: 1
+  maxPopLength: 7
   popLength: 1
 --- !u!1 &138145743
 GameObject:
@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCollider: {fileID: 697079686}
-  overlapPercent: 0.66
+  overlapPercent: 0.39
 --- !u!61 &697079686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3340,9 +3340,9 @@ MonoBehaviour:
   moveSpeed: 2
   maxSpeed: 7
   trapSpeed: 0.3
-  maxBalloonNum: 5
-  balloonNum: 2
-  maxPopLength: 5
+  maxBalloonNum: 6
+  balloonNum: 1
+  maxPopLength: 7
   popLength: 1
 --- !u!95 &853500751
 Animator:
