@@ -9,7 +9,7 @@ public class MapSettingCenter : MonoBehaviour
     public StageMap stageMap;
     public PlayerController player;
     
-    public List<EnemyController> enemyList;
+    public List<EnemyController> enemyList; // 얘도 수정해야할 듯 
 
     private List<BalloonController> balloonPopList = new List<BalloonController>();
     private int count;
@@ -31,6 +31,7 @@ public class MapSettingCenter : MonoBehaviour
         {
             enemy.OnUpdatePosition += SetStageEnemy;
             enemy.OnRemovePosition += DestroyStageObject;
+            enemy.OnCheckObstacle += CheckInstallation;
         }
 
         player.OnBalloonCheck += CheckInstallation;
