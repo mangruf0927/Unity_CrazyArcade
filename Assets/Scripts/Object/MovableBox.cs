@@ -55,7 +55,7 @@ public class MovableBox : MonoBehaviour
         Vector2 playerDirection;
 
         // 1초 동안 방향이 일치하는지 체크
-        while (elapsedTime < 1f)
+        while (elapsedTime < 0.8f)
         {
             playerDirection = OnGetDirection?.Invoke() ?? Vector2.zero;
 
