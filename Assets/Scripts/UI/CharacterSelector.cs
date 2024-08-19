@@ -5,37 +5,40 @@ using UnityEngine.UI;
 
 public class CharacterSelector : MonoBehaviour
 {
-    [Header("배찌 이미지")]
-    public GameObject[] bazziSpriteArray;
+    [Header("배찌 선택 이미지")]
+    public GameObject[] bazziSelectedImageArray;
 
-    [Header("다오 이미지")]
-    public GameObject[] daoSpriteArray;
+    [Header("다오 선택 이미지")]
+    public GameObject[] daoSelectedImageArray;
 
-    [Header("배찌 토글")]
-    public Toggle bazziToggle; 
+    public Toggle bazziToggle;
+    public Toggle daoToggle;
 
-    [Header("다오 토글")]
-    public Toggle daoToggle; 
-
-    private void Awake()
+    private void Awake() 
     {
-        bazziToggle.onValueChanged.AddListener(bazziSprite);
-        daoToggle.onValueChanged.AddListener(daoSprite);
+        bazziToggle.isOn = true;
+        OnBazziChanged(true);
     }
 
-    public void bazziSprite(bool isActive)
+    private void Start()
     {
-        foreach (GameObject bazzi in bazziSpriteArray)
+        bazziToggle.onValueChanged.AddListener(OnBazziChanged);
+        daoToggle.onValueChanged.AddListener(OnDaoChanged);
+    }
+
+    private void OnBazziChanged(bool isOn)
+    {
+        foreach(GameObject bazzi in bazziSelectedImageArray)
         {
-            bazzi.SetActive(isActive);
+            bazzi.SetActive(isOn);
         }
     }
 
-    public void daoSprite(bool isActive)
+    private void OnDaoChanged(bool isOn)
     {
-        foreach (GameObject dao in daoSpriteArray)
+        foreach(GameObject dao in daoSelectedImageArray)
         {
-            dao.SetActive(isActive);
+            dao.SetActive(isOn);
         }
     }
 }
