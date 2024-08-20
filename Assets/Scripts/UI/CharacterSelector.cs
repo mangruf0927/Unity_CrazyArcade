@@ -18,6 +18,8 @@ public class CharacterSelector : MonoBehaviour
     public Toggle daoToggle;
     public Toggle randomToggle;
 
+    private static readonly int enumLength = System.Enum.GetValues(typeof(CharacterTypeEnums)).Length;
+
     private void Awake() // 배찌가 디폴트 값
     {
         bazziToggle.isOn = true;
@@ -37,6 +39,8 @@ public class CharacterSelector : MonoBehaviour
         {
             bazzi.SetActive(isOn);
         }
+
+        if(isOn) SelectCharacter(CharacterTypeEnums.BAZZI);
     }
 
     private void OnDaoChanged(bool isOn)
@@ -45,6 +49,8 @@ public class CharacterSelector : MonoBehaviour
         {
             dao.SetActive(isOn);
         }
+
+        if(isOn) SelectCharacter(CharacterTypeEnums.DAO);
     }
 
     private void OnRandomChanged(bool isOn)
@@ -53,5 +59,18 @@ public class CharacterSelector : MonoBehaviour
         {
             random.SetActive(isOn);
         }
+
+        if(isOn) RandomizeCharacterType();
+    }
+
+    public void RandomizeCharacterType()
+    {
+        CharacterTypeEnums randomType = (CharacterTypeEnums)Random.Range(0, enumLength);
+        SelectCharacter(randomType);
+    }
+
+    private void SelectCharacter(CharacterTypeEnums type)
+    {
+        DataManager.Instance.SetCharacterType(type);
     }
 }

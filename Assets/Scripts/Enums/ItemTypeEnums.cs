@@ -1,6 +1,6 @@
 public enum ItemTypeEnums
 {
-    Skate,
-    Balloon,
-    Potion
+    SKATE,
+    BALLOON,
+    POTION
 }

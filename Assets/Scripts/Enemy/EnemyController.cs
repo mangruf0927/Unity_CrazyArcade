@@ -84,7 +84,7 @@ public class EnemyController : MonoBehaviour
 
             // 새로운 위치 등록 이벤트 호출
             currentPosition = position;
-            OnUpdatePosition?.Invoke(ObjectTypeEnums.Enemy, currentPosition);
+            OnUpdatePosition?.Invoke(ObjectTypeEnums.ENEMY, currentPosition);
 
             // 이전 위치를 현재 위치로 업데이트
             previousPosition = currentPosition;

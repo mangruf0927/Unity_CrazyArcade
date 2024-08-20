@@ -78,7 +78,7 @@ public class MovableBox : MonoBehaviour
     {
         Vector2 newPosition = (Vector2)transform.position + direction;
 
-        if (OnMoveCheck?.Invoke(newPosition) == ObjectTypeEnums.None)
+        if (OnMoveCheck?.Invoke(newPosition) == ObjectTypeEnums.NONE)
         {
             StartCoroutine(MoveBox(newPosition));
         }
@@ -101,7 +101,7 @@ public class MovableBox : MonoBehaviour
         transform.position = newPosition;
         isMoving = false;
 
-        OnRegisterNewPos?.Invoke(ObjectTypeEnums.Box, newPosition);
+        OnRegisterNewPos?.Invoke(ObjectTypeEnums.BOX, newPosition);
         OnChangePos?.Invoke(originalPosition, newPosition);
         OnRemoveOriginPos?.Invoke(originalPosition);
     }

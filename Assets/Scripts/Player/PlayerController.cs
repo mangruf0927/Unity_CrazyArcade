@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                OnBalloonPlaced?.Invoke(ObjectTypeEnums.Balloon, setPosition);
+                OnBalloonPlaced?.Invoke(ObjectTypeEnums.BALLOON, setPosition);
                 stat.UseBalloon();
 
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);

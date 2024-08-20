@@ -1,8 +1,8 @@
 public enum ObjectTypeEnums
 {
-    None,
-    Balloon,
-    Enemy,
-    Object,
-    Box,
+    NONE,
+    BALLOON,
+    ENEMY,
+    OBJECT,
+    BOX,
 }

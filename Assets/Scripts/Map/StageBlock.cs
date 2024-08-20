@@ -23,18 +23,18 @@ public class StageBlock : MonoBehaviour
     {
         foreach(GameObject obj in ObjectList)
         {
-            OnBlockInstall?.Invoke(ObjectTypeEnums.Object, obj.transform.position);
+            OnBlockInstall?.Invoke(ObjectTypeEnums.OBJECT, obj.transform.position);
         }    
 
         foreach(GameObject box in BoxList)
         {
-            OnBlockInstall?.Invoke(ObjectTypeEnums.Box, box.transform.position);
+            OnBlockInstall?.Invoke(ObjectTypeEnums.BOX, box.transform.position);
             boxDictionary[box.transform.position] = box; // 위치를 키로 하고 박스를 값으로 추가
         }
 
         foreach(MovableBox box in MovableBoxList)
         {
-            OnBlockInstall?.Invoke(ObjectTypeEnums.Box, box.transform.position);
+            OnBlockInstall?.Invoke(ObjectTypeEnums.BOX, box.transform.position);
             boxDictionary[box.transform.position] = box.gameObject;
 
             box.OnChangePos += (oldPos, newPos) => UpdateBox(box, oldPos, newPos);

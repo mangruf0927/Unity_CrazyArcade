@@ -81,7 +81,7 @@ public class MapSettingCenter : MonoBehaviour
         int x = Mathf.FloorToInt(pos.x); 
         int y = Mathf.FloorToInt(pos.y);
 
-        if(x < 0 || x >= 15 || y > 0 || y <= -13) return ObjectTypeEnums.Object;
+        if(x < 0 || x >= 15 || y > 0 || y <= -13) return ObjectTypeEnums.OBJECT;
 
         return stageMap.CheckObjectType(x, y);
     }
@@ -135,7 +135,7 @@ public class MapSettingCenter : MonoBehaviour
 
             foreach(BalloonController pop in balloonPopList)
             {
-                ChangeObjectType(pop.transform.position, ObjectTypeEnums.None);
+                ChangeObjectType(pop.transform.position, ObjectTypeEnums.NONE);
             }
             
             balloonPopList.Clear();
@@ -146,16 +146,16 @@ public class MapSettingCenter : MonoBehaviour
     {
         ObjectTypeEnums type = CheckObjectType(position);
     
-        if (type == ObjectTypeEnums.Object) 
+        if (type == ObjectTypeEnums.OBJECT) 
         {
             return true;
         }
-        else if (type == ObjectTypeEnums.Box)
+        else if (type == ObjectTypeEnums.BOX)
         {
             RemoveBox(position);
             return true;
         }
-        else if(type == ObjectTypeEnums.Balloon)
+        else if(type == ObjectTypeEnums.BALLOON)
         {
             if(!stageMap.Return(position).balloon.stateMachine.CheckCurState(BalloonStateEnums.READY))
             {
@@ -164,7 +164,7 @@ public class MapSettingCenter : MonoBehaviour
             }
             return false;
         }
-        else if (type == ObjectTypeEnums.None)
+        else if (type == ObjectTypeEnums.NONE)
         {
             return false;
         }

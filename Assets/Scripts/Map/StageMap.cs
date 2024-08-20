@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapNode
 {
-    public ObjectTypeEnums ObjectType { get; set; } = ObjectTypeEnums.None; // 기본값 설정
+    public ObjectTypeEnums ObjectType { get; set; } = ObjectTypeEnums.NONE; // 기본값 설정
     public bool HasObject { get; set; } = false; // 기본값 설정
     public BalloonController balloon;
 }
@@ -50,7 +50,7 @@ public class StageMap : MonoBehaviour
 
     public void DestroyStageObject(int x, int y)
     {
-        map[x, -y].ObjectType = ObjectTypeEnums.None;
+        map[x, -y].ObjectType = ObjectTypeEnums.NONE;
         map[x, -y].HasObject = false;
     }
 
