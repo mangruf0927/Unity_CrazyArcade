@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CharacterSelector : MonoBehaviour
+public class LobbyMenuController : MonoBehaviour
 {
     [Header("배찌 선택 이미지")]
     public GameObject[] bazziSelectedImageArray;
@@ -18,6 +17,7 @@ public class CharacterSelector : MonoBehaviour
     public Toggle daoToggle;
     public Toggle randomToggle;
 
+    CharacterTypeEnums type;
     private static readonly int enumLength = System.Enum.GetValues(typeof(CharacterTypeEnums)).Length;
 
     private void Awake() // 배찌가 디폴트 값
@@ -40,7 +40,7 @@ public class CharacterSelector : MonoBehaviour
             bazzi.SetActive(isOn);
         }
 
-        if(isOn) SelectCharacter(CharacterTypeEnums.BAZZI);
+        if(isOn) type = CharacterTypeEnums.BAZZI;
     }
 
     private void OnDaoChanged(bool isOn)
@@ -50,7 +50,7 @@ public class CharacterSelector : MonoBehaviour
             dao.SetActive(isOn);
         }
 
-        if(isOn) SelectCharacter(CharacterTypeEnums.DAO);
+        if(isOn) type = CharacterTypeEnums.DAO;
     }
 
     private void OnRandomChanged(bool isOn)
@@ -66,11 +66,12 @@ public class CharacterSelector : MonoBehaviour
     public void RandomizeCharacterType()
     {
         CharacterTypeEnums randomType = (CharacterTypeEnums)Random.Range(0, enumLength);
-        SelectCharacter(randomType);
+        type = randomType;
     }
 
-    private void SelectCharacter(CharacterTypeEnums type)
+    public void OnClickStartButton()
     {
+        SceneManager.LoadScene("01.Stage1");
         DataManager.Instance.SetCharacterType(type);
     }
 }
