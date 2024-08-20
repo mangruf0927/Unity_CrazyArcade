@@ -14,11 +14,12 @@ public class EnemyStateMachine : MonoBehaviour
     {
         stateDictionary = new Dictionary<EnemyStateEnums, IEnemyState>
         {
+            {EnemyStateEnums.READY, new EnemyReadyState(this)},
             {EnemyStateEnums.MOVE, new EnemyMoveState(this)},
             {EnemyStateEnums.DEAD, new EnemyDeadState(this)},
         };
 
-        if(stateDictionary.TryGetValue(EnemyStateEnums.MOVE, out IEnemyState newState))
+        if(stateDictionary.TryGetValue(EnemyStateEnums.READY, out IEnemyState newState))
         {
             curState = newState;
             newState.OnEnter(); 
