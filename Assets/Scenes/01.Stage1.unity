@@ -1544,7 +1544,7 @@ Transform:
   m_GameObject: {fileID: 133841238}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: -5.5, z: 0}
+  m_LocalPosition: {x: 7, y: -5.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17943,7 +17943,21 @@ MonoBehaviour:
   - {fileID: 787933295}
   - {fileID: 1059219288}
   - {fileID: 1413788345}
-  MovableBoxList: []
+  MovableBoxList:
+  - {fileID: 1115286720}
+  - {fileID: 872468211}
+  - {fileID: 1487482256}
+  - {fileID: 266111549}
+  - {fileID: 1733357208}
+  - {fileID: 342824265}
+  - {fileID: 1904530636}
+  - {fileID: 1581696093}
+  - {fileID: 1210547563}
+  - {fileID: 1753326078}
+  - {fileID: 1268555329}
+  - {fileID: 1351147491}
+  - {fileID: 1111246676}
+  - {fileID: 2105264314}
 --- !u!4 &1885306198
 Transform:
   m_ObjectHideFlags: 0

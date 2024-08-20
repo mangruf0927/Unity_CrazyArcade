@@ -13,13 +13,14 @@ public class PlayerStateMachine : MonoBehaviour
     {
         stateDictionary = new Dictionary<PlayerStateEnums, IPlayerState>
         {
+            { PlayerStateEnums.READY, new PlayerReadyState(this) },
             { PlayerStateEnums.IDLE, new PlayerIdleState(this) },
             { PlayerStateEnums.MOVE, new PlayerMoveState(this) },
             { PlayerStateEnums.TRAP, new PlayerTrapState(this) },
             { PlayerStateEnums.DEAD, new PlayerDeadState(this) },
         };
 
-        if(stateDictionary.TryGetValue(PlayerStateEnums.IDLE, out IPlayerState newState))
+        if(stateDictionary.TryGetValue(PlayerStateEnums.READY, out IPlayerState newState))
         {
             // TryGetValue : Key가 있는지 확인과 동시에 Value 값 반환
 
