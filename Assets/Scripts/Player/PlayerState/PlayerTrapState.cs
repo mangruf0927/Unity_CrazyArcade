@@ -31,7 +31,7 @@ public class PlayerTrapState : IPlayerState
     
     public void FixedUpdate()
     {
-        playerController.Move(playerController.stat.trapSpeed);
+        playerController.Move(0.3f);
     }
 
     public void OnEnter()

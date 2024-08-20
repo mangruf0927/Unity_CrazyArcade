@@ -9,7 +9,7 @@ public class PlayerStateMachine : MonoBehaviour
     [HideInInspector] public IPlayerState curState; // 현재 상태
     public Dictionary<PlayerStateEnums, IPlayerState> stateDictionary;
 
-    private void Awake() 
+    private void Start() 
     {
         stateDictionary = new Dictionary<PlayerStateEnums, IPlayerState>
         {

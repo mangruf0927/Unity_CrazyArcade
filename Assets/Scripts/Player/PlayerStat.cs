@@ -10,9 +10,6 @@ public class PlayerStat : MonoBehaviour
 
     [Header("최대 속도")]
     public float maxSpeed;
-
-    [Header("물풍선에 갇혔을 때 속도")]
-    public float trapSpeed;
     
     [Header("물풍선 최대 개수")]
     public int maxBalloonNum;
@@ -73,5 +70,23 @@ public class PlayerStat : MonoBehaviour
         {
             popLength++;
         }
+    }
+
+    public void SetBalloonNum(int init, int max)
+    {
+        balloonNum = init;
+        maxBalloonNum = max;
+    }
+
+    public void SetSpeed(float init, float max)
+    {
+        moveSpeed = init;
+        maxSpeed = max;
+    }
+
+    public void SetPopLength(int init, int max)
+    {
+        popLength = init;
+        maxPopLength = max;
     }
 }
