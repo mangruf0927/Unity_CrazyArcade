@@ -914,7 +914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &133841240
 Animator:
   serializedVersion: 5
@@ -1113,7 +1113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   maxSpeed: 7
-  trapSpeed: 0.3
   maxBalloonNum: 6
   balloonNum: 1
   maxPopLength: 7
@@ -3539,7 +3538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   maxSpeed: 7
-  trapSpeed: 0.3
   maxBalloonNum: 6
   balloonNum: 1
   maxPopLength: 7
