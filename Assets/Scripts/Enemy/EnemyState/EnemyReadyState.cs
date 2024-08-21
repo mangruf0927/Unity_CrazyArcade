@@ -17,8 +17,6 @@ public class EnemyReadyState : IEnemyState
 
     public void Update()
     {
-        if (enemyController.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            stateMachine.ChangeState(EnemyStateEnums.MOVE);
     }
 
     public void FixedUpdate()
@@ -28,6 +26,7 @@ public class EnemyReadyState : IEnemyState
     public void OnEnter()
     {
         enemyController.animator.Play("Ready");
+        enemyController.StartChangeState(EnemyStateEnums.MOVE, 1.5f);
     }
 
     public void OnExit()

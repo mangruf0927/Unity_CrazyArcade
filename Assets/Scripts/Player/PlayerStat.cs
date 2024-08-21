@@ -5,23 +5,23 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
     // : 플레이어 스탯
-    [Header("이동 속도")]
+    [HideInInspector]
     public float moveSpeed;
 
-    [Header("최대 속도")]
+    [HideInInspector]
     public float maxSpeed;
     
-    [Header("물풍선 최대 개수")]
+    [HideInInspector]
     public int maxBalloonNum;
 
-    [Header("물풍선 개수")]
+    [HideInInspector]
     public int balloonNum;
     private int curBalloonNum;
 
-    [Header("물줄기 최대 세기")]
+    [HideInInspector]
     public int maxPopLength;
 
-    [Header("물줄기 세기")]
+    [HideInInspector]
     public int popLength;
 
     private void Start() 

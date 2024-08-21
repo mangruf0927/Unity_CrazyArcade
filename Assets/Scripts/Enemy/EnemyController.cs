@@ -255,4 +255,15 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.green; // 캐스트 선 색상 설정
         Gizmos.DrawLine(transform.position, center); // 박스 캐스트의 끝점을 선으로 연결합니다
     }
+
+    public void StartChangeState(EnemyStateEnums type, float time = 0)
+    {
+        StartCoroutine(changeState(type, time));
+    }
+
+    private IEnumerator changeState(EnemyStateEnums type, float time = 0)
+    {
+        yield return new WaitForSeconds(time);
+        stateMachine.ChangeState(type);
+    }
 }

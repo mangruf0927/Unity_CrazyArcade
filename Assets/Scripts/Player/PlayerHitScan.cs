@@ -15,24 +15,45 @@ public class PlayerHitScan : MonoBehaviour
     public event HitScanHandle OnDamage;
     public event HitScanHandle OnTouchEnemy;
 
+    private List<Collider2D> popColliderList = new List<Collider2D>();
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
         {
-            float overlapArea = CalculateOverlapArea(playerCollider, other);
-            float playerArea = playerCollider.bounds.size.x * playerCollider.bounds.size.y;
-            //Debug.Log(overlapArea / playerArea);
-            
-            if (overlapArea >= overlapPercent * playerArea) // 70% 이상 겹치는 경우
-            {
-                Debug.Log(overlapArea / playerArea + " % 충돌 !");
-                OnDamage?.Invoke();
-            }
+            popColliderList.Add(other);
+            CheckTotalOverlap();
         }
 
         if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             OnTouchEnemy?.Invoke();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        {
+            popColliderList.Remove(other);
+            CheckTotalOverlap();
+        }
+    }
+
+    private void CheckTotalOverlap()
+    {
+        float totalOverlapArea = 0f;
+        float playerArea = playerCollider.bounds.size.x * playerCollider.bounds.size.y;
+
+        foreach (Collider2D popCollider in popColliderList)
+        {
+            totalOverlapArea += CalculateOverlapArea(playerCollider, popCollider);
+        }
+
+        if (totalOverlapArea >= overlapPercent * playerArea) // 66% 이상 겹치는 경우
+        {
+            Debug.Log(totalOverlapArea / playerArea + " % 충돌 !");
+            OnDamage?.Invoke();
         }
     }
 
