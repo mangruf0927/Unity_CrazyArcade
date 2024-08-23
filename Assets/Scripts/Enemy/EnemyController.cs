@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
 
     private bool isConfined = false;
 
-    private float rayDistance = 0.5f;
+    private float rayDistance = 0.7f;
     private Vector2 boxSize = new Vector2(0.3f, 0.3f);
 
     public delegate void EnemyHandler(ObjectTypeEnums type, Vector2 pos);
@@ -35,6 +35,9 @@ public class EnemyController : MonoBehaviour
 
     public delegate void EnemyRemovePosHandler(Vector2 pos);
     public event EnemyRemovePosHandler OnRemovePosition;
+
+    public delegate void RemoveEnemyHandler(Vector2 pos, EnemyController enemy);
+    public event RemoveEnemyHandler OnRemoveEnemy;
 
     public delegate bool CheckObstacleHandler(Vector2 pos);
     public event CheckObstacleHandler OnCheckObstacle;
@@ -60,7 +63,6 @@ public class EnemyController : MonoBehaviour
     public void Move()
     {
         UpdatePosition();
-        // CheckForObstacle();
 
         if(!isConfined)
             rigid.velocity = moveDirection * enemySpeed;
@@ -191,6 +193,7 @@ public class EnemyController : MonoBehaviour
     private IEnumerator DestroyEnemy()
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        OnRemoveEnemy?.Invoke(transform.position, this);
         Destroy(gameObject, 0.1f);
     }
 

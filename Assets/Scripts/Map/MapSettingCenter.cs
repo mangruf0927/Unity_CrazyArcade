@@ -7,10 +7,9 @@ public class MapSettingCenter : MonoBehaviour
 {
     public StageBlock stageBlock;
     public StageMap stageMap;
+    public StageEnemy stageEnemy;
     public PlayerController player;
     
-    public List<EnemyController> enemyList; // 얘도 수정해야할 듯 
-
     private List<BalloonController> balloonPopList = new List<BalloonController>();
     private int count;
 
@@ -27,10 +26,11 @@ public class MapSettingCenter : MonoBehaviour
             box.OnRemoveOriginPos += DestroyStageObject;
         }
 
-        foreach(EnemyController enemy in enemyList)
+        foreach(EnemyController enemy in stageEnemy.enemyList)
         {
             enemy.OnUpdatePosition += SetStageEnemy;
             enemy.OnRemovePosition += DestroyStageObject;
+            enemy.OnRemoveEnemy += RemoveEnemy;
             enemy.OnCheckObstacle += CheckInstallation;
         }
 
@@ -47,6 +47,17 @@ public class MapSettingCenter : MonoBehaviour
         stageMap.SetStageObjcet(type, x, y);
 
         // Debug.Log("[" + type + "]" + x + ", " + -y);
+    }
+
+    public void RemoveEnemy(Vector2 pos, EnemyController enemy)
+    {
+        int x = Mathf.FloorToInt(pos.x); 
+        int y = Mathf.FloorToInt(pos.y);
+
+        stageMap.DestroyStageObject(x, y);
+
+        stageEnemy.enemyList.Remove(enemy);
+        Debug.Log(stageEnemy.enemyList.Count);
     }
 
     public void SetStageEnemy(ObjectTypeEnums type, Vector2 pos)
