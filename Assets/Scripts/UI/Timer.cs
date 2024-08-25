@@ -14,6 +14,9 @@ public class Timer : MonoBehaviour
     [Header("0-9 숫자 스프라이트")]
     public Sprite[] spritesArray; 
 
+    public delegate void timeHandler();
+    public timeHandler OnEndTime;
+
 
     private void Start() 
     {
@@ -29,7 +32,9 @@ public class Timer : MonoBehaviour
         UpdateTimerImage();
 
         yield return new WaitForSeconds(1f);
-        }      
+        }
+
+        if(totaltime == 0) OnEndTime?.Invoke();     
     }
 
         public void UpdateTimerImage()

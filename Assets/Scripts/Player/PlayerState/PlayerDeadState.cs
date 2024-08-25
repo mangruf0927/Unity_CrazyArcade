@@ -36,7 +36,7 @@ public class PlayerDeadState : IPlayerState
     {
         playerController.animator.Play("Dead");
         playerController.rigid.velocity = Vector2.zero;
-        // playerController.hitScan.playerCollider.isTrigger = true;
+        playerController.OnDead?.Invoke();
     }
 
     public void OnExit()

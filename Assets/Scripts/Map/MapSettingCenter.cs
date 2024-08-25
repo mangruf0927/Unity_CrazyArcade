@@ -56,8 +56,7 @@ public class MapSettingCenter : MonoBehaviour
 
         stageMap.DestroyStageObject(x, y);
 
-        stageEnemy.enemyList.Remove(enemy);
-        Debug.Log(stageEnemy.enemyList.Count);
+        stageEnemy.RemoveEnemy(enemy);
     }
 
     public void SetStageEnemy(ObjectTypeEnums type, Vector2 pos)

@@ -29,7 +29,7 @@ public class ShowMessage : MonoBehaviour
     }
     
     
-    IEnumerator ShowStartMessage()
+    public IEnumerator ShowStartMessage()
     {
         for(int i = 0; i < stageGameObjectArray.Length; i++)
         {
@@ -62,7 +62,7 @@ public class ShowMessage : MonoBehaviour
 
     }
 
-    IEnumerator ShowClearMessage()
+    public IEnumerator ShowClearMessage()
     {
         for(int i = 0; i < endStageGameObjectArray.Length; i++)
         {
@@ -81,7 +81,7 @@ public class ShowMessage : MonoBehaviour
         }
     }
 
-    IEnumerator ShowLoseMessage()
+    public IEnumerator ShowLoseMessage()
     {
         for(int i = 0; i < loseImageArray.Length; i++)
         {

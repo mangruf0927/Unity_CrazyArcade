@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
     public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
     public event BalloonControllerHandler OnControllerReceived;
 
+    // 플레이어 Dead상태 
+    public delegate void playerHandler();
+    public playerHandler OnDead;
+
     private bool isInstallation = false; // 물풍선 설치 여부
     private bool isTrap = false; // 플레이어 갇혔는지 상태 체크
 
