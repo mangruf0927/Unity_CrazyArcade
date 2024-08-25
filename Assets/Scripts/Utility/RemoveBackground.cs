@@ -4,13 +4,14 @@ using System.IO;
 public class RemoveBackground : MonoBehaviour
 {
     public Texture2D inputTexture;
+    public string textureName; // 저장할 파일 이름
 
     void Start()
     {
         if (inputTexture != null)
         {
             Texture2D outputTexture = RemoveMagenta(inputTexture);
-            SaveTextureAsPNG(outputTexture, "Assets/OutputTexture.png");
+            SaveTextureAsPNG(outputTexture, $"Assets/{textureName}.png"); // textureName을 사용하여 파일 경로 설정
         }
     }
 
