@@ -1522,9 +1522,9 @@ MonoBehaviour:
   rigid: {fileID: 248556247}
   animator: {fileID: 248556246}
   spriteRenderer: {fileID: 248556249}
-  enemySpeed: 1
-  moveDirection: {x: 0, y: 1}
-  sensingRange: 1.2
+  enemySpeed: 1.5
+  moveDirection: {x: -1, y: 0}
+  sensingRange: 1
 --- !u!1 &250696080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,9 +3388,9 @@ MonoBehaviour:
   rigid: {fileID: 451254765}
   animator: {fileID: 451254764}
   spriteRenderer: {fileID: 451254767}
-  enemySpeed: 1.5
+  enemySpeed: 1.8
   moveDirection: {x: 0, y: 1}
-  sensingRange: 1
+  sensingRange: 1.2
 --- !u!1 &466425528
 GameObject:
   m_ObjectHideFlags: 0
@@ -8890,9 +8890,9 @@ MonoBehaviour:
   rigid: {fileID: 820597379}
   animator: {fileID: 820597378}
   spriteRenderer: {fileID: 820597381}
-  enemySpeed: 1.5
-  moveDirection: {x: 0, y: 1}
-  sensingRange: 1
+  enemySpeed: 1.8
+  moveDirection: {x: 0, y: -1}
+  sensingRange: 1.2
 --- !u!1 &831193797
 GameObject:
   m_ObjectHideFlags: 0
@@ -9169,9 +9169,9 @@ MonoBehaviour:
   rigid: {fileID: 849101747}
   animator: {fileID: 849101746}
   spriteRenderer: {fileID: 849101749}
-  enemySpeed: 1
-  moveDirection: {x: 0, y: 1}
-  sensingRange: 1.2
+  enemySpeed: 1.5
+  moveDirection: {x: 1, y: 0}
+  sensingRange: 1
 --- !u!1 &857980240
 GameObject:
   m_ObjectHideFlags: 0
@@ -10203,9 +10203,9 @@ MonoBehaviour:
   rigid: {fileID: 952913973}
   animator: {fileID: 952913972}
   spriteRenderer: {fileID: 952913975}
-  enemySpeed: 1
-  moveDirection: {x: 0, y: 1}
-  sensingRange: 1.2
+  enemySpeed: 1.5
+  moveDirection: {x: 0, y: -1}
+  sensingRange: 1
 --- !u!1 &965861661
 GameObject:
   m_ObjectHideFlags: 0
@@ -11889,9 +11889,9 @@ MonoBehaviour:
   rigid: {fileID: 1120700417}
   animator: {fileID: 1120700416}
   spriteRenderer: {fileID: 1120700419}
-  enemySpeed: 1
+  enemySpeed: 1.5
   moveDirection: {x: 0, y: 1}
-  sensingRange: 1.2
+  sensingRange: 1
 --- !u!1 &1123537149
 GameObject:
   m_ObjectHideFlags: 0
@@ -14094,9 +14094,9 @@ MonoBehaviour:
   rigid: {fileID: 1385616420}
   animator: {fileID: 1385616419}
   spriteRenderer: {fileID: 1385616418}
-  enemySpeed: 1.5
+  enemySpeed: 1.8
   moveDirection: {x: 0, y: 1}
-  sensingRange: 1
+  sensingRange: 1.2
 --- !u!212 &1385616418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16058,6 +16058,7 @@ MonoBehaviour:
   enemy: {fileID: 1828746587}
   gameStateUI: {fileID: 1072317082}
   timerUI: {fileID: 1419243324}
+  profileUIAnimator: {fileID: 1058750239}
 --- !u!4 &1646200922
 Transform:
   m_ObjectHideFlags: 0
@@ -17446,9 +17447,9 @@ MonoBehaviour:
   rigid: {fileID: 1778603115}
   animator: {fileID: 1778603114}
   spriteRenderer: {fileID: 1778603117}
-  enemySpeed: 1.5
-  moveDirection: {x: 0, y: 1}
-  sensingRange: 1
+  enemySpeed: 1.8
+  moveDirection: {x: 0, y: -1}
+  sensingRange: 1.2
 --- !u!1 &1806141470
 GameObject:
   m_ObjectHideFlags: 0
