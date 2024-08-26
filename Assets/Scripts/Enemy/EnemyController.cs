@@ -44,6 +44,7 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 currentPosition;
     private Vector2 previousPosition;
+    private bool isPlayerDead = false;
 
     private void Update() 
     {
@@ -138,6 +139,8 @@ public class EnemyController : MonoBehaviour
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
+        if(isPlayerDead) return;
+
         foreach (Vector2 direction in directions)
         {
             // 현재 이동 중인 방향은 제외
@@ -152,6 +155,11 @@ public class EnemyController : MonoBehaviour
                 break; // 한 번 감지되면 다른 방향은 검사하지 않음
             }
         }
+    }
+
+    public void PlayerDead()
+    {
+        isPlayerDead = true;
     }
 
 

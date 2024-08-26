@@ -11,7 +11,6 @@ public class StageCenter : MonoBehaviour
     [SerializeField]        private Timer timerUI;
     [SerializeField]        private Animator profileUIAnimator;
 
-
     private PlayerFactory playerFactory;
     
     private void Awake() 
@@ -26,7 +25,7 @@ public class StageCenter : MonoBehaviour
 
         enemy.OnClearStage += ClearStage;
         timerUI.OnEndTime += LoseStage;
-        controller.OnDead += LoseStage;
+        controller.OnDead += PlayerDead;
     }
 
     private void ClearStage()
@@ -37,6 +36,16 @@ public class StageCenter : MonoBehaviour
     private void LoseStage()
     {
         StartCoroutine(ShowLoseMessage());
+    }
+
+    private void PlayerDead()
+    {
+        foreach(EnemyController enemy in enemy.enemyList)
+        {
+            enemy.PlayerDead();
+        }
+
+        LoseStage();
     }
 
     private IEnumerator ShowClearMessage()
