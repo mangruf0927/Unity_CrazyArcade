@@ -9,13 +9,14 @@ public class StageCenter : MonoBehaviour
     [SerializeField]        private StageEnemy enemy;
     [SerializeField]        private ShowMessage gameStateUI;
     [SerializeField]        private Timer timerUI;
+    [SerializeField]        private Animator profileUIAnimator;
 
 
     private PlayerFactory playerFactory;
     
     private void Awake() 
     {
-        playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()]);
+        playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()], profileUIAnimator);
         playerFactory.CreatePlayer();
     }
 
@@ -43,18 +44,19 @@ public class StageCenter : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StartCoroutine(gameStateUI.ShowClearMessage());
         yield return new WaitForSeconds(7f);
-        Debug.Log("클리어");
+        LoadScene("02.Stage2");
     }
 
     private IEnumerator ShowLoseMessage()
     {
         yield return new WaitForSeconds(1f);
+        profileUIAnimator.Play("Lose");
         StartCoroutine(gameStateUI.ShowLoseMessage());
         yield return new WaitForSeconds(7f);
-        Debug.Log("루즈");
+        LoadScene("00.WaitingRoom");
     }
 
-    private void LoadWaitingRoom(string sceneName)
+    private void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }

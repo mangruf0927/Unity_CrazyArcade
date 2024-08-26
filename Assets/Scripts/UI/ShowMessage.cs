@@ -100,7 +100,7 @@ public class ShowMessage : MonoBehaviour
         {
             for(int j = 0; j < loseImageArray.Length; j++)
             {
-                // 빈 스프라이트로 변경 (혹은 null로 설정하여 깜빡임 효과)
+                // 스프라이트 변경하여 깜빡임 효과
                 loseImageArray[j].sprite = blinkSpriteArray[j];
             }
 

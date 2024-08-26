@@ -15428,6 +15428,7 @@ MonoBehaviour:
   enemy: {fileID: 1828746587}
   gameStateUI: {fileID: 1072317082}
   timerUI: {fileID: 1419243324}
+  profileUIAnimator: {fileID: 1058750239}
 --- !u!4 &1646200922
 Transform:
   m_ObjectHideFlags: 0

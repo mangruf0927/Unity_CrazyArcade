@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DaoData
   m_EditorClassIdentifier: 
   animatorController: {fileID: 9100000, guid: 0e4234f81b28044588ca387804011748, type: 2}
+  profileAnimatorController: {fileID: 9100000, guid: 2f1cce0b899cb4bb3b4987b53a977637, type: 2}
   moveSpeed: 5
   maxSpeed: 7
   maxBalloonNum: 10

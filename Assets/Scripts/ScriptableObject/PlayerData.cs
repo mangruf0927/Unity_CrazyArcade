@@ -6,6 +6,9 @@ public class PlayerData : ScriptableObject
     [Header("애니메이터")]
     public RuntimeAnimatorController animatorController;
 
+    [Header("프로필 UI 애니메이터")]
+    public RuntimeAnimatorController profileAnimatorController;
+
     [Header("이동 속도")]
     public float moveSpeed;
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BazziData
   m_EditorClassIdentifier: 
   animatorController: {fileID: 9100000, guid: b4a4bb9a4596c4f2c8d42342319f1e35, type: 2}
+  profileAnimatorController: {fileID: 9100000, guid: c56b853bb1c91486bb8c918f37da1bdc, type: 2}
   moveSpeed: 5
   maxSpeed: 9
   maxBalloonNum: 6
