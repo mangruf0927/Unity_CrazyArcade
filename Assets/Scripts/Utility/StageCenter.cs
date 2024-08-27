@@ -51,6 +51,7 @@ public class StageCenter : MonoBehaviour
     private IEnumerator ShowClearMessage()
     {
         yield return new WaitForSeconds(1f);
+        controller.StageClear();
         StartCoroutine(gameStateUI.ShowClearMessage());
         yield return new WaitForSeconds(7f);
         LoadScene("02.Stage2");

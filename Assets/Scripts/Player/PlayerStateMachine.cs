@@ -18,6 +18,7 @@ public class PlayerStateMachine : MonoBehaviour
             { PlayerStateEnums.MOVE, new PlayerMoveState(this) },
             { PlayerStateEnums.TRAP, new PlayerTrapState(this) },
             { PlayerStateEnums.DEAD, new PlayerDeadState(this) },
+            { PlayerStateEnums.CLEAR, new PlayerClearState(this) },
         };
 
         if(stateDictionary.TryGetValue(PlayerStateEnums.READY, out IPlayerState newState))

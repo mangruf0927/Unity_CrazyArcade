@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : IPlayerState
+public class PlayerClearState : IPlayerState
 {
     public PlayerController playerController { get; set; }
     public PlayerStateMachine stateMachine { get; set; }
 
     // 생성자의 주요 목적은 객체를 초기화하고 초기 상태로 설정하는 것
-    public PlayerMoveState(PlayerStateMachine _stateMachine)
+    public PlayerClearState(PlayerStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
         playerController = stateMachine.playerController;
@@ -16,42 +16,30 @@ public class PlayerMoveState : IPlayerState
 
     public HashSet<PlayerStateEnums> inputHash { get; } = new HashSet<PlayerStateEnums>()
     {
-        PlayerStateEnums.IDLE,
     };
 
     public HashSet<PlayerStateEnums> logicHash { get; } = new HashSet<PlayerStateEnums>()
     {
-        PlayerStateEnums.TRAP,
-        PlayerStateEnums.CLEAR
     };
 
     
     public void Update()
     {
-        playerController.PlayMoveAnimation();
-
-        if(playerController.CheckTrap())
-        {
-            stateMachine.ChangeLogicState(PlayerStateEnums.TRAP);
-        }
-
-        if(playerController.CheckClear())
-        {
-            stateMachine.ChangeLogicState(PlayerStateEnums.CLEAR);
-        }
     }
     
     public void FixedUpdate()
     {
-        playerController.Move(playerController.stat.moveSpeed);
+
     }
 
     public void OnEnter()
     {
-
+        playerController.animator.Play("Clear");
+        playerController.rigid.velocity = Vector2.zero;
     }
 
     public void OnExit()
     {
     }
 }
+

@@ -5,6 +5,6 @@ public enum PlayerStateEnums
     MOVE,
     TRAP,
     LIVE,
-    JUMP,
+    CLEAR,
     DEAD
 }
