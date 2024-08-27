@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isInstallation = false; // 물풍선 설치 여부
     private bool isTrap = false; // 플레이어 갇혔는지 상태 체크
-    private bool isClear = false;
+    private bool isClear = false; // 스테이지 클리어 했는지 체크
 
     private void Start() 
     {

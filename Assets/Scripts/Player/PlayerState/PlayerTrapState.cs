@@ -21,12 +21,16 @@ public class PlayerTrapState : IPlayerState
     public HashSet<PlayerStateEnums> logicHash { get; } = new HashSet<PlayerStateEnums>()
     {
         PlayerStateEnums.DEAD,
+        PlayerStateEnums.CLEAR
     };
 
     
     public void Update()
     {
-        
+        if(playerController.CheckClear())
+        {
+            stateMachine.ChangeLogicState(PlayerStateEnums.CLEAR);
+        }
     }
     
     public void FixedUpdate()
