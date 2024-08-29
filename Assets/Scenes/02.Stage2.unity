@@ -17893,6 +17893,7 @@ MonoBehaviour:
   - {fileID: 820597382}
   - {fileID: 451254768}
   - {fileID: 1385616417}
+  isBossMap: 0
 --- !u!1 &1883681693
 GameObject:
   m_ObjectHideFlags: 0

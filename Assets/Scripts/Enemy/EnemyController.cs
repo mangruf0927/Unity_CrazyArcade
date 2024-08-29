@@ -28,9 +28,16 @@ public class EnemyController : MonoBehaviour
     [Header("플레이어 탐지 범위")]
     public float sensingRange;
 
-    public float rayDistance = 0.7f;
+    [Header("장애물 감지 거리")]
+    public float rayDistance;
+
+    [HideInInspector]
     public Vector2 boxSize = new Vector2(0.3f, 0.3f);
+
+    [HideInInspector]
     public bool isPlayerDead = false;
+    
+    [HideInInspector]
     public bool isConfined = false;
 
     public delegate void EnemyHandler(ObjectTypeEnums type, Vector2 pos);

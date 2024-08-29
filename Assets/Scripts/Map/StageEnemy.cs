@@ -5,6 +5,7 @@ using UnityEngine;
 public class StageEnemy : MonoBehaviour
 {
     public List<EnemyController> enemyList;
+    public bool isBossMap = false;
 
     public delegate void OnEnemyHandler();
     public OnEnemyHandler OnClearStage;
@@ -17,7 +18,7 @@ public class StageEnemy : MonoBehaviour
 
     private void CheckEnemyNums()
     {
-        if (enemyList.Count == 0)
+        if (enemyList.Count == 0 && !isBossMap)
         {
             OnClearStage?.Invoke();
         }

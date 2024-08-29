@@ -739,7 +739,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.3
 --- !u!212 &248556249
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -805,7 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 248556245}
-  enemyType: {fileID: 0}
+  enemyType: {fileID: 248556251}
   rigid: {fileID: 248556247}
   animator: {fileID: 248556246}
   spriteRenderer: {fileID: 248556249}
@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 248556250}
 --- !u!1 &253208536
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,7 +5020,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.3
 --- !u!212 &820597381
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5085,7 +5086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 820597377}
-  enemyType: {fileID: 0}
+  enemyType: {fileID: 820597383}
   rigid: {fileID: 820597379}
   animator: {fileID: 820597378}
   spriteRenderer: {fileID: 820597381}
@@ -5108,6 +5109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 820597382}
 --- !u!1 &831193797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5316,7 +5318,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.3
 --- !u!212 &849101749
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5382,7 +5384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 849101745}
-  enemyType: {fileID: 0}
+  enemyType: {fileID: 849101751}
   rigid: {fileID: 849101747}
   animator: {fileID: 849101746}
   spriteRenderer: {fileID: 849101749}
@@ -5405,6 +5407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 849101750}
 --- !u!1 &857980240
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +5825,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.3
 --- !u!212 &952913975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5888,7 +5891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 952913971}
-  enemyType: {fileID: 0}
+  enemyType: {fileID: 952913977}
   rigid: {fileID: 952913973}
   animator: {fileID: 952913972}
   spriteRenderer: {fileID: 952913975}
@@ -5911,6 +5914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 952913976}
 --- !u!1 &965861661
 GameObject:
   m_ObjectHideFlags: 0
@@ -6720,7 +6724,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.3
 --- !u!212 &1120700419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6786,7 +6790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1120700415}
-  enemyType: {fileID: 0}
+  enemyType: {fileID: 1120700421}
   rigid: {fileID: 1120700417}
   animator: {fileID: 1120700416}
   spriteRenderer: {fileID: 1120700419}
@@ -6809,6 +6813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 1120700420}
 --- !u!1001 &1184492662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8749,7 +8754,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.3
 --- !u!212 &1778603117
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8815,7 +8820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1778603113}
-  enemyType: {fileID: 0}
+  enemyType: {fileID: 1778603119}
   rigid: {fileID: 1778603115}
   animator: {fileID: 1778603114}
   spriteRenderer: {fileID: 1778603117}
@@ -8838,6 +8843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 1778603118}
 --- !u!1 &1818581877
 GameObject:
   m_ObjectHideFlags: 0
@@ -9090,6 +9096,7 @@ MonoBehaviour:
   - {fileID: 248556250}
   - {fileID: 1778603118}
   - {fileID: 820597382}
+  isBossMap: 1
 --- !u!1001 &1847465863
 PrefabInstance:
   m_ObjectHideFlags: 0
