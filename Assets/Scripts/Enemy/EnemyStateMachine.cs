@@ -15,6 +15,7 @@ public class EnemyStateMachine : MonoBehaviour
         stateDictionary = new Dictionary<EnemyStateEnums, IEnemyState>
         {
             {EnemyStateEnums.READY, new EnemyReadyState(this)},
+            {EnemyStateEnums.ROAM, new EnemyRoamState(this)},
             {EnemyStateEnums.MOVE, new EnemyMoveState(this)},
             {EnemyStateEnums.DEAD, new EnemyDeadState(this)},
         };

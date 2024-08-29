@@ -5,4 +5,5 @@ public enum ObjectTypeEnums
     ENEMY,
     OBJECT,
     BOX,
+    BORDER,
 }

@@ -7,6 +7,9 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy 상태머신")]
     public EnemyStateMachine stateMachine;
 
+    [Header("enemy 타입")]
+    public StageEnemyType enemyType;
+
     [Header("리지드 바디")]
     public Rigidbody2D rigid;
 
@@ -51,7 +54,7 @@ public class EnemyController : MonoBehaviour
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
 
-        // Debug.Log("Enemy상태 " + stateMachine.curState);
+         Debug.Log("Enemy상태 " + stateMachine.curState);
     }
 
     private void FixedUpdate() 
@@ -251,6 +254,28 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void StartChangeState(EnemyStateEnums type, float time = 0)
+    {
+        StartCoroutine(changeState(type, time));
+    }
+
+    private IEnumerator changeState(EnemyStateEnums type, float time = 0)
+    {
+        yield return new WaitForSeconds(time);
+        stateMachine.ChangeState(type);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*
     private void OnDrawGizmos()
     {
         // 박스의 중심을 현재 위치로 설정
@@ -266,15 +291,4 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.green; // 캐스트 선 색상 설정
         Gizmos.DrawLine(transform.position, center); // 박스 캐스트의 끝점을 선으로 연결합니다
     }
-
-    public void StartChangeState(EnemyStateEnums type, float time = 0)
-    {
-        StartCoroutine(changeState(type, time));
-    }
-
-    private IEnumerator changeState(EnemyStateEnums type, float time = 0)
-    {
-        yield return new WaitForSeconds(time);
-        stateMachine.ChangeState(type);
-    }
-}
+    */

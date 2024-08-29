@@ -91,7 +91,7 @@ public class MapSettingCenter : MonoBehaviour
         int x = Mathf.FloorToInt(pos.x); 
         int y = Mathf.FloorToInt(pos.y);
 
-        if(x < 0 || x >= 15 || y > 0 || y <= -13) return ObjectTypeEnums.OBJECT;
+        if(x < 0 || x >= 15 || y > 0 || y <= -13) return ObjectTypeEnums.BORDER;
 
         return stageMap.CheckObjectType(x, y);
     }
@@ -156,7 +156,7 @@ public class MapSettingCenter : MonoBehaviour
     {
         ObjectTypeEnums type = CheckObjectType(position);
     
-        if (type == ObjectTypeEnums.OBJECT) 
+        if (type == ObjectTypeEnums.OBJECT || type == ObjectTypeEnums.BORDER) 
         {
             return true;
         }
