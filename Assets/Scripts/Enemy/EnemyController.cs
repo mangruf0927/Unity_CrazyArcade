@@ -28,10 +28,10 @@ public class EnemyController : MonoBehaviour
     [Header("플레이어 탐지 범위")]
     public float sensingRange;
 
-    private bool isConfined = false;
-
-    private float rayDistance = 0.7f;
-    private Vector2 boxSize = new Vector2(0.3f, 0.3f);
+    public float rayDistance = 0.7f;
+    public Vector2 boxSize = new Vector2(0.3f, 0.3f);
+    public bool isPlayerDead = false;
+    public bool isConfined = false;
 
     public delegate void EnemyHandler(ObjectTypeEnums type, Vector2 pos);
     public event EnemyHandler OnUpdatePosition;
@@ -42,19 +42,15 @@ public class EnemyController : MonoBehaviour
     public delegate void RemoveEnemyHandler(Vector2 pos, EnemyController enemy);
     public event RemoveEnemyHandler OnRemoveEnemy;
 
-    public delegate bool CheckObstacleHandler(Vector2 pos);
-    public event CheckObstacleHandler OnCheckObstacle;
-
     private Vector2 currentPosition;
     private Vector2 previousPosition;
-    private bool isPlayerDead = false;
 
     private void Update() 
     {
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
 
-         Debug.Log("Enemy상태 " + stateMachine.curState);
+        Debug.Log("Enemy상태 " + stateMachine.curState);
     }
 
     private void FixedUpdate() 
@@ -97,47 +93,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void CheckForObstacle()
-    {
-        // 이동하려는 방향의 좌표를 계산
-        Vector2 targetPosition = currentPosition + moveDirection;
-
-        // 장애물 체크 이벤트 호출
-        if (OnCheckObstacle.Invoke(targetPosition))
-        {
-            SetDirection();
-        }
-    }
-
-    public void SetDirection()
-    {
-        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-        List<Vector2> directionList = new List<Vector2>();
-
-        foreach (Vector2 direction in directions)
-        {
-            Vector2 checkPosition = currentPosition + direction;
-
-            // 장애물이 없는 방향을 수집
-            if (OnCheckObstacle != null && !OnCheckObstacle.Invoke(checkPosition))
-            {
-                directionList.Add(direction);
-            }
-        }
-
-        // 가능한 방향 중 랜덤으로 선택
-        if (directionList.Count > 0)
-        {
-            isConfined = false;
-            moveDirection = directionList[Random.Range(0, directionList.Count)];
-        }
-        else
-        {
-            isConfined = true;
-            Debug.Log("가능한 방향 없음");
-        }
-    }
-
     public void CheckForPlayer()
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
@@ -160,9 +115,48 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void PlayerDead()
+    public void CheckForObstacle()
     {
-        isPlayerDead = true;
+        int obstacleLayer = LayerMask.GetMask("Obstacle");
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0f, moveDirection, rayDistance, obstacleLayer);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                SetDirection();
+                break; // 첫 번째 장애물에 충돌하면 루프 종료
+            }
+        }
+    }
+
+    public void SetDirection()
+    {
+        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+        List<Vector2> availableDirections = new List<Vector2>(directions);
+        // 현재 방향을 제외한 나머지 방향 체크
+        foreach (Vector2 direction in directions)
+        {
+            int obstacleLayer = LayerMask.GetMask("Obstacle");
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, rayDistance, obstacleLayer);
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                // 장애물이 있으면 방향 제거
+                availableDirections.Remove(direction);
+            }
+        }
+
+        // 가능한 방향 중 랜덤으로 선택
+        if (availableDirections.Count > 0)
+        {
+            isConfined = false;
+            moveDirection = availableDirections[Random.Range(0, availableDirections.Count)];
+        }
+        else
+        {
+            isConfined = true;
+        }
     }
 
 
@@ -208,52 +202,6 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject, 0.1f);
     }
 
-    public void CheckForObstacleTest()
-    {
-        int obstacleLayer = LayerMask.GetMask("Obstacle");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0f, moveDirection, rayDistance, obstacleLayer);
-
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit.collider != null)
-            {
-                SetDirectionTest();
-                break; // 첫 번째 장애물에 충돌하면 루프 종료
-            }
-        }
-    }
-
-
-    public void SetDirectionTest()
-    {
-        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-        List<Vector2> availableDirections = new List<Vector2>{ Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-
-        // 현재 방향을 제외한 나머지 방향 체크
-        foreach (Vector2 direction in directions)
-        {
-            int obstacleLayer = LayerMask.GetMask("Obstacle");
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, rayDistance, obstacleLayer);
-
-            foreach (RaycastHit2D hit in hits)
-            {
-                // 장애물이 있으면 방향 제거
-                availableDirections.Remove(direction);
-            }
-        }
-
-        // 가능한 방향 중 랜덤으로 선택
-        if (availableDirections.Count > 0)
-        {
-            isConfined = false;
-            moveDirection = availableDirections[Random.Range(0, availableDirections.Count)];
-        }
-        else
-        {
-            isConfined = true;
-        }
-    }
-
     public void StartChangeState(EnemyStateEnums type, float time = 0)
     {
         StartCoroutine(changeState(type, time));
@@ -264,18 +212,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(time);
         stateMachine.ChangeState(type);
     }
-}
 
-
-
-
-
-
-
-
-
-
-/*
     private void OnDrawGizmos()
     {
         // 박스의 중심을 현재 위치로 설정
@@ -290,5 +227,60 @@ public class EnemyController : MonoBehaviour
         // 캐스트 선 그리기
         Gizmos.color = Color.green; // 캐스트 선 색상 설정
         Gizmos.DrawLine(transform.position, center); // 박스 캐스트의 끝점을 선으로 연결합니다
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/*
+    public delegate bool CheckObstacleHandler(Vector2 pos);
+    public event CheckObstacleHandler OnCheckObstacle;
+
+    public void CheckForObstacleTest()
+    {
+        // 이동하려는 방향의 좌표를 계산
+        Vector2 targetPosition = currentPosition + moveDirection;
+
+        // 장애물 체크 이벤트 호출
+        if (OnCheckObstacle.Invoke(targetPosition))
+        {
+            SetDirectionTest();
+        }
+    }
+
+    public void SetDirectionTest()
+    {
+        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+        List<Vector2> directionList = new List<Vector2>();
+
+        foreach (Vector2 direction in directions)
+        {
+            Vector2 checkPosition = currentPosition + direction;
+
+            // 장애물이 없는 방향을 수집
+            if (OnCheckObstacle != null && !OnCheckObstacle.Invoke(checkPosition))
+            {
+                directionList.Add(direction);
+            }
+        }
+
+        // 가능한 방향 중 랜덤으로 선택
+        if (directionList.Count > 0)
+        {
+            isConfined = false;
+            moveDirection = directionList[Random.Range(0, directionList.Count)];
+        }
+        else
+        {
+            isConfined = true;
+            Debug.Log("가능한 방향 없음");
+        }
     }
     */

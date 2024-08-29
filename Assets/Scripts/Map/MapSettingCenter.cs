@@ -31,7 +31,7 @@ public class MapSettingCenter : MonoBehaviour
             enemy.OnUpdatePosition += SetStageEnemy;
             enemy.OnRemovePosition += DestroyStageObject;
             enemy.OnRemoveEnemy += RemoveEnemy;
-            enemy.OnCheckObstacle += CheckInstallation;
+            // enemy.OnCheckObstacle += CheckInstallation;
         }
 
         player.OnBalloonCheck += CheckInstallation;

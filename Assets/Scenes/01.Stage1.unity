@@ -5614,6 +5614,7 @@ GameObject:
   - component: {fileID: 698414969}
   - component: {fileID: 698414968}
   - component: {fileID: 698414972}
+  - component: {fileID: 698414973}
   - component: {fileID: 698414967}
   m_Layer: 6
   m_Name: JjolJjori (1)
@@ -5798,12 +5799,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 698414967}
+  enemyType: {fileID: 698414973}
   rigid: {fileID: 698414969}
   animator: {fileID: 698414968}
   spriteRenderer: {fileID: 698414971}
-  enemySpeed: 1.5
+  enemySpeed: 1.7
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
+  rayDistance: 0.5
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &698414973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698414965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 698414972}
 --- !u!1 &701389104
 GameObject:
   m_ObjectHideFlags: 0
@@ -8327,6 +8346,7 @@ GameObject:
   - component: {fileID: 1036959396}
   - component: {fileID: 1036959395}
   - component: {fileID: 1036959399}
+  - component: {fileID: 1036959400}
   - component: {fileID: 1036959394}
   m_Layer: 6
   m_Name: JjolJjori (4)
@@ -8511,12 +8531,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1036959394}
+  enemyType: {fileID: 1036959400}
   rigid: {fileID: 1036959396}
   animator: {fileID: 1036959395}
   spriteRenderer: {fileID: 1036959398}
-  enemySpeed: 1.5
+  enemySpeed: 1.7
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
+  rayDistance: 0.5
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &1036959400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036959392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1036959399}
 --- !u!1 &1039335579
 GameObject:
   m_ObjectHideFlags: 0
@@ -12862,6 +12900,7 @@ GameObject:
   - component: {fileID: 1457725356}
   - component: {fileID: 1457725355}
   - component: {fileID: 1457725359}
+  - component: {fileID: 1457725360}
   - component: {fileID: 1457725354}
   m_Layer: 6
   m_Name: JjolJjori (5)
@@ -13046,12 +13085,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1457725354}
+  enemyType: {fileID: 1457725360}
   rigid: {fileID: 1457725356}
   animator: {fileID: 1457725355}
   spriteRenderer: {fileID: 1457725358}
-  enemySpeed: 1.5
+  enemySpeed: 1.7
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
+  rayDistance: 0.5
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &1457725360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457725352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1457725359}
 --- !u!1 &1463573763
 GameObject:
   m_ObjectHideFlags: 0
@@ -13569,6 +13626,7 @@ GameObject:
   - component: {fileID: 1478034117}
   - component: {fileID: 1478034116}
   - component: {fileID: 1478034120}
+  - component: {fileID: 1478034121}
   - component: {fileID: 1478034115}
   m_Layer: 6
   m_Name: BeoReogi
@@ -13753,12 +13811,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1478034115}
+  enemyType: {fileID: 1478034121}
   rigid: {fileID: 1478034117}
   animator: {fileID: 1478034116}
   spriteRenderer: {fileID: 1478034119}
-  enemySpeed: 1.8
+  enemySpeed: 2.3
   moveDirection: {x: 1, y: 0}
   sensingRange: 1.2
+  rayDistance: 0.7
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &1478034121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478034113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1478034120}
 --- !u!1 &1486984375
 GameObject:
   m_ObjectHideFlags: 0
@@ -14452,6 +14528,7 @@ GameObject:
   - component: {fileID: 1632860003}
   - component: {fileID: 1632860002}
   - component: {fileID: 1632860006}
+  - component: {fileID: 1632860007}
   - component: {fileID: 1632860001}
   m_Layer: 6
   m_Name: JjolJjori
@@ -14636,12 +14713,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1632860001}
+  enemyType: {fileID: 1632860007}
   rigid: {fileID: 1632860003}
   animator: {fileID: 1632860002}
   spriteRenderer: {fileID: 1632860005}
-  enemySpeed: 1.5
+  enemySpeed: 1.7
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
+  rayDistance: 0.5
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &1632860007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632859999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1632860006}
 --- !u!1 &1646200920
 GameObject:
   m_ObjectHideFlags: 0
@@ -17571,6 +17666,7 @@ GameObject:
   - component: {fileID: 1735436912}
   - component: {fileID: 1735436911}
   - component: {fileID: 1735436915}
+  - component: {fileID: 1735436916}
   - component: {fileID: 1735436910}
   m_Layer: 6
   m_Name: JjolJjori (2)
@@ -17755,12 +17851,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1735436910}
+  enemyType: {fileID: 1735436916}
   rigid: {fileID: 1735436912}
   animator: {fileID: 1735436911}
   spriteRenderer: {fileID: 1735436914}
-  enemySpeed: 1.5
+  enemySpeed: 1.7
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
+  rayDistance: 0.5
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &1735436916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735436908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1735436915}
 --- !u!1 &1753326076
 GameObject:
   m_ObjectHideFlags: 0
@@ -19665,6 +19779,7 @@ GameObject:
   - component: {fileID: 2012193118}
   - component: {fileID: 2012193117}
   - component: {fileID: 2012193121}
+  - component: {fileID: 2012193122}
   - component: {fileID: 2012193116}
   m_Layer: 6
   m_Name: JjolJjori (3)
@@ -19849,12 +19964,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 2012193116}
+  enemyType: {fileID: 2012193122}
   rigid: {fileID: 2012193118}
   animator: {fileID: 2012193117}
   spriteRenderer: {fileID: 2012193120}
-  enemySpeed: 1.5
+  enemySpeed: 1.7
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
+  rayDistance: 0.5
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
+--- !u!114 &2012193122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012193114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2012193121}
 --- !u!1 &2042359977
 GameObject:
   m_ObjectHideFlags: 0
@@ -20385,6 +20518,7 @@ GameObject:
   - component: {fileID: 2113332132}
   - component: {fileID: 2113332131}
   - component: {fileID: 2113332129}
+  - component: {fileID: 2113332136}
   - component: {fileID: 2113332133}
   m_Layer: 6
   m_Name: BeoReogi (1)
@@ -20406,12 +20540,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 2113332133}
+  enemyType: {fileID: 2113332136}
   rigid: {fileID: 2113332132}
   animator: {fileID: 2113332131}
   spriteRenderer: {fileID: 2113332130}
-  enemySpeed: 1.5
+  enemySpeed: 2.3
   moveDirection: {x: 1, y: 0}
   sensingRange: 1.2
+  rayDistance: 0.7
+  boxSize: {x: 0.3, y: 0.3}
+  isPlayerDead: 0
+  isConfined: 0
 --- !u!212 &2113332130
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20575,6 +20714,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1828746586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2113332136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113332128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2113332129}
 --- !u!1 &2130354885
 GameObject:
   m_ObjectHideFlags: 0

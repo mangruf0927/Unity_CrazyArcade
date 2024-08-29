@@ -42,7 +42,7 @@ public class StageCenter : MonoBehaviour
     {
         foreach(EnemyController enemy in enemy.enemyList)
         {
-            enemy.PlayerDead();
+            enemy.isPlayerDead = true;
         }
 
         LoseStage();
