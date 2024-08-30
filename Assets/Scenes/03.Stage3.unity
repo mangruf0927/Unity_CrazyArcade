@@ -809,7 +809,7 @@ MonoBehaviour:
   rigid: {fileID: 248556247}
   animator: {fileID: 248556246}
   spriteRenderer: {fileID: 248556249}
-  enemySpeed: 1.8
+  enemySpeed: 2
   moveDirection: {x: -1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -5090,7 +5090,7 @@ MonoBehaviour:
   rigid: {fileID: 820597379}
   animator: {fileID: 820597378}
   spriteRenderer: {fileID: 820597381}
-  enemySpeed: 1.8
+  enemySpeed: 2
   moveDirection: {x: -1, y: 0}
   sensingRange: 1.2
   rayDistance: 0.5
@@ -5388,7 +5388,7 @@ MonoBehaviour:
   rigid: {fileID: 849101747}
   animator: {fileID: 849101746}
   spriteRenderer: {fileID: 849101749}
-  enemySpeed: 1.8
+  enemySpeed: 2
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -5895,7 +5895,7 @@ MonoBehaviour:
   rigid: {fileID: 952913973}
   animator: {fileID: 952913972}
   spriteRenderer: {fileID: 952913975}
-  enemySpeed: 1.8
+  enemySpeed: 2
   moveDirection: {x: -1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -6794,7 +6794,7 @@ MonoBehaviour:
   rigid: {fileID: 1120700417}
   animator: {fileID: 1120700416}
   spriteRenderer: {fileID: 1120700419}
-  enemySpeed: 1.8
+  enemySpeed: 2
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -8824,7 +8824,7 @@ MonoBehaviour:
   rigid: {fileID: 1778603115}
   animator: {fileID: 1778603114}
   spriteRenderer: {fileID: 1778603117}
-  enemySpeed: 1.8
+  enemySpeed: 2
   moveDirection: {x: 1, y: 0}
   sensingRange: 1.2
   rayDistance: 0.5

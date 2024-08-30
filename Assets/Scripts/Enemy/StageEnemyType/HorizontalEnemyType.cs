@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HorizontalEnemyType : StageEnemyType
@@ -27,6 +28,8 @@ public class HorizontalEnemyType : StageEnemyType
     }
 
     // >> 
+    private bool isWaiting = false;
+
     private void CheckForObstacle()
     {
         int obstacleLayer = LayerMask.GetMask("Obstacle");
@@ -36,34 +39,45 @@ public class HorizontalEnemyType : StageEnemyType
         {
             if (hit.collider != null)
             {
-                enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE); 
-                // ChangeStateAfterDelay(1f);
+                StartCoroutine(ChangeStateWithDelay());
+                //enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE); 
                 break; // 첫 번째 장애물에 충돌하면 루프 종료
             }
         }
     }
 
-    private IEnumerator ChangeStateAfterDelay(float delay)
+    private IEnumerator ChangeStateWithDelay()
     {
-        yield return new WaitForSeconds(delay); 
+        enemy.isConfined = true;
+        yield return new WaitForSeconds(0.3f);
+        enemy.isConfined = false;
         enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE); 
     }
 
     private void ChangeDirection()
     {
-        if (transform.position.x < 1 || transform.position.x > 13)
+        if (!isWaiting && (transform.position.x < 1 || transform.position.x > 13)) // 경계에 도달했을 때
         {
-            enemy.moveDirection = -enemy.moveDirection; 
+            StartCoroutine(ChangeDirectionWithDelay()); 
         }
     }
 
-    private IEnumerator ChangeDirectionAfterDelay(float delay)
+    private IEnumerator ChangeDirectionWithDelay()
     {
+        isWaiting = true;
         enemy.isConfined = true;
-        yield return new WaitForSeconds(delay); 
+        yield return new WaitForSeconds(0.5f); // 1초 대기
+
         enemy.moveDirection = -enemy.moveDirection; 
         enemy.isConfined = false;
-    }
 
+        // 적이 일정 거리 이상 이동할 때까지 대기
+        float initialPositionX = transform.position.x;
+        while (Mathf.Abs(transform.position.x - initialPositionX) < 0.5f)
+        {
+            yield return null;
+        }
+        isWaiting = false;
+    }
     
 }
