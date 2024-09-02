@@ -1549,6 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9200bfd3182e44feaaf0971255ddb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneNum: 2
   bazziSelectedImageArray:
   - {fileID: 1519460180}
   - {fileID: 811568954}

@@ -14774,6 +14774,8 @@ MonoBehaviour:
   gameStateUI: {fileID: 1072317082}
   timerUI: {fileID: 1419243324}
   profileUIAnimator: {fileID: 1058750239}
+  nextSceneNum: 3
+  lobbySceneNum: 1
 --- !u!4 &1646200922
 Transform:
   m_ObjectHideFlags: 0
@@ -18354,6 +18356,7 @@ MonoBehaviour:
   - {fileID: 1457725359}
   - {fileID: 1478034120}
   - {fileID: 2113332129}
+  isBossMap: 0
 --- !u!1 &1829991507
 GameObject:
   m_ObjectHideFlags: 0

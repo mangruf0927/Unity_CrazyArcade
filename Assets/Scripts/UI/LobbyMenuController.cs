@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class LobbyMenuController : MonoBehaviour
 {
+    public int nextSceneNum;
+
     [Header("배찌 선택 이미지")]
     public GameObject[] bazziSelectedImageArray;
 
@@ -71,7 +73,7 @@ public class LobbyMenuController : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("01.Stage1");
+        SceneManager.LoadScene(nextSceneNum);
         DataManager.Instance.SetCharacterType(type);
     }
 }

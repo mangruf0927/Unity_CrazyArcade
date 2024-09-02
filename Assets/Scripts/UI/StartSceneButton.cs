@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class StartSceneButton : MonoBehaviour
 {
     public GameObject rulePanel;
+    public int nextSceneNum;
 
     public void PressStartButton()
     {
-        SceneManager.LoadScene("00.WaitingRoom");
+        SceneManager.LoadScene(nextSceneNum);
     }
 
     public void ActiveGameRule()

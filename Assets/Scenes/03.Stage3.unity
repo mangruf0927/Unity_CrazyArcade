@@ -8195,6 +8195,8 @@ MonoBehaviour:
   gameStateUI: {fileID: 1072317082}
   timerUI: {fileID: 1419243324}
   profileUIAnimator: {fileID: 1058750239}
+  nextSceneNum: 1
+  lobbySceneNum: 1
 --- !u!4 &1646200922
 Transform:
   m_ObjectHideFlags: 0

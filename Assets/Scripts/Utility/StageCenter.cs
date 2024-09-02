@@ -11,6 +11,9 @@ public class StageCenter : MonoBehaviour
     [SerializeField]        private Timer timerUI;
     [SerializeField]        private Animator profileUIAnimator;
 
+    public int nextSceneNum;
+    public int lobbySceneNum;
+
     private PlayerFactory playerFactory;
     
     private void Awake() 
@@ -54,7 +57,7 @@ public class StageCenter : MonoBehaviour
         controller.StageClear();
         StartCoroutine(gameStateUI.ShowClearMessage());
         yield return new WaitForSeconds(7f);
-        LoadScene("02.Stage2");
+        SceneManager.LoadScene(nextSceneNum);
     }
 
     private IEnumerator ShowLoseMessage()
@@ -63,11 +66,6 @@ public class StageCenter : MonoBehaviour
         profileUIAnimator.Play("Lose");
         StartCoroutine(gameStateUI.ShowLoseMessage());
         yield return new WaitForSeconds(7f);
-        LoadScene("00.WaitingRoom");
-    }
-
-    private void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(lobbySceneNum);
     }
 }

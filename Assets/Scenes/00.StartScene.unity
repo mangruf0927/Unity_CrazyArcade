@@ -1442,6 +1442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rulePanel: {fileID: 378450389}
+  nextSceneNum: 1
 --- !u!1 &941770996
 GameObject:
   m_ObjectHideFlags: 0
