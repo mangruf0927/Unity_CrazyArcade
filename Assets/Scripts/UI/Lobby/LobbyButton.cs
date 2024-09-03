@@ -12,7 +12,7 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [Header("메뉴 버튼")]
     public Button menuButton;
-    public GameObject menuPanel;
+    public GameObject menuPopUp;
     public GameObject menuMessage;
 
     [Header("Button Image")]
@@ -22,7 +22,7 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [Header("종료 버튼")]
     public Button exitButton;
-    public GameObject exitPanel;
+    public GameObject exitPopUp;
     public GameObject exitMessage;
 
     private bool isMenuActive = false;
@@ -39,7 +39,7 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         menuMessage.SetActive(false);
         
         isMenuActive = !isMenuActive; 
-        menuPanel.SetActive(isMenuActive); 
+        menuPopUp.SetActive(isMenuActive); 
 
         // 메뉴 버튼 이미지 설정
         menuButton.image.sprite = isMenuActive ? selectedImage : defaultImage;
@@ -49,7 +49,7 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnClickExit()
     {
         exitMessage.SetActive(false);
-        exitPanel.SetActive(true);
+        exitPopUp.SetActive(true);
     }
 
     // Message Active & Deactivate
