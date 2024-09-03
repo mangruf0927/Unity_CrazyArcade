@@ -9,6 +9,11 @@ public class SoundCenter : MonoBehaviour
     public Slider bgmSlider;
     public Slider sfxSlider;
 
+    public GameObject optionPopUp;
+
+    private float originalBGMVolume;
+    private float originalSFXVolume;
+
     private float[] volumeLevels = { 0f, 0.2f, 0.4f, 0.6f, 0.8f, 1f };
 
     private void Start() 
@@ -18,8 +23,11 @@ public class SoundCenter : MonoBehaviour
 
     public void InitValue()
     {
-        bgmSlider.value = SoundManager.Instance.GetBGMVolume();
-        sfxSlider.value = SoundManager.Instance.GetSFXVolume();
+        originalBGMVolume = SoundManager.Instance.GetBGMVolume();
+        originalSFXVolume = SoundManager.Instance.GetSFXVolume();      
+        
+        bgmSlider.value = originalBGMVolume;
+        sfxSlider.value = originalSFXVolume;
     }
 
     public void ChangeBGMVolume(float value)
@@ -53,4 +61,24 @@ public class SoundCenter : MonoBehaviour
         }
         return nearestValue;
     }
+
+    public void OnClickConfirm()
+    {
+        originalBGMVolume = bgmSlider.value;
+        originalSFXVolume = bgmSlider.value;
+
+        optionPopUp.SetActive(false);
+    }
+
+    public void OnClickCancel()
+    {
+        bgmSlider.value = originalBGMVolume;
+        sfxSlider.value = originalSFXVolume;
+
+        SoundManager.Instance.ChangeBGMVolume(originalBGMVolume);
+        SoundManager.Instance.ChangeSFXVolume(originalSFXVolume);
+    
+        optionPopUp.SetActive(false);
+    }
 }
+

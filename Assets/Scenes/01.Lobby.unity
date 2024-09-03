@@ -873,7 +873,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 564009689}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1100441818}
+        m_TargetAssemblyTypeName: SoundCenter, Assembly-CSharp
+        m_MethodName: OnClickCancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &564009689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1219,7 @@ GameObject:
   - component: {fileID: 617167244}
   - component: {fileID: 617167246}
   - component: {fileID: 617167245}
+  - component: {fileID: 617167247}
   m_Layer: 5
   m_Name: ExitPopUp
   m_TagString: Untagged
@@ -1273,6 +1286,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617167243}
   m_CullTransparentMesh: 1
+--- !u!114 &617167247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617167243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6585420335f2b45e3ace04de976a27e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &725692667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1949,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 959537579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 617167247}
+        m_TargetAssemblyTypeName: ExitPopUp, Assembly-CSharp
+        m_MethodName: OnClickCancle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &959537579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,7 +2391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1100441818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2369,6 +2406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSlider: {fileID: 1255372274}
   sfxSlider: {fileID: 1123704621}
+  optionPopUp: {fileID: 309087005}
 --- !u!4 &1100441819
 Transform:
   m_ObjectHideFlags: 0
@@ -2541,7 +2579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1156790170
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2696,7 +2734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1213718418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1100441818}
+        m_TargetAssemblyTypeName: SoundCenter, Assembly-CSharp
+        m_MethodName: OnClickConfirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1213718418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2816,7 +2866,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1252937284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 617167247}
+        m_TargetAssemblyTypeName: ExitPopUp, Assembly-CSharp
+        m_MethodName: OnClickQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1252937284
 MonoBehaviour:
   m_ObjectHideFlags: 0

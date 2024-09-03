@@ -2474,13 +2474,13 @@ MonoBehaviour:
   bgmList:
   - soundName: 00.StartScene
     audioClip: {fileID: 8300000, guid: b73945864ca454930a2a8c411109a658, type: 3}
-  - soundName: 00.WaitingRoom
+  - soundName: 01.Lobby
     audioClip: {fileID: 8300000, guid: ac8f7c56ac45a4add99c55cb3752695c, type: 3}
-  - soundName: 01.Stage1
+  - soundName: 02.Stage1
     audioClip: {fileID: 8300000, guid: c31eb4825b1b840ab908b772826882a9, type: 3}
-  - soundName: 02.Stage2
+  - soundName: 03.Stage2
     audioClip: {fileID: 8300000, guid: c31eb4825b1b840ab908b772826882a9, type: 3}
-  - soundName: 03.Stage3
+  - soundName: 04.Stage3
     audioClip: {fileID: 8300000, guid: 9aa7a9ba5a8f34ee5a1b20ca81871bd7, type: 3}
   sfxList:
   - soundName: Bomb
