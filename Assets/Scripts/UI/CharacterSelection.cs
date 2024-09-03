@@ -2,10 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LobbyMenuController : MonoBehaviour
+public class CharacterSelection : MonoBehaviour
 {
-    public int nextSceneNum;
-
     [Header("배찌 선택 이미지")]
     public GameObject[] bazziSelectedImageArray;
 
@@ -71,9 +69,4 @@ public class LobbyMenuController : MonoBehaviour
         type = randomType;
     }
 
-    public void OnClickStartButton()
-    {
-        SceneManager.LoadScene(nextSceneNum);
-        DataManager.Instance.SetCharacterType(type);
-    }
 }
