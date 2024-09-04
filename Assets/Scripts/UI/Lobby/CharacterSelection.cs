@@ -10,14 +10,17 @@ public class CharacterSelection : MonoBehaviour
     [Header("다오 선택 이미지")]
     public GameObject[] daoSelectedImageArray;
 
+    [Header("마리드 선택 이미지")]
+    public GameObject[] maridSelectedImageArray;
+
     [Header("랜덤 선택 이미지")]
     public GameObject[] randomSelectedImageArray;
 
     public Toggle bazziToggle;
     public Toggle daoToggle;
+    public Toggle maridToggle;
     public Toggle randomToggle;
 
-    CharacterTypeEnums type;
     private static readonly int enumLength = System.Enum.GetValues(typeof(CharacterTypeEnums)).Length;
 
     private void Awake() // 배찌가 디폴트 값
@@ -30,6 +33,7 @@ public class CharacterSelection : MonoBehaviour
     {
         bazziToggle.onValueChanged.AddListener(OnBazziChanged);
         daoToggle.onValueChanged.AddListener(OnDaoChanged);
+        maridToggle.onValueChanged.AddListener(OnMaridChanged);
         randomToggle.onValueChanged.AddListener(OnRandomChanged);
     }
 
@@ -40,7 +44,7 @@ public class CharacterSelection : MonoBehaviour
             bazzi.SetActive(isOn);
         }
 
-        if(isOn) type = CharacterTypeEnums.BAZZI;
+        if(isOn) DataManager.Instance.SetCharacterType(CharacterTypeEnums.BAZZI);
     }
 
     private void OnDaoChanged(bool isOn)
@@ -50,7 +54,17 @@ public class CharacterSelection : MonoBehaviour
             dao.SetActive(isOn);
         }
 
-        if(isOn) type = CharacterTypeEnums.DAO;
+        if(isOn) DataManager.Instance.SetCharacterType(CharacterTypeEnums.DAO);
+    }
+
+    private void OnMaridChanged(bool isOn)
+    {
+        foreach(GameObject marid in maridSelectedImageArray)
+        {
+            marid.SetActive(isOn);
+        }
+
+        if(isOn) DataManager.Instance.SetCharacterType(CharacterTypeEnums.MARID);
     }
 
     private void OnRandomChanged(bool isOn)
@@ -60,13 +74,13 @@ public class CharacterSelection : MonoBehaviour
             random.SetActive(isOn);
         }
 
-        if(isOn) RandomizeCharacterType();
+        if(isOn) DataManager.Instance.SetCharacterType(RandomizeCharacterType());
     }
 
-    public void RandomizeCharacterType()
+    public CharacterTypeEnums RandomizeCharacterType()
     {
         CharacterTypeEnums randomType = (CharacterTypeEnums)Random.Range(0, enumLength);
-        type = randomType;
+        return randomType;
     }
 
 }

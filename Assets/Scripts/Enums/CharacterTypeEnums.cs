@@ -1,5 +1,6 @@
 public enum CharacterTypeEnums
 {
     BAZZI,
-    DAO
+    DAO,
+    MARID
 }

@@ -421,7 +421,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 0.7, y: 0.8}
+  m_Size: {x: 0.85, y: 0.8}
   m_Direction: 0
 --- !u!114 &133841249
 MonoBehaviour:
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 181929338}
   - component: {fileID: 181929337}
   m_Layer: 7
-  m_Name: Obj2 (5)
+  m_Name: Obj3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 301913593}
   - component: {fileID: 301913592}
   m_Layer: 7
-  m_Name: Obj2 (4)
+  m_Name: Obj3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,7 +1353,7 @@ GameObject:
   - component: {fileID: 426109295}
   - component: {fileID: 426109294}
   m_Layer: 7
-  m_Name: Obj2 (1)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1450,7 +1450,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2245,8 +2245,8 @@ Tilemap:
   - first: {x: 1, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2345,8 +2345,8 @@ Tilemap:
   - first: {x: 11, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2695,8 +2695,8 @@ Tilemap:
   - first: {x: 1, y: -8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2795,8 +2795,8 @@ Tilemap:
   - first: {x: 11, y: -8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3882,9 +3882,9 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 78
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: 388f75cf5bf8840caad65ceeec849615, type: 2}
+  - m_RefCount: 74
     m_Data: {fileID: 11400000, guid: 885e9e22c074b4e8fb232b12cf1461b6, type: 2}
   - m_RefCount: 58
     m_Data: {fileID: 11400000, guid: 373c29066e4cf45a890e044badce68e1, type: 2}
@@ -3899,9 +3899,9 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 78
+  - m_RefCount: 4
+    m_Data: {fileID: 21300000, guid: 2e4e9e988c0444b90b36b5e62358cc96, type: 3}
+  - m_RefCount: 74
     m_Data: {fileID: 21300000, guid: 8bf7525285dce417a9224d031190a9bd, type: 3}
   - m_RefCount: 58
     m_Data: {fileID: 21300000, guid: 4242d8b81beac41ef90990a84f175e6e, type: 3}
@@ -4094,7 +4094,7 @@ GameObject:
   - component: {fileID: 576677910}
   - component: {fileID: 576677909}
   m_Layer: 7
-  m_Name: Obj 1
+  m_Name: Obj1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5563,7 +5563,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5630,7 +5630,7 @@ GameObject:
   - component: {fileID: 923167492}
   - component: {fileID: 923167491}
   m_Layer: 7
-  m_Name: Obj2 (6)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5727,7 +5727,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6043,12 +6043,12 @@ Transform:
   - {fileID: 426109293}
   - {fileID: 1398582734}
   - {fileID: 1460050512}
-  - {fileID: 301913591}
-  - {fileID: 181929336}
   - {fileID: 923167490}
   - {fileID: 1818581878}
   - {fileID: 2044484663}
   - {fileID: 1727750942}
+  - {fileID: 301913591}
+  - {fileID: 181929336}
   m_Father: {fileID: 965861663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003629711
@@ -7454,7 +7454,7 @@ GameObject:
   - component: {fileID: 1398582736}
   - component: {fileID: 1398582735}
   m_Layer: 7
-  m_Name: Obj2 (2)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7551,7 +7551,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7796,7 +7796,7 @@ GameObject:
   - component: {fileID: 1460050514}
   - component: {fileID: 1460050513}
   m_Layer: 7
-  m_Name: Obj2 (3)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7893,7 +7893,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8236,6 +8236,7 @@ MonoBehaviour:
   playerData:
   - {fileID: 11400000, guid: 7d080184068844983917d7c74fade2ab, type: 2}
   - {fileID: 11400000, guid: c20bc951622874a0e8aa99bd301dee2a, type: 2}
+  - {fileID: 11400000, guid: 0d04f3fc32abf430a8dadc442167792c, type: 2}
   controller: {fileID: 133841246}
   enemy: {fileID: 1828746587}
   gameStateUI: {fileID: 1072317082}
@@ -8493,7 +8494,7 @@ GameObject:
   - component: {fileID: 1727750944}
   - component: {fileID: 1727750943}
   m_Layer: 7
-  m_Name: Obj2 (9)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8590,7 +8591,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8904,7 +8905,7 @@ GameObject:
   - component: {fileID: 1818581880}
   - component: {fileID: 1818581879}
   m_Layer: 7
-  m_Name: Obj2 (7)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9001,7 +9002,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9903,7 +9904,7 @@ GameObject:
   - component: {fileID: 2044484665}
   - component: {fileID: 2044484664}
   m_Layer: 7
-  m_Name: Obj2 (8)
+  m_Name: Obj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10000,7 +10001,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10363,7 +10364,7 @@ GameObject:
   - component: {fileID: 2127810262}
   - component: {fileID: 2127810261}
   m_Layer: 7
-  m_Name: Obj 1 (1)
+  m_Name: Obj1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -20,6 +20,8 @@ public class StageCenter : MonoBehaviour
     {
         playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()], profileUIAnimator);
         playerFactory.CreatePlayer();
+
+        // Debug.Log(DataManager.Instance.GetCharacterType());
     }
 
     private void Start()

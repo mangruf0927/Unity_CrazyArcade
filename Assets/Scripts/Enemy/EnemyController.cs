@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
 
-        Debug.Log("Enemy상태 " + stateMachine.curState);
+        // Debug.Log("Enemy상태 " + stateMachine.curState);
     }
 
     private void FixedUpdate() 

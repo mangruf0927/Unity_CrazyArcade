@@ -1136,7 +1136,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.15}
-  m_Size: {x: 0.7, y: 0.8}
+  m_Size: {x: 0.85, y: 0.8}
   m_Direction: 0
 --- !u!114 &133841249
 MonoBehaviour:
@@ -1795,7 +1795,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 16171ec3f1e3844e896b5ab8d94d6bee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fd44d256a7a1436a957e79a557d7d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16233,6 +16233,7 @@ MonoBehaviour:
   playerData:
   - {fileID: 11400000, guid: 7d080184068844983917d7c74fade2ab, type: 2}
   - {fileID: 11400000, guid: c20bc951622874a0e8aa99bd301dee2a, type: 2}
+  - {fileID: 11400000, guid: 0d04f3fc32abf430a8dadc442167792c, type: 2}
   controller: {fileID: 133841246}
   enemy: {fileID: 1828746587}
   gameStateUI: {fileID: 1072317082}

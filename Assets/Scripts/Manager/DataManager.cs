@@ -14,7 +14,6 @@ public class DataManager : Singleton<DataManager>
     public void SetCharacterType(CharacterTypeEnums type)
     {
         characterType = type;
-        Debug.Log(characterType);
     }
 
     public CharacterTypeEnums GetCharacterType()

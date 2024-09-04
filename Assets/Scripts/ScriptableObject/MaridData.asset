@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a960368ab2124c1b925e1f0fb79830f, type: 3}
+  m_Name: MaridData
+  m_EditorClassIdentifier: 
+  animatorController: {fileID: 9100000, guid: 7febc01b82c1c4af182b5d6acd6fd0c4, type: 2}
+  profileAnimatorController: {fileID: 9100000, guid: 44b34f8afff8540599600208ab5fa242, type: 2}
+  moveSpeed: 4
+  maxSpeed: 8
+  maxBalloonNum: 9
+  balloonNum: 2
+  maxPopLength: 6
+  popLength: 1
