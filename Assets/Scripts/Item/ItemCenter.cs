@@ -7,10 +7,18 @@ public class ItemCenter : MonoBehaviour
     [Header("플레이어")]
     public PlayerController player;
 
+    [Header("아이템 UI")]
+    public GetItem getItem;
+
     private List<Skate> skateList = new List<Skate>();
     private List<Balloon> balloonList = new List<Balloon>();
     private List<Potion> potionList = new List<Potion>();
 
+
+    private void Awake() 
+    {
+        player.stat.AddObserver<IObserver>(player.stat.observerList, getItem);
+    }
 
     public void GetSpeed()
     {

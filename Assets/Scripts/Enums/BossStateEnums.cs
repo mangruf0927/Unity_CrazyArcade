@@ -1,6 +1,6 @@
 public enum BossStateEnums
 {
-    IDLE,
+    IDLEATTACK,
     MOVE,
     ATTACK,
     HIT,

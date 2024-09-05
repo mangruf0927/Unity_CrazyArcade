@@ -7,6 +7,8 @@ public class BalloonWaitState : IBalloonState
     public BalloonController balloonController{get; set;}
     public BalloonStateMachine stateMachine{get; set;}
 
+    private float time;
+
     public BalloonWaitState(BalloonStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
@@ -17,7 +19,7 @@ public class BalloonWaitState : IBalloonState
     {
 
     }
-    float time;
+    
     public void FixedUpdate()
     {
         time += Time.fixedDeltaTime;

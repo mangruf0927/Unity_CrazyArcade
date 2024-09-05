@@ -16,7 +16,7 @@ public class BossStateMachine : MonoBehaviour
 
         };
 
-        if(stateDictionary.TryGetValue(BossStateEnums.IDLE, out IBossState newState))
+        if(stateDictionary.TryGetValue(BossStateEnums.IDLEATTACK, out IBossState newState))
         {
             curState = newState;
             newState.OnEnter();

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStat : MonoBehaviour
+public class PlayerStat : MonoBehaviour, ISubject
 {
     // : 플레이어 스탯
     [HideInInspector]
@@ -23,6 +23,9 @@ public class PlayerStat : MonoBehaviour
 
     [HideInInspector]
     public int popLength;
+    
+    public ItemTypeEnums itmeType;
+    public List<IObserver> observerList = new List<IObserver>();
 
     private void Start() 
     {
@@ -53,6 +56,8 @@ public class PlayerStat : MonoBehaviour
         if(balloonNum < maxBalloonNum)
         {
             balloonNum ++;
+            itmeType = ItemTypeEnums.BALLOON;
+            NotifyObservers(observerList);  // 풍선 개수 변화 알림
         }
     }
 
@@ -61,6 +66,8 @@ public class PlayerStat : MonoBehaviour
         if(moveSpeed < maxSpeed)
         {
             moveSpeed ++;
+            itmeType = ItemTypeEnums.SKATE;
+            NotifyObservers(observerList);  // 스피드 개수 변화 알림
         }
     }
 
@@ -69,6 +76,8 @@ public class PlayerStat : MonoBehaviour
         if(popLength < maxPopLength)
         {
             popLength++;
+            itmeType = ItemTypeEnums.POTION;
+            NotifyObservers(observerList); // 물약 개수 변화 알림
         }
     }
 
@@ -88,5 +97,24 @@ public class PlayerStat : MonoBehaviour
     {
         popLength = init;
         maxPopLength = max;
+    }
+
+    // >> 
+    public void AddObserver<T>(List<T> observerList, T observer) where T : IObserver
+    {
+        observerList.Add(observer);
+    }
+
+    public void RemoveObserver<T>(List<T> observerList, T observer) where T : IObserver
+    {
+        observerList.Remove(observer);
+    }
+
+    public void NotifyObservers<T>(List<T> observerList) where T : IObserver
+    {
+        foreach (T observer in observerList)
+        {
+            observer.Notify(this);
+        }
     }
 }
