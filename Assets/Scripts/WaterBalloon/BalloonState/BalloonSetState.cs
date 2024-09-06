@@ -25,12 +25,13 @@ public class BalloonSetState : IBalloonState
 
     public void OnEnter()
     {
-        // Debug.Log("OnEnter: setPosition = " + balloonController.setPosition);
+        GameObject waterBalloon;
 
-        GameObject waterBalloon = Object.Instantiate<GameObject>(balloonController.balloonPrefab);
+        waterBalloon = Object.Instantiate<GameObject>(balloonController.balloonPrefab);
+
         waterBalloon.transform.position = balloonController.transform.position;
-
         balloonController.currentWaterBalloon = waterBalloon;
+
         stateMachine.ChangeState(BalloonStateEnums.WAIT);
     }
 

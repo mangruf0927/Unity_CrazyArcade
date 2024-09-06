@@ -33,7 +33,6 @@ public class BalloonWaitState : IBalloonState
     public void OnEnter()
     {
         time = 0;
-        // balloonController.StartChangeState(BalloonStateEnums.READY, 2.5f);
     }
 
     public void OnExit()

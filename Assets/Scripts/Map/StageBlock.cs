@@ -24,6 +24,7 @@ public class StageBlock : MonoBehaviour
         foreach(GameObject obj in ObjectList)
         {
             OnBlockInstall?.Invoke(ObjectTypeEnums.OBJECT, obj.transform.position);
+            // Debug.Log(obj.transform.position);
         }    
 
         foreach(GameObject box in BoxList)

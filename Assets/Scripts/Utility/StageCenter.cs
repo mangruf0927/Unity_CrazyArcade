@@ -20,8 +20,6 @@ public class StageCenter : MonoBehaviour
     {
         playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()], profileUIAnimator);
         playerFactory.CreatePlayer();
-
-        // Debug.Log(DataManager.Instance.GetCharacterType());
     }
 
     private void Start()
@@ -30,7 +28,7 @@ public class StageCenter : MonoBehaviour
 
         enemy.OnClearStage += ClearStage;
         timerUI.OnEndTime += LoseStage;
-        controller.OnDead += PlayerDead;
+        controller.OnPlayerDead += PlayerDead;
     }
 
     private void ClearStage()

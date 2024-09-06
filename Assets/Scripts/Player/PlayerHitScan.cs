@@ -11,9 +11,10 @@ public class PlayerHitScan : MonoBehaviour
     [Range(0,1)]
     public float overlapPercent;
 
-    public delegate void HitScanHandle();
-    public event HitScanHandle OnDamage;
-    public event HitScanHandle OnTouchEnemy;
+    // 플레이어 충돌 체크
+    public delegate void HitScanHandler();
+    public event HitScanHandler OnTrapPlayer;
+    public event HitScanHandler OnTouchEnemy;
 
     private List<Collider2D> popColliderList = new List<Collider2D>();
 
@@ -53,7 +54,7 @@ public class PlayerHitScan : MonoBehaviour
         if (totalOverlapArea >= overlapPercent * playerArea) // 66% 이상 겹치는 경우
         {
             Debug.Log(totalOverlapArea / playerArea + " % 충돌 !");
-            OnDamage?.Invoke();
+            OnTrapPlayer?.Invoke();
         }
     }
 

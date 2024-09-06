@@ -20,7 +20,7 @@ public class StageMap : MonoBehaviour
         InitializeMap();
     }
 
-    public MapNode Return(Vector2 pos)
+    public MapNode GetPosition(Vector2 pos)
     {
         return map[(int)pos.x, -(int)pos.y];
     }

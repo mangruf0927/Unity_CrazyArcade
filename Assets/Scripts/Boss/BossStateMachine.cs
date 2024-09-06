@@ -13,7 +13,7 @@ public class BossStateMachine : MonoBehaviour
     {
         stateDictionary = new Dictionary<BossStateEnums, IBossState>
         {
-
+            {BossStateEnums.IDLEATTACK, new BossIdleAttackState(this)},
         };
 
         if(stateDictionary.TryGetValue(BossStateEnums.IDLEATTACK, out IBossState newState))
@@ -34,5 +34,14 @@ public class BossStateMachine : MonoBehaviour
             curState = newState;
             curState.OnExit();
         }
+    }
+
+    public bool CheckCurState(BossStateEnums newStateType)
+    {
+        if (stateDictionary.TryGetValue(newStateType, out IBossState stateValue))
+        {
+            return curState == stateValue;
+        }
+        return false; // 키가 존재하지 않는 경우 false 반환
     }
 }

@@ -13,8 +13,23 @@ public class BossController : MonoBehaviour
     [Header("리지드 바디")]
     public Rigidbody2D rigid;
 
+    [Header("물풍선")]
+    public GameObject waterBalloonPrefab;
+
     [Header("보스 물풍선")]
-    public GameObject balloonPrefab;
+    public GameObject bossBalloonPrefab;
+
+    public GameObject popPrefab;
+
+    // : TODO :
+    // balloonController 등록 
+    // public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
+    // public event BalloonControllerHandler OnControllerReceived;
+
+    private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
+    private int spawnIndex = 0;
+    public int idleAttackPopLength = 14;
+    public int attackPopLength = 3;
 
     private void Update() 
     { 
@@ -29,29 +44,52 @@ public class BossController : MonoBehaviour
     }
 
     // >>
-    private bool isBalloonActive = false; // 풍선 활성화 여부 체크
-    private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
-
-    public void StartSetBossBalloon()
+    public void IdleAttack()
     {
-        if (!isBalloonActive) // 풍선이 활성화되어 있지 않을 때만 실행
+        // 좌/우 번갈아가며 풍선 생성
+        Vector2 spawnPosition = spawnPositions[spawnIndex];
+        spawnIndex = (spawnIndex + 1) % spawnPositions.Length; // 인덱스를 0과 1 사이에서 번갈아가며 선택
+
+        // 물폭탄 공격
+        StartCoroutine(IdlePopAttack(spawnPosition, spawnIndex));
+    }
+
+    private IEnumerator IdlePopAttack(Vector2 startPosition, int index)
+    {
+        // 방향 관련 변수 설정
+        Vector2[] directions = { Vector2.left, Vector2.right };
+        string[] popEdgeAnimation = {"Pop_Left_Edge", "Pop_Right_Edge"};
+        string[] popAnimation = { "Pop_Left", "Pop_Right"};
+        
+        Vector2 direction = directions[index]; // 좌우 방향 설정
+
+        // 반복문을 통해 풍선 생성 및 애니메이션 적용
+        for (int i = 0; i < idleAttackPopLength; i++)
         {
-            StartCoroutine(SetBossBalloon());
+            Vector2 spawnPosition = startPosition + direction * i;
+            SetBalloonAnimation(i, spawnPosition, popEdgeAnimation[index], popAnimation[index]);
+            yield return new WaitForSeconds(0.01f); 
         }
     }
 
-    private IEnumerator SetBossBalloon()
+    private void SetBalloonAnimation(int index, Vector2 spawnPosition, string popEdgeAnimation, string popAnimation)
     {
-        isBalloonActive = true; // 풍선 활성화
+        GameObject waterStream = Instantiate(popPrefab, spawnPosition, Quaternion.identity);
+        Animator animator = waterStream.GetComponent<Animator>();
 
-        // 두 위치에서 번갈아 가며 풍선 생성
-        for (int i = 0; i < spawnPositions.Length; i++)
+        // 애니메이션 설정
+        if (index == 0) // 첫 번째 풍선은 Center 애니메이션
         {
-            Instantiate(balloonPrefab, spawnPositions[i], Quaternion.identity);
-            yield return new WaitForSeconds(3f);
+            animator.Play("Pop_Center");
         }
-
-        isBalloonActive = false; // 풍선 비활성화
+        else if (index == idleAttackPopLength - 1) // 마지막 풍선은 방향에 따른 Edge 애니메이션
+        {
+            animator.Play(popEdgeAnimation);
+        }
+        else // 나머지는 방향에 따른 Pop 애니메이션
+        {
+            animator.Play(popAnimation);
+        }
     }
 
 }

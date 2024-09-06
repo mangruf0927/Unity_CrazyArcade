@@ -8,6 +8,7 @@ public class BossIdleAttackState : IBossState
     public BossStateMachine stateMachine{get; set;}
 
     private float time;
+    private float lastSpawnTime;
 
     public BossIdleAttackState(BossStateMachine _stateMachine)
     {
@@ -28,11 +29,19 @@ public class BossIdleAttackState : IBossState
         {
             stateMachine.ChangeState(BossStateEnums.MOVE);
         }
+        // 풍선을 3초마다 생성
+        if (time - lastSpawnTime >= 1.2f)
+        {
+            bossController.IdleAttack();
+            lastSpawnTime = time; // 마지막 풍선 생성 시간을 업데이트
+        }
     }
 
     public void OnEnter()
     {
         time = 0;
+        lastSpawnTime = 0;
+
         bossController.animator.Play("Idle");
     }
 

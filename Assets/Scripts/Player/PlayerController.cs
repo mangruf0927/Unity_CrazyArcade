@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [Header("물풍선 프리팹")]
     public GameObject waterBalloonPrefab;
 
+    [Header("플레이어 물풍선")]
+    public GameObject playerBalloon;
+
     [Header("플레이어 스탯")]
     public PlayerStat stat;
 
@@ -30,11 +33,11 @@ public class PlayerController : MonoBehaviour
 
     // 물풍선 설치 가능 여부 확인
     public delegate bool BalloonCheckHandler(Vector2 position);
-    public event BalloonCheckHandler OnBalloonCheck;
+    public event BalloonCheckHandler OnCheckBalloon;
 
     // 물풍선 설치 이벤트
     public delegate void BalloonPositionHandler(ObjectTypeEnums type, Vector2 position);
-    public event BalloonPositionHandler OnBalloonPlaced; 
+    public event BalloonPositionHandler OnSetBalloon; 
 
     // balloonController 등록 
     public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
@@ -42,15 +45,14 @@ public class PlayerController : MonoBehaviour
 
     // 플레이어 Dead상태 
     public delegate void playerHandler();
-    public playerHandler OnDead;
+    public playerHandler OnPlayerDead;
 
-    private bool isInstallation = false; // 물풍선 설치 여부
     private bool isTrap = false; // 플레이어 갇혔는지 상태 체크
     private bool isClear = false; // 스테이지 클리어 했는지 체크
 
     private void Start() 
     {
-        hitScan.OnDamage += Hit;  
+        hitScan.OnTrapPlayer += Hit;  
         hitScan.OnTouchEnemy += OnDeath; 
     }
 
@@ -70,7 +72,6 @@ public class PlayerController : MonoBehaviour
 
 
     // >> :
-
     public void Move(float speed)
     {
         Vector2 moveVector = isHorizontal ? new Vector2(moveDirection.x, 0) : new Vector2(0, moveDirection.y);
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
         if(stat.GetCurBalloon() < stat.balloonNum)
         {
             Vector2 setPosition = new Vector2(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y - 0.25f));
-            isInstallation = OnBalloonCheck?.Invoke(setPosition) ?? false;
+            bool isInstallation = OnCheckBalloon?.Invoke(setPosition) ?? false;
 
             if(isInstallation) 
             {
@@ -127,36 +128,16 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                OnBalloonPlaced?.Invoke(ObjectTypeEnums.BALLOON, setPosition);
+                OnSetBalloon?.Invoke(ObjectTypeEnums.BALLOON, setPosition);
                 stat.UseBalloon();
 
                 GameObject waterBalloon = Instantiate(waterBalloonPrefab, setPosition, Quaternion.identity);
                 BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
-                balloonController.InitializeBalloon(this, stat.popLength);
+                balloonController.InitializerBalloon(playerBalloon, stat.popLength, false, this);
 
                 OnControllerReceived?.Invoke(setPosition, balloonController);
             }
         }
-    }
-
-    public void Hit()
-    {
-        isTrap = true;
-    }
-
-    public bool CheckTrap()
-    {
-        return isTrap;
-    }
-
-    public void StageClear()
-    {
-        isClear = true;
-    }
-
-    public bool CheckClear()
-    {
-        return isClear;
     }
 
     public void OnDeath()
@@ -175,5 +156,25 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         stateMachine.ChangeLogicState(state);
+    }
+
+    private void Hit()
+    {
+        isTrap = true;
+    }
+
+    public bool CheckTrap()
+    {
+        return isTrap;
+    }
+
+    public void StageClear()
+    {
+        isClear = true;
+    }
+
+    public bool CheckClear()
+    {
+        return isClear;
     }
 }
