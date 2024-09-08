@@ -14,9 +14,10 @@ public class BossStateMachine : MonoBehaviour
         stateDictionary = new Dictionary<BossStateEnums, IBossState>
         {
             {BossStateEnums.IDLEATTACK, new BossIdleAttackState(this)},
+            {BossStateEnums.MOVE, new BossMoveState(this)},
         };
 
-        if(stateDictionary.TryGetValue(BossStateEnums.IDLEATTACK, out IBossState newState))
+        if(stateDictionary.TryGetValue(BossStateEnums.MOVE, out IBossState newState))
         {
             curState = newState;
             newState.OnEnter();

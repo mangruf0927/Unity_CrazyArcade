@@ -19,7 +19,18 @@ public class BossController : MonoBehaviour
     [Header("보스 물풍선")]
     public GameObject bossBalloonPrefab;
 
+    [Header("물폭탄")]
     public GameObject popPrefab;
+
+    [Header("이동 방향")]
+    public Vector2 moveDirection;
+
+    [Header("웨이 포인트")]
+    public Transform[] wayPointArray;
+    private int currentWaypoint;
+
+    [Header("이동 속도")]
+    public float moveSpeed;
 
     // : TODO :
     // balloonController 등록 
@@ -92,4 +103,44 @@ public class BossController : MonoBehaviour
         }
     }
 
+    public void Move()
+    {
+        // 현재 웨이포인트로 이동
+        if (wayPointArray.Length > 0)
+        {
+            Transform targetWaypoint = wayPointArray[currentWaypoint];
+            moveDirection = (targetWaypoint.position - transform.position).normalized;
+            rigid.velocity = moveDirection * moveSpeed;
+
+            // 웨이포인트에 도달하면 다음 웨이포인트로 이동
+            if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
+            {
+                currentWaypoint = (currentWaypoint + 1) % wayPointArray.Length;
+            }
+        }
+    }
+
+    public void PlayMoveAnimation()
+    {
+        float angle = 15f;
+
+        if (Vector2.Angle(moveDirection, Vector2.up) < angle)
+        {
+            animator.Play("Move_Up");
+        }
+        else if (Vector2.Angle(moveDirection, Vector2.down) < angle)
+        {
+            animator.Play("Move_Down");
+        }
+        else if (Vector2.Angle(moveDirection, Vector2.right) < angle)
+        {
+            animator.Play("Move_Right");
+        }
+        else if (Vector2.Angle(moveDirection, Vector2.left) < angle)
+        {
+            animator.Play("Move_Left");
+        }
+    }
+
+    
 }

@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     [Header("Enemy 속도")]
-    public float enemySpeed;
+    public float moveSpeed;
 
     [Header("이동 방향")]
     public Vector2 moveDirection;
@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
         UpdatePosition();
 
         if(!isConfined)
-            rigid.velocity = moveDirection * enemySpeed;
+            rigid.velocity = moveDirection * moveSpeed;
         else
             rigid.velocity = Vector2.zero;
     }

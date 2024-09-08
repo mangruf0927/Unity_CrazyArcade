@@ -14,6 +14,8 @@ public class StageCenter : MonoBehaviour
     public int nextSceneNum;
     public int lobbySceneNum;
 
+    private bool isClear = false;
+
     private PlayerFactory playerFactory;
     
     private void Awake() 
@@ -33,12 +35,16 @@ public class StageCenter : MonoBehaviour
 
     private void ClearStage()
     {
+        isClear = true;
         StartCoroutine(ShowClearMessage());
     }
 
     private void LoseStage()
     {
-        StartCoroutine(ShowLoseMessage());
+        if(!isClear)
+        {
+            StartCoroutine(ShowLoseMessage());
+        }
     }
 
     private void PlayerDead()
