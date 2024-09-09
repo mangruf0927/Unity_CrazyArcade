@@ -41,8 +41,12 @@ public class MapSettingCenter : MonoBehaviour
         playerController.OnSetBalloon += SetStageObject;
         playerController.OnControllerReceived += GetBalloonController;
 
-        // 보스 이벤트 등록
-        // if (bossController != null) bossController.OnControllerReceived += GetBalloonController;
+        
+        if (bossController != null) 
+        {
+            bossController.OnSetBalloon += SetStageObject;
+            bossController.OnControllerReceived += GetBalloonController;
+        }
     }
 
     // 물풍선 이벤트 등록
@@ -178,7 +182,7 @@ public class MapSettingCenter : MonoBehaviour
     private bool CheckPosition(Vector2 position, bool isboss = false)
     {
         ObjectTypeEnums type = CheckObjectType(position);
-        Debug.Log("Object type at position " + position + ": " + type);
+        // Debug.Log("Object type at position " + position + ": " + type);
     
         if (type == ObjectTypeEnums.OBJECT || type == ObjectTypeEnums.BORDER) 
         {
@@ -191,6 +195,7 @@ public class MapSettingCenter : MonoBehaviour
         }
         else if(type == ObjectTypeEnums.BALLOON)
         {
+            // Debug.Log(position + " : " +stageMap.GetPosition(position).balloon);
             if(!stageMap.GetPosition(position).balloon.stateMachine.CheckCurState(BalloonStateEnums.READY) &&
                 isboss == stageMap.GetPosition(position).balloon.isBoss)
             {

@@ -725,7 +725,7 @@ MonoBehaviour:
   rigid: {fileID: 248556247}
   animator: {fileID: 248556246}
   spriteRenderer: {fileID: 248556249}
-  moveSpeed: 0
+  moveSpeed: 1.8
   moveDirection: {x: -1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -4362,7 +4362,7 @@ Transform:
   m_GameObject: {fileID: 669723881}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: -3, z: 0}
+  m_LocalPosition: {x: 7, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4470,7 +4470,8 @@ MonoBehaviour:
   - {fileID: 1958118120}
   - {fileID: 12898919}
   - {fileID: 1005300702}
-  moveSpeed: 3
+  - {fileID: 1945386283}
+  moveSpeed: 2
   idleAttackPopLength: 15
   attackPopLength: 3
 --- !u!1 &672266189
@@ -5346,7 +5347,7 @@ MonoBehaviour:
   rigid: {fileID: 820597379}
   animator: {fileID: 820597378}
   spriteRenderer: {fileID: 820597381}
-  moveSpeed: 0
+  moveSpeed: 1.8
   moveDirection: {x: -1, y: 0}
   sensingRange: 1.2
   rayDistance: 0.5
@@ -5675,7 +5676,7 @@ MonoBehaviour:
   rigid: {fileID: 849101747}
   animator: {fileID: 849101746}
   spriteRenderer: {fileID: 849101749}
-  moveSpeed: 0
+  moveSpeed: 1.8
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -6213,7 +6214,7 @@ MonoBehaviour:
   rigid: {fileID: 952913973}
   animator: {fileID: 952913972}
   spriteRenderer: {fileID: 952913975}
-  moveSpeed: 0
+  moveSpeed: 1.8
   moveDirection: {x: -1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -7365,7 +7366,7 @@ MonoBehaviour:
   rigid: {fileID: 1120700417}
   animator: {fileID: 1120700416}
   spriteRenderer: {fileID: 1120700419}
-  moveSpeed: 0
+  moveSpeed: 1.8
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -9580,6 +9581,7 @@ Transform:
   - {fileID: 1958118120}
   - {fileID: 12898919}
   - {fileID: 1005300702}
+  - {fileID: 1945386283}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1716703620 stripped
@@ -10090,7 +10092,7 @@ MonoBehaviour:
   rigid: {fileID: 1778603115}
   animator: {fileID: 1778603114}
   spriteRenderer: {fileID: 1778603117}
-  moveSpeed: 0
+  moveSpeed: 1.8
   moveDirection: {x: 1, y: 0}
   sensingRange: 1.2
   rayDistance: 0.5
@@ -10842,6 +10844,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943275968}
   m_CullTransparentMesh: 1
+--- !u!1 &1945386282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945386283}
+  m_Layer: 0
+  m_Name: WayPoint 34
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1945386283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945386282}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1705865143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1958118119
 GameObject:
   m_ObjectHideFlags: 0

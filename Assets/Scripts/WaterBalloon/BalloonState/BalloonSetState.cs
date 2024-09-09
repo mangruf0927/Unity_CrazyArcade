@@ -27,7 +27,7 @@ public class BalloonSetState : IBalloonState
     {
         GameObject waterBalloon;
 
-        waterBalloon = Object.Instantiate<GameObject>(balloonController.balloonPrefab);
+        waterBalloon = Object.Instantiate<GameObject>(balloonController.balloonPrefab, balloonController.transform);
 
         waterBalloon.transform.position = balloonController.transform.position;
         balloonController.currentWaterBalloon = waterBalloon;

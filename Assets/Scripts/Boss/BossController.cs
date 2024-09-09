@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -32,10 +33,16 @@ public class BossController : MonoBehaviour
     [Header("이동 속도")]
     public float moveSpeed;
 
-    // : TODO :
     // balloonController 등록 
-    // public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
-    // public event BalloonControllerHandler OnControllerReceived;
+    public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
+    public event BalloonControllerHandler OnControllerReceived;
+
+    // 물풍선 설치 이벤트
+    public delegate void BalloonPositionHandler(ObjectTypeEnums type, Vector2 position);
+    public event BalloonPositionHandler OnSetBalloon; 
+
+    public delegate bool BossHandler(Vector2 pos);
+    public event BossHandler OnCheckShotPosition;
 
     private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
     private int spawnIndex = 0;
@@ -54,7 +61,7 @@ public class BossController : MonoBehaviour
             stateMachine.curState.FixedUpdate();
     }
 
-    // >>
+    // >> IdleAttack
     public void IdleAttack()
     {
         // 좌/우 번갈아가며 풍선 생성
@@ -103,6 +110,7 @@ public class BossController : MonoBehaviour
         }
     }
 
+    // >> Move
     public void Move()
     {
         // 현재 웨이포인트로 이동
@@ -126,21 +134,110 @@ public class BossController : MonoBehaviour
 
         if (Vector2.Angle(moveDirection, Vector2.up) < angle)
         {
+            moveDirection = Vector2.up; // 정확한 방향 설정
             animator.Play("Move_Up");
         }
         else if (Vector2.Angle(moveDirection, Vector2.down) < angle)
         {
+            moveDirection = Vector2.down;
             animator.Play("Move_Down");
         }
         else if (Vector2.Angle(moveDirection, Vector2.right) < angle)
         {
+            moveDirection = Vector2.right;
             animator.Play("Move_Right");
         }
         else if (Vector2.Angle(moveDirection, Vector2.left) < angle)
         {
+            moveDirection = Vector2.left;
             animator.Play("Move_Left");
         }
     }
 
-    
+    // >> Attack
+    public void Attack()
+    {
+        Vector2 startPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) + moveDirection * 3;
+        StartCoroutine(ShootBalloon(startPosition, 3));
+    }
+
+    private IEnumerator ShootBalloon(Vector2 startPos, int num)
+    {
+        Vector2 endPos = GetEndPosition(startPos);
+
+        for(int i = 0; i < num; i++)
+        {
+            if(!CanShootBalloon(startPos, endPos)) yield break;
+            
+            GameObject waterBalloon = Instantiate(waterBalloonPrefab, startPos, Quaternion.identity);
+            BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
+            balloonController.InitializerBalloon(bossBalloonPrefab, attackPopLength, true);
+            
+            yield return StartCoroutine(moveBalloon(waterBalloon, startPos, endPos));
+
+            OnSetBalloon?.Invoke(ObjectTypeEnums.BALLOON, endPos);
+            OnControllerReceived?.Invoke(endPos, balloonController);
+            
+            endPos = GetEndPosition(startPos, endPos);
+        }
+    }
+
+    private bool CanShootBalloon(Vector2 startPos, Vector2 endPos)
+    {
+        return Vector2.Distance(transform.position, endPos) > Vector2.Distance(transform.position, startPos);
+    }
+
+    private Vector2 InitialEndPosition(Vector2 startPos)
+    {
+        Vector2 endPos = startPos;
+
+        if (moveDirection == Vector2.right)
+        {
+            endPos.x = 15;
+        }
+        else if (moveDirection == Vector2.left)
+        {
+            endPos.x = 0;
+        }
+        else if (moveDirection == Vector2.up)
+        {
+            endPos.y = 0;
+        }
+        else if (moveDirection == Vector2.down)
+        {
+            endPos.y = -12;
+        }
+        return endPos;
+    }
+
+    private Vector2 GetEndPosition(Vector2 startPos, Vector2? previousPos = null)
+    {
+        Vector2 endPos = previousPos - moveDirection ?? InitialEndPosition(startPos);
+
+        for (Vector2 curPos = startPos; curPos != endPos;)
+        {
+            if (OnCheckShotPosition != null && !OnCheckShotPosition(curPos))
+            {
+                return curPos - moveDirection;
+            }
+
+            curPos += moveDirection;
+        }
+        return endPos;
+    }
+
+    private IEnumerator moveBalloon(GameObject balloon, Vector2 startPos, Vector2 endPos)
+    {
+        float elapsedTime = 0f;
+        float moveDuration = 0.3f;
+
+        while (elapsedTime < moveDuration)
+        {
+            balloon.transform.position = Vector2.Lerp(startPos, endPos, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        balloon.transform.position = endPos;
+    }
 }
