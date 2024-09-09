@@ -15,6 +15,7 @@ public class BossAttackState : IBossState
     
     public void Update()
     {
+        bossController.PlayAttackAnimation();
     }
 
     public void FixedUpdate()
@@ -24,7 +25,6 @@ public class BossAttackState : IBossState
 
     public void OnEnter()
     {
-        bossController.animator.Play("Idle");
         bossController.rigid.velocity = Vector2.zero;
         bossController.Attack();
     }

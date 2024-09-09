@@ -178,6 +178,8 @@ public class BossController : MonoBehaviour
             OnSetBalloon?.Invoke(ObjectTypeEnums.BALLOON, endPos);
             OnControllerReceived?.Invoke(endPos, balloonController);
             
+            yield return new WaitForSeconds(0.05f);
+
             endPos = GetEndPosition(startPos, endPos);
         }
     }
@@ -239,5 +241,25 @@ public class BossController : MonoBehaviour
         }
 
         balloon.transform.position = endPos;
+    }
+
+    public void PlayAttackAnimation()
+    {
+        if(moveDirection == Vector2.up)
+        {
+            animator.Play("Attack_Up");
+        }
+        else if(moveDirection == Vector2.down)
+        {
+            animator.Play("Attack_Down");
+        }
+        else if(moveDirection == Vector2.right)
+        {
+            animator.Play("Attack_Right");
+        }
+        else if(moveDirection == Vector2.left)
+        {
+            animator.Play("Attack_Left");
+        }
     }
 }
