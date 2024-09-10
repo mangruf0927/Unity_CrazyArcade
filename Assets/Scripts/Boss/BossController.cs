@@ -123,6 +123,10 @@ public class BossController : MonoBehaviour
             // 웨이포인트에 도달하면 다음 웨이포인트로 이동
             if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
             {
+                if(targetWaypoint.GetComponent<BossAttackInstruction>() != null)
+                {
+                    stateMachine.ChangeState(BossStateEnums.ATTACK);
+                }
                 currentWaypoint = (currentWaypoint + 1) % wayPointArray.Length;
             }
         }
