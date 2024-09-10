@@ -26,11 +26,19 @@ public class BossAttackState : IBossState
     public void OnEnter()
     {
         bossController.rigid.velocity = Vector2.zero;
-        bossController.ShootAttack();
+        
+        if(bossController.curAttack.attackType == BossAttackTypeEnums.SHOOT)
+        {
+            bossController.ShootAttack(bossController.curAttack.attackDirection[bossController.curAttack.attackDirection.Length - bossController.curAttack.attackCount]);
+        }
+        else if(bossController.curAttack.attackType == BossAttackTypeEnums.HOOP)
+        {
+            Debug.Log("Hoop");
+        }
     }
 
     public void OnExit()
     {
-
+        bossController.curAttack.attackCount--;
     }
 }

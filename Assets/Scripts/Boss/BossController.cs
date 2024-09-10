@@ -111,6 +111,7 @@ public class BossController : MonoBehaviour
     }
 
     // >> Move
+    public BossAttackInstruction curAttack;
     public void Move()
     {
         // 현재 웨이포인트로 이동
@@ -125,6 +126,7 @@ public class BossController : MonoBehaviour
             {
                 if(targetWaypoint.GetComponent<BossAttackInstruction>() != null)
                 {
+                    curAttack = targetWaypoint.GetComponent<BossAttackInstruction>();
                     stateMachine.ChangeState(BossStateEnums.ATTACK);
                 }
                 currentWaypoint = (currentWaypoint + 1) % wayPointArray.Length;
@@ -159,8 +161,9 @@ public class BossController : MonoBehaviour
     }
 
     // >> Attack
-    public void ShootAttack()
+    public void ShootAttack(Vector2 direction)
     {
+        moveDirection = direction;
         Vector2 startPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) + moveDirection * 3;
         StartCoroutine(ShootBalloon(startPosition, 3));
     }
@@ -171,8 +174,12 @@ public class BossController : MonoBehaviour
 
         for(int i = 0; i < num; i++)
         {
-            if(!CanShootBalloon(startPos, endPos)) yield break;
-            
+            if (!CanShootBalloon(startPos, endPos))
+            {
+                stateMachine.ChangeState(BossStateEnums.WAIT); 
+                yield break; // 코루틴 종료
+            }            
+
             GameObject waterBalloon = Instantiate(waterBalloonPrefab, startPos, Quaternion.identity);
             BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
             balloonController.InitializerBalloon(bossBalloonPrefab, attackPopLength, true);
@@ -186,6 +193,8 @@ public class BossController : MonoBehaviour
 
             endPos = GetEndPosition(startPos, endPos);
         }
+
+        stateMachine.ChangeState(BossStateEnums.WAIT);
     }
 
     private bool CanShootBalloon(Vector2 startPos, Vector2 endPos)
