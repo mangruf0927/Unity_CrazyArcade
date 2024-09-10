@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -14,13 +13,9 @@ public class BossController : MonoBehaviour
     [Header("리지드 바디")]
     public Rigidbody2D rigid;
 
-    [Header("물풍선")]
+    [Header("물풍선 관련 프리팹")]
     public GameObject waterBalloonPrefab;
-
-    [Header("보스 물풍선")]
     public GameObject bossBalloonPrefab;
-
-    [Header("물폭탄")]
     public GameObject popPrefab;
 
     [Header("이동 방향")]
@@ -33,7 +28,11 @@ public class BossController : MonoBehaviour
     [Header("이동 속도")]
     public float moveSpeed;
 
-    // balloonController 등록 
+    [Header("물줄기 길이")]
+    public int idleAttackPopLength = 14;
+    public int attackPopLength = 3;
+
+    // balloonController 등록 이벤트
     public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
     public event BalloonControllerHandler OnControllerReceived;
 
@@ -41,18 +40,19 @@ public class BossController : MonoBehaviour
     public delegate void BalloonPositionHandler(ObjectTypeEnums type, Vector2 position);
     public event BalloonPositionHandler OnSetBalloon; 
 
+    // 물풍선 설치 위치 확인 이벤트
     public delegate bool BossHandler(Vector2 pos);
     public event BossHandler OnCheckShotPosition;
 
     private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
     private int spawnIndex = 0;
-    public int idleAttackPopLength = 14;
-    public int attackPopLength = 3;
 
     private void Update() 
     { 
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
+
+        Debug.Log(stateMachine.curState);
     }
 
     private void FixedUpdate() 
@@ -155,7 +155,7 @@ public class BossController : MonoBehaviour
     }
 
     // >> Attack
-    public void Attack()
+    public void ShootAttack()
     {
         Vector2 startPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) + moveDirection * 3;
         StartCoroutine(ShootBalloon(startPosition, 3));

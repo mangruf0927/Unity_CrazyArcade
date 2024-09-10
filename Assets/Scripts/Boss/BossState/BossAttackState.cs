@@ -26,7 +26,7 @@ public class BossAttackState : IBossState
     public void OnEnter()
     {
         bossController.rigid.velocity = Vector2.zero;
-        bossController.Attack();
+        bossController.ShootAttack();
     }
 
     public void OnExit()
