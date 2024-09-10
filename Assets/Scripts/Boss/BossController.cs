@@ -165,7 +165,7 @@ public class BossController : MonoBehaviour
     {
         List<Vector2> popPositionList = new List<Vector2>();
 
-        int bossX = Mathf.RoundToInt(transform.position.x);
+        int bossX = Mathf.RoundToInt(transform.position.x + 0.2f);
         int bossY = Mathf.RoundToInt(transform.position.y);
 
         for (int y = bossY - 3; y <= bossY + 3; y++) 
@@ -194,6 +194,7 @@ public class BossController : MonoBehaviour
 
     public void ShootAttack(Vector2 direction)
     {
+        Debug.Log("shoot");
         moveDirection = direction;
         Vector2 startPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) + moveDirection * 3;
         StartCoroutine(ShootBalloon(startPosition, 3));
@@ -262,7 +263,7 @@ public class BossController : MonoBehaviour
 
         for (Vector2 curPos = startPos; curPos != endPos;)
         {
-            if (OnCheckShotPosition != null && !OnCheckShotPosition(curPos))
+            if (OnCheckShotPosition?.Invoke(curPos) ?? false)
             {
                 return curPos - moveDirection;
             }
