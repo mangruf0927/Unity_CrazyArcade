@@ -4525,6 +4525,7 @@ MonoBehaviour:
   moveSpeed: 2
   idleAttackPopLength: 15
   attackPopLength: 3
+  curAttack: {fileID: 0}
 --- !u!1 &672266189
 GameObject:
   m_ObjectHideFlags: 0

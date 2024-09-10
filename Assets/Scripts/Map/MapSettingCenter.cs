@@ -46,6 +46,7 @@ public class MapSettingCenter : MonoBehaviour
         {
             bossController.OnSetBalloon += SetStageObject;
             bossController.OnControllerReceived += GetBalloonController;
+            bossController.OnCheckShotPosition += CheckInstallation;
         }
     }
 

@@ -161,6 +161,37 @@ public class BossController : MonoBehaviour
     }
 
     // >> Attack
+    public void HoopAttack()
+    {
+        List<Vector2> popPositionList = new List<Vector2>();
+
+        int bossX = Mathf.RoundToInt(transform.position.x);
+        int bossY = Mathf.RoundToInt(transform.position.y);
+
+        for (int y = bossY - 3; y <= bossY + 3; y++) 
+        {
+            for (int x = bossX - 3; x <= bossX + 3; x++) 
+            {
+                if (y == bossY - 3 || y == bossY + 3 || x == bossX - 3 || x == bossX + 3)
+                {
+                    if(!OnCheckShotPosition?.Invoke(new Vector2(x, y)) ?? false)
+                    {
+                        popPositionList.Add(new Vector2(x, y));
+                    }
+                }
+            }
+        }
+        
+        foreach(Vector2 popPosition in popPositionList)
+        {
+            GameObject waterStream = Instantiate(popPrefab, popPosition, Quaternion.identity);
+            Animator animator = waterStream.GetComponent<Animator>();
+            animator.Play("BossPop");
+        }
+
+        stateMachine.ChangeState(BossStateEnums.WAIT);
+    }
+
     public void ShootAttack(Vector2 direction)
     {
         moveDirection = direction;
@@ -208,7 +239,7 @@ public class BossController : MonoBehaviour
 
         if (moveDirection == Vector2.right)
         {
-            endPos.x = 15;
+            endPos.x = 14;
         }
         else if (moveDirection == Vector2.left)
         {

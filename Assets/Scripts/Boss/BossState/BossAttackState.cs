@@ -33,7 +33,8 @@ public class BossAttackState : IBossState
         }
         else if(bossController.curAttack.attackType == BossAttackTypeEnums.HOOP)
         {
-            Debug.Log("Hoop");
+            Debug.Log("Hoop"); 
+            bossController.HoopAttack();
         }
     }
 
