@@ -25,7 +25,7 @@ public class BossHitState : IBossState
     public void OnEnter()
     {
         bossController.rigid.velocity = Vector2.zero;
-        bossController.DamgeUp();
+        bossController.stat.DamageUp();
         bossController.PlayHitAnimation();
         bossController.StartCoroutine(bossController.ChangeStateAfterAnimation(BossStateEnums.WAIT));
     }

@@ -25,12 +25,8 @@ public class BossController : MonoBehaviour
     public Transform[] wayPointArray;
     private int currentWaypoint;
 
-    [Header("이동 속도")]
-    public float moveSpeed;
-
-    [Header("물줄기 길이")]
-    public int idleAttackPopLength = 14;
-    public int attackPopLength = 3;
+    [Header("보스 스탯")]
+    public BossStat stat;
 
     // balloonController 등록 이벤트
     public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
@@ -48,13 +44,10 @@ public class BossController : MonoBehaviour
 
     private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
     private int spawnIndex = 0;
-    
-    public int maxHP = 100;
-    private int curHP;
 
     private void Start() 
     {
-        curHP = maxHP;    
+        // stat.OnTrapState += ChangeTrapState;    
     }
 
     private void Update() 
@@ -92,7 +85,7 @@ public class BossController : MonoBehaviour
         Vector2 direction = directions[index]; // 좌우 방향 설정
 
         // 반복문을 통해 풍선 생성 및 애니메이션 적용
-        for (int i = 0; i < idleAttackPopLength; i++)
+        for (int i = 0; i < stat.idleAttackPopLength; i++)
         {
             Vector2 spawnPosition = startPosition + direction * i;
             SetBalloonAnimation(i, spawnPosition, popEdgeAnimation[index], popAnimation[index]);
@@ -110,7 +103,7 @@ public class BossController : MonoBehaviour
         {
             animator.Play("Pop_Center");
         }
-        else if (index == idleAttackPopLength - 1) // 마지막 풍선은 방향에 따른 Edge 애니메이션
+        else if (index == stat.idleAttackPopLength - 1) // 마지막 풍선은 방향에 따른 Edge 애니메이션
         {
             animator.Play(popEdgeAnimation);
         }
@@ -129,7 +122,7 @@ public class BossController : MonoBehaviour
         {
             Transform targetWaypoint = wayPointArray[currentWaypoint];
             moveDirection = (targetWaypoint.position - transform.position).normalized;
-            rigid.velocity = moveDirection * moveSpeed;
+            rigid.velocity = moveDirection * stat.moveSpeed;
 
             // 웨이포인트에 도달하면 다음 웨이포인트로 이동
             if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
@@ -226,7 +219,7 @@ public class BossController : MonoBehaviour
 
             GameObject waterBalloon = Instantiate(waterBalloonPrefab, startPos, Quaternion.identity);
             BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
-            balloonController.InitializerBalloon(bossBalloonPrefab, attackPopLength, true);
+            balloonController.InitializerBalloon(bossBalloonPrefab, stat.attackPopLength, true);
             
             yield return StartCoroutine(moveBalloon(waterBalloon, startPos, endPos));
 
@@ -339,14 +332,6 @@ public class BossController : MonoBehaviour
         {
             animator.Play("Hit_Left");
         }
-    }
-
-    public void DamgeUp()
-    {
-        curHP -= 5;
-        Debug.Log(curHP);
-
-        if(curHP <= 0) Debug.Log("보스 죽음");
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
