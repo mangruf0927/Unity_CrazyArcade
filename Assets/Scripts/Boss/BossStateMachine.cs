@@ -16,7 +16,8 @@ public class BossStateMachine : MonoBehaviour
             {BossStateEnums.IDLEATTACK, new BossIdleAttackState(this)},
             {BossStateEnums.MOVE, new BossMoveState(this)},
             {BossStateEnums.ATTACK, new BossAttackState(this)},
-            {BossStateEnums.WAIT, new BossWaitState(this)}
+            {BossStateEnums.WAIT, new BossWaitState(this)},
+            {BossStateEnums.HIT, new BossHitState(this)}
         };
 
         if(stateDictionary.TryGetValue(BossStateEnums.MOVE, out IBossState newState))

@@ -44,8 +44,18 @@ public class BossController : MonoBehaviour
     public delegate bool BossHandler(Vector2 pos);
     public event BossHandler OnCheckShotPosition;
 
+    public bool isHit = false;
+
     private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
     private int spawnIndex = 0;
+    
+    public int maxHP = 100;
+    private int curHP;
+
+    private void Start() 
+    {
+        curHP = maxHP;    
+    }
 
     private void Update() 
     { 
@@ -136,7 +146,7 @@ public class BossController : MonoBehaviour
 
     public void PlayMoveAnimation()
     {
-        float angle = 15f;
+        float angle = 30f;
 
         if (Vector2.Angle(moveDirection, Vector2.up) < angle)
         {
@@ -161,8 +171,10 @@ public class BossController : MonoBehaviour
     }
 
     // >> Attack
-    public void HoopAttack()
+    public IEnumerator HoopAttack()
     {
+        yield return new WaitForSeconds(0.1f);
+
         List<Vector2> popPositionList = new List<Vector2>();
 
         int bossX = Mathf.RoundToInt(transform.position.x + 0.2f);
@@ -189,12 +201,12 @@ public class BossController : MonoBehaviour
             animator.Play("BossPop");
         }
 
+        yield return new WaitForSeconds(0.5f);
         stateMachine.ChangeState(BossStateEnums.WAIT);
     }
 
     public void ShootAttack(Vector2 direction)
     {
-        Debug.Log("shoot");
         moveDirection = direction;
         Vector2 startPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) + moveDirection * 3;
         StartCoroutine(ShootBalloon(startPosition, 3));
@@ -306,5 +318,55 @@ public class BossController : MonoBehaviour
         {
             animator.Play("Attack_Left");
         }
+    }
+
+    // >> Hit
+    public void PlayHitAnimation()
+    {
+        if (Vector2.Distance(moveDirection, Vector2.up) < 0.05f)
+        {
+            animator.Play("Hit_Up");
+        }
+        else if (Vector2.Distance(moveDirection, Vector2.down) < 0.05f)
+        {
+            animator.Play("Hit_Down");
+        }
+        else if (Vector2.Distance(moveDirection, Vector2.right) < 0.05f)
+        {
+            animator.Play("Hit_Right");
+        }
+        else if (Vector2.Distance(moveDirection, Vector2.left) < 0.05f)
+        {
+            animator.Play("Hit_Left");
+        }
+    }
+
+    public void DamgeUp()
+    {
+        curHP -= 5;
+        Debug.Log(curHP);
+
+        if(curHP <= 0) Debug.Log("보스 죽음");
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        {
+            if(!isHit)
+            {
+                isHit = true;
+                stateMachine.ChangeState(BossStateEnums.HIT);
+            }
+        }    
+    }
+
+    public IEnumerator ChangeStateAfterAnimation(BossStateEnums state)
+    {
+        yield return new WaitForSeconds(0.1f); // 애니메이션이 시작될 시간을 확보
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(0.05f);
+
+        stateMachine.ChangeState(state);
     }
 }

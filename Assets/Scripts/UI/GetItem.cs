@@ -48,7 +48,7 @@ public class GetItem : MonoBehaviour, IObserver
         balloonSlider.maxValue = playerStat.maxBalloonNum;
         balloonSlider.value = playerStat.balloonNum;
 
-        Debug.Log("물풍선 : " + playerStat.balloonNum + "/" + playerStat.maxBalloonNum );
+        // Debug.Log("물풍선 : " + playerStat.balloonNum + "/" + playerStat.maxBalloonNum );
 
         StartCoroutine(HideUI(balloonUI, 2f));
     }
@@ -62,7 +62,7 @@ public class GetItem : MonoBehaviour, IObserver
         speedSlider.maxValue = playerStat.maxSpeed;
         speedSlider.value = playerStat.moveSpeed;
 
-        Debug.Log("스케이드 : " + playerStat.moveSpeed + "/" + playerStat.maxSpeed );
+        // Debug.Log("스케이드 : " + playerStat.moveSpeed + "/" + playerStat.maxSpeed );
 
         StartCoroutine(HideUI(speedUI, 2f));
     }
@@ -76,7 +76,7 @@ public class GetItem : MonoBehaviour, IObserver
         potionSlider.maxValue = playerStat.maxPopLength;
         potionSlider.value = playerStat.popLength;
 
-        Debug.Log("물약 : " + playerStat.popLength + "/" + playerStat.maxPopLength );
+        // Debug.Log("물약 : " + playerStat.popLength + "/" + playerStat.maxPopLength );
 
         StartCoroutine(HideUI(potionUI, 2f));
     }
