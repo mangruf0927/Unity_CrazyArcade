@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class HorizontalEnemyType : StageEnemyType
+public class HorizontalEnemyType : EnemyType
 {
     public override void RoamUpdate()
     {
-        enemy.PlayMoveAnimation();
+        enemyController.PlayMoveAnimation();
         CheckForObstacle();
         ChangeDirection();
     }
 
     public override void RoamFixedUpdate()
     {
-        enemy.Move();
+        enemyController.Move();
     }
 
     public override void RoamOnEnter()
@@ -33,7 +33,8 @@ public class HorizontalEnemyType : StageEnemyType
     private void CheckForObstacle()
     {
         int obstacleLayer = LayerMask.GetMask("Obstacle");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, enemy.boxSize, 0f, enemy.moveDirection, enemy.rayDistance, obstacleLayer);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, enemyController.boxSize, 0f, 
+                            enemyController.moveDirection, enemyController.rayDistance, obstacleLayer);
 
         foreach (RaycastHit2D hit in hits)
         {
@@ -48,10 +49,10 @@ public class HorizontalEnemyType : StageEnemyType
 
     private IEnumerator ChangeStateWithDelay()
     {
-        enemy.isConfined = true;
+        enemyController.isConfined = true;
         yield return new WaitForSeconds(0.3f);
-        enemy.isConfined = false;
-        enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE); 
+        enemyController.isConfined = false;
+        enemyController.stateMachine.ChangeState(EnemyStateEnums.MOVE); 
     }
 
     private void ChangeDirection()
@@ -65,11 +66,11 @@ public class HorizontalEnemyType : StageEnemyType
     private IEnumerator ChangeDirectionWithDelay()
     {
         isWaiting = true;
-        enemy.isConfined = true;
+        enemyController.isConfined = true;
         yield return new WaitForSeconds(0.5f); // 1초 대기
 
-        enemy.moveDirection = -enemy.moveDirection; 
-        enemy.isConfined = false;
+        enemyController.moveDirection = -enemyController.moveDirection; 
+        enemyController.isConfined = false;
 
         // 적이 일정 거리 이상 이동할 때까지 대기
         float initialPositionX = transform.position.x;

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageEnemyType : MonoBehaviour
+public class EnemyType : MonoBehaviour
 {
-    public EnemyController enemy;
+    public EnemyController enemyController;
 
     public virtual void RoamUpdate()
     {
@@ -18,7 +18,7 @@ public class StageEnemyType : MonoBehaviour
 
     public virtual void RoamOnEnter()
     {
-        enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE);
+        enemyController.stateMachine.ChangeState(EnemyStateEnums.MOVE);
     }
 
     public virtual void RoamOnExit()

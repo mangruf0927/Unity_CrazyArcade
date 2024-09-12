@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public EnemyStateMachine stateMachine;
 
     [Header("enemy 타입")]
-    public StageEnemyType enemyType;
+    public EnemyType enemyType;
 
     [Header("리지드 바디")]
     public Rigidbody2D rigid;

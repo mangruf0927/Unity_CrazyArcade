@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatingEnemyType : StageEnemyType
+public class RotatingEnemyType : EnemyType
 {
     public override void RoamUpdate()
     {
-        enemy.PlayMoveAnimation();
+        enemyController.PlayMoveAnimation();
         CheckForPlayer();
         CheckForObstacle();
     }
 
     public override void RoamFixedUpdate()
     {
-        enemy.Move();
+        enemyController.Move();
     }
 
     public override void RoamOnEnter()
@@ -33,27 +33,27 @@ public class RotatingEnemyType : StageEnemyType
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
-        if (enemy.isPlayerDead) return;
+        if (enemyController.isPlayerDead) return;
 
         foreach (Vector2 direction in directions)
         {
             // 현재 이동 중인 방향은 제외
-            if (direction == enemy.moveDirection) continue;
+            if (direction == enemyController.moveDirection) continue;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, enemy.sensingRange, LayerMask.GetMask("Player"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, enemyController.sensingRange, LayerMask.GetMask("Player"));
 
             // 플레이어를 감지한 경우
             if (hit.collider != null)
             {
-                if (direction == -enemy.moveDirection) // 반대 방향에 플레이어가 있을 때
+                if (direction == -enemyController.moveDirection) // 반대 방향에 플레이어가 있을 때
                 {
                     isClockwise = !isClockwise; // 시계/반시계 방향 전환
-                    enemy.moveDirection = direction;
+                    enemyController.moveDirection = direction;
                 }
                 else
                 {
-                    enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE);
-                    enemy.moveDirection = direction;
+                    enemyController.stateMachine.ChangeState(EnemyStateEnums.MOVE);
+                    enemyController.moveDirection = direction;
                 }
                 break; // 한 번 감지되면 다른 방향은 검사하지 않음
             }
@@ -63,7 +63,8 @@ public class RotatingEnemyType : StageEnemyType
     public void CheckForObstacle()
     {
         int obstacleLayer = LayerMask.GetMask("Obstacle");
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, enemy.boxSize, 0f, enemy.moveDirection, enemy.rayDistance, obstacleLayer);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, enemyController.boxSize, 0f, 
+                            enemyController.moveDirection, enemyController.rayDistance, obstacleLayer);
 
         foreach (RaycastHit2D hit in hits)
         {
@@ -84,7 +85,7 @@ public class RotatingEnemyType : StageEnemyType
         foreach (Vector2 direction in directions)
         {
             int obstacleLayer = LayerMask.GetMask("Obstacle");
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, enemy.rayDistance, obstacleLayer);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, enemyController.rayDistance, obstacleLayer);
 
             foreach (RaycastHit2D hit in hits)
             {
@@ -94,11 +95,11 @@ public class RotatingEnemyType : StageEnemyType
         }
 
         // 시계방향 우선
-        Vector2 nextDirection = GetClockwiseDirection(enemy.moveDirection, isClockwise); 
+        Vector2 nextDirection = GetClockwiseDirection(enemyController.moveDirection, isClockwise); 
         if (availableDirections.Contains(nextDirection))
         {
-            enemy.moveDirection = nextDirection;
-            enemy.isConfined = false;
+            enemyController.moveDirection = nextDirection;
+            enemyController.isConfined = false;
             return;
         }
     
@@ -107,18 +108,18 @@ public class RotatingEnemyType : StageEnemyType
         {
             if (availableDirections.Count == 1)
             {
-                enemy.moveDirection = availableDirections[0];
-                enemy.isConfined = false;
+                enemyController.moveDirection = availableDirections[0];
+                enemyController.isConfined = false;
             }
             else
             {
                 // 반대 방향이 포함된 경우
-                if (availableDirections.Contains(-enemy.moveDirection))
+                if (availableDirections.Contains(-enemyController.moveDirection))
                 {
                     if (Random.value < 0.8f) // 80% 확률
                     {
-                        enemy.moveDirection = -enemy.moveDirection;
-                        enemy.isConfined = false;
+                        enemyController.moveDirection = -enemyController.moveDirection;
+                        enemyController.isConfined = false;
             
                         // 시계 -> 반시계 / 반시계 -> 시계
                         isClockwise = !isClockwise;
@@ -127,9 +128,9 @@ public class RotatingEnemyType : StageEnemyType
                     }
                     else // 20% 확률
                     {
-                        availableDirections.Remove(-enemy.moveDirection);
-                        enemy.moveDirection = availableDirections[0];
-                        enemy.stateMachine.ChangeState(EnemyStateEnums.MOVE);
+                        availableDirections.Remove(-enemyController.moveDirection);
+                        enemyController.moveDirection = availableDirections[0];
+                        enemyController.stateMachine.ChangeState(EnemyStateEnums.MOVE);
                         return;
                     }
                 }
@@ -137,7 +138,7 @@ public class RotatingEnemyType : StageEnemyType
         }
         else
         {
-            enemy.isConfined = true; // 갈 수 있는 방향이 없으면 confined 상태로 설정
+            enemyController.isConfined = true; // 갈 수 있는 방향이 없으면 confined 상태로 설정
         }
     }
 
