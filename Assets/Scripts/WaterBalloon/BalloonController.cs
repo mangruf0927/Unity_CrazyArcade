@@ -154,6 +154,17 @@ public class BalloonController : MonoBehaviour
         Destroy(gameObject);
     }
    
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Boss"))
+        {
+            if(stateMachine.CheckCurState(BalloonStateEnums.WAIT))
+            {
+                stateMachine.ChangeState(BalloonStateEnums.READY);
+            }
+        }    
+    }
+
     private void OnTriggerExit2D(Collider2D other) 
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))  

@@ -26,7 +26,8 @@ public class PlayerHitScan : MonoBehaviour
             CheckTotalOverlap();
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy") 
+        || other.gameObject.layer == LayerMask.NameToLayer("Boss"))
         {
             OnTouchEnemy?.Invoke();
         }

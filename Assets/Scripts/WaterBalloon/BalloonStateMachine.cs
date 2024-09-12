@@ -33,6 +33,7 @@ public class BalloonStateMachine : MonoBehaviour
     public void ChangeState(BalloonStateEnums newStateType)
     {
         if(curState == null) return;
+        if(CheckCurState(newStateType)) return;
 
         curState.OnExit();
 
