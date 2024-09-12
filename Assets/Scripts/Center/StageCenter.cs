@@ -5,40 +5,49 @@ using UnityEngine.UI;
 
 public class StageCenter : MonoBehaviour
 {
+    [Header("플레이어 데이터")]
     [SerializeField]        private PlayerData[] playerData;
-    [SerializeField]        private PlayerController controller;
-    [SerializeField]        private StageEnemy enemy;
-    [SerializeField]        private ShowMessage gameStateUI;
-    [SerializeField]        private Timer timerUI;
-    [SerializeField]        private Animator profileUIAnimator;
-    [SerializeField]        private BossController boss;
-    [SerializeField]        private GameObject HelpUI;
-    [SerializeField]        private GameObject ExitButton;
+    
+    [Header("플레이어 컨트롤러")]
+    [SerializeField]        private PlayerController playerController;
+    
+    [Header("보스 컨트롤러")]
+    [SerializeField]        private BossController bossController;
     public BossHP bossHP;
+    
+    [Header("Stage Enemy")]
+    [SerializeField]        private StageEnemy enemy;
 
+    [Header("HUD 센터")]
+    [SerializeField]        private HUDCenter hudCenter;
+
+    [Header("타이머")]
+    [SerializeField]        private Timer timer;
+
+    [Header("씬 전환 번호")]
     public int nextSceneNum;
     public int lobbySceneNum;
 
     private bool isClear = false;
-
     private PlayerFactory playerFactory;
     
     private void Awake() 
     {
-        playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()], profileUIAnimator);
+        playerFactory = new PlayerFactory(playerController, playerData[(int)DataManager.Instance.GetCharacterType()], hudCenter.profileUIAnimator);
         playerFactory.CreatePlayer();
 
-        if(boss != null) boss.stat.AddObserver<IObserver>(boss.stat.hpObserverList, bossHP);
+        if(bossController != null) bossController.stat.AddObserver<IObserver>(bossController.stat.hpObserverList, bossHP);
     }
 
     private void Start()
     {   
-        StartCoroutine(gameStateUI.ShowStartMessage());
+        hudCenter.ShowStartMessage();
 
         enemy.OnClearStage += ClearStage;
-        timerUI.OnEndTime += LoseStage;
-        controller.OnPlayerDead += PlayerDead;
-        controller.hitScan.OnTrapPlayer += TrapPlayer;
+        timer.OnEndTime += LoseStage;
+        
+        playerController.OnPlayerDead += PlayerDead;
+        playerController.hitScan.OnTrapPlayer += TrapPlayer;
     }
 
     private void ClearStage()
@@ -57,8 +66,7 @@ public class StageCenter : MonoBehaviour
 
     private void TrapPlayer()
     {
-        HelpUI.SetActive(true);
-        ExitButton.SetActive(false);
+        hudCenter.PlayerTrapUI(true);
     }
 
     private void PlayerDead()
@@ -67,9 +75,7 @@ public class StageCenter : MonoBehaviour
         {
             enemy.isPlayerDead = true;
         }
-        HelpUI.SetActive(false);
-        ExitButton.SetActive(true);
-
+        hudCenter.PlayerTrapUI(false);
         LoseStage();
     }
 
@@ -81,8 +87,8 @@ public class StageCenter : MonoBehaviour
     private IEnumerator ShowClearMessage()
     {
         yield return new WaitForSeconds(1f);
-        controller.StageClear();
-        StartCoroutine(gameStateUI.ShowClearMessage());
+        playerController.StageClear();
+        hudCenter.ShowClearMessage();
         yield return new WaitForSeconds(7f);
         SceneManager.LoadScene(nextSceneNum);
     }
@@ -90,8 +96,8 @@ public class StageCenter : MonoBehaviour
     private IEnumerator ShowLoseMessage()
     {
         yield return new WaitForSeconds(1f);
-        profileUIAnimator.Play("Lose");
-        StartCoroutine(gameStateUI.ShowLoseMessage());
+        hudCenter.PlayProfileAnimation();
+        hudCenter.ShowLoseMessage();
         yield return new WaitForSeconds(7f);
         SceneManager.LoadScene(lobbySceneNum);
     }

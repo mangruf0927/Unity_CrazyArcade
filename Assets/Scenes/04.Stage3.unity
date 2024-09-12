@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 248556250}
+  enemyController: {fileID: 248556250}
 --- !u!1 &253208536
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,7 +5379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 820597382}
+  enemyController: {fileID: 820597382}
 --- !u!1 &831193797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5708,7 +5708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 849101750}
+  enemyController: {fileID: 849101750}
 --- !u!1 &857980240
 GameObject:
   m_ObjectHideFlags: 0
@@ -6246,7 +6246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 952913976}
+  enemyController: {fileID: 952913976}
 --- !u!114 &957331840 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
@@ -6366,6 +6366,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1828746587}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1419243324}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: HelpUI
       value: 
       objectReference: {fileID: 1848838025}
@@ -6378,6 +6382,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1419243324}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: hudCenter
+      value: 
+      objectReference: {fileID: 1402094635}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: ExitButton
       value: 
       objectReference: {fileID: 1269675229}
@@ -6389,6 +6397,18 @@ PrefabInstance:
       propertyPath: gameStateUI
       value: 
       objectReference: {fileID: 1072317082}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: nextSceneNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: bossController
+      value: 
+      objectReference: {fileID: 669723889}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1006271102}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: profileUIAnimator
       value: 
@@ -7456,7 +7476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1120700420}
+  enemyController: {fileID: 1120700420}
 --- !u!1 &1134384932
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,7 +7845,7 @@ GameObject:
   - component: {fileID: 1269675232}
   - component: {fileID: 1269675231}
   m_Layer: 5
-  m_Name: ExitButton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8350,7 +8370,7 @@ GameObject:
   - component: {fileID: 1385148082}
   - component: {fileID: 1385148081}
   m_Layer: 5
-  m_Name: DeActivateImage
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8609,6 +8629,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1402094635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3946452842217496862, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+  m_PrefabInstance: {fileID: 8947784519771984385}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e691e315e1f347c48c3f1ab7fc00743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1406843034
 GameObject:
   m_ObjectHideFlags: 0
@@ -10450,7 +10481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7737dbeef5b004435ac42fd414b70b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1778603118}
+  enemyController: {fileID: 1778603118}
 --- !u!1 &1818581877
 GameObject:
   m_ObjectHideFlags: 0
@@ -12424,6 +12455,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130354885}
   m_CullTransparentMesh: 1
+--- !u!1001 &8947784519771984385
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3946452842217496862, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: HelpUI
+      value: 
+      objectReference: {fileID: 1848838025}
+    - target: {fileID: 3946452842217496862, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: exitButton
+      value: 
+      objectReference: {fileID: 1269675229}
+    - target: {fileID: 3946452842217496862, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: gameMessageUI
+      value: 
+      objectReference: {fileID: 1072317082}
+    - target: {fileID: 3946452842217496862, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: profileUIAnimator
+      value: 
+      objectReference: {fileID: 1058750239}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259637231184897926, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642585140641283070, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
+      propertyPath: m_Name
+      value: HUD Center
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce7f32ea4a3aa40b0ac4a5c25b1e7e10, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12444,6 +12548,7 @@ SceneRoots:
   - {fileID: 1974717721}
   - {fileID: 597938440}
   - {fileID: 981798485}
+  - {fileID: 8947784519771984385}
   - {fileID: 247641856}
   - {fileID: 253208537}
   - {fileID: 2082640252}
