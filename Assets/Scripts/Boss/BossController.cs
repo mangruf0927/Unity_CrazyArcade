@@ -346,7 +346,6 @@ public class BossController : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
         {
-            // Debug.Log("Pop과 충돌 " + isHit);
             if(!isHit)
             {
                 isHit = true;
@@ -356,25 +355,12 @@ public class BossController : MonoBehaviour
 
 
         // >> Trap
-        // if(stateMachine.CheckCurState(BossStateEnums.TRAP))
-        // {
-        //     if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        //     {
-        //         stateMachine.ChangeState(BossStateEnums.DEAD);
-        //     }
-        // }    
+        if(stateMachine.CheckCurState(BossStateEnums.TRAP))
+        {
+            if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                stateMachine.ChangeState(BossStateEnums.DEAD);
+            }
+        }    
     }
-
-    // public IEnumerator ChangeStateAfterAnimation()
-    // {
-    //     yield return new WaitForSeconds(0.1f); // 애니메이션이 시작될 시간을 확보
-    //     yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-    //     yield return new WaitForSeconds(0.05f);
-        
-    //     if(stat.GetCurrentHP() > 0) 
-    //         stateMachine.ChangeState(BossStateEnums.WAIT);
-    //     else
-    //         stateMachine.ChangeState(BossStateEnums.TRAP);
-    // }
-
 }

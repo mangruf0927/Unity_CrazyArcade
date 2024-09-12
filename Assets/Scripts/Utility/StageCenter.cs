@@ -11,6 +11,7 @@ public class StageCenter : MonoBehaviour
     [SerializeField]        private Timer timerUI;
     [SerializeField]        private Animator profileUIAnimator;
     [SerializeField]        private BossController boss;
+    [SerializeField]        private GameObject HelpUI;
     public BossHP bossHP;
 
     public int nextSceneNum;
@@ -22,11 +23,10 @@ public class StageCenter : MonoBehaviour
     
     private void Awake() 
     {
-        boss.stat.AddObserver<IObserver>(boss.stat.hpObserverList, bossHP);
-
-
         playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()], profileUIAnimator);
         playerFactory.CreatePlayer();
+
+        if(boss != null) boss.stat.AddObserver<IObserver>(boss.stat.hpObserverList, bossHP);
     }
 
     private void Start()
@@ -36,6 +36,7 @@ public class StageCenter : MonoBehaviour
         enemy.OnClearStage += ClearStage;
         timerUI.OnEndTime += LoseStage;
         controller.OnPlayerDead += PlayerDead;
+        controller.hitScan.OnTrapPlayer += TrapPlayer;
     }
 
     private void ClearStage()
@@ -52,13 +53,18 @@ public class StageCenter : MonoBehaviour
         }
     }
 
+    private void TrapPlayer()
+    {
+        HelpUI.SetActive(true);
+    }
+
     private void PlayerDead()
     {
         foreach(EnemyController enemy in enemy.enemyList)
         {
             enemy.isPlayerDead = true;
         }
-
+        HelpUI.SetActive(false);
         LoseStage();
     }
 

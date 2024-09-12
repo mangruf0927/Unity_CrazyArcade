@@ -61,6 +61,7 @@ public class PlayerStateMachine : MonoBehaviour
     public void ChangeState(PlayerStateEnums newStateType) 
     {
         if(curState == null) return;
+        if(CheckCurState(newStateType)) return;
 
         curState.OnExit();
 
@@ -69,5 +70,14 @@ public class PlayerStateMachine : MonoBehaviour
             curState = newState;
             curState.OnEnter();
         }
+    }
+
+    public bool CheckCurState(PlayerStateEnums newStateType)
+    {
+        if (stateDictionary.TryGetValue(newStateType, out IPlayerState stateValue))
+        {
+            return curState == stateValue;
+        }
+        return false; // 키가 존재하지 않는 경우 false 반환
     }
 }
