@@ -29,8 +29,8 @@ public class BossHitState : IBossState
 
             if(time > 1f)
             {
+                // bossController.isHit = false;
                 bossController.stateMachine.ChangeState(BossStateEnums.WAIT);
-                bossController.isHit = false;
                 return;
             }
         }
@@ -52,6 +52,11 @@ public class BossHitState : IBossState
 
     public void OnExit()
     {
+       if (bossController.stat.currentHP > 0)
+       {
+            bossController.isHit = false;
+            Debug.Log(bossController.isHit);
+       }
     }
 }
 

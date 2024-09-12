@@ -346,6 +346,7 @@ public class BossController : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
         {
+            // Debug.Log("Pop과 충돌 " + isHit);
             if(!isHit)
             {
                 isHit = true;

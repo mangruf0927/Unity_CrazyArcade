@@ -38,7 +38,7 @@ public class BossStat : MonoBehaviour, ISubject
     // >>
     public void GetDamage()
     {
-        currentHP -= 10;
+        currentHP -= 5;
         
         if(currentHP <= 0)
         {
@@ -46,7 +46,7 @@ public class BossStat : MonoBehaviour, ISubject
             OnTrap?.Invoke();
         }
 
-        Debug.Log("보스 HP : " + currentHP);
+        // Debug.Log("보스 HP : " + currentHP);
     }
 
 

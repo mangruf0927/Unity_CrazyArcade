@@ -38,12 +38,19 @@ public class BossWaitState : IBossState
 
     public void OnExit()
     {
-        bossController.StopCoroutine(coroutine);
+        if(coroutine != null)
+            bossController.StopCoroutine(coroutine);
     }
 
     private IEnumerator ChangeBossState()
     {
         yield return new WaitForSeconds(0.05f); 
+
+        if (bossController.curAttack == null)
+        {
+            bossController.stateMachine.ChangeState(BossStateEnums.MOVE);
+            yield break;
+        }
 
         if(bossController.curAttack.attackCount > 0)
         {
