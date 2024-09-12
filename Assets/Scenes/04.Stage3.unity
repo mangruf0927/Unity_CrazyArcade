@@ -6247,6 +6247,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 952913976}
+--- !u!114 &957331840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+  m_PrefabInstance: {fileID: 981798485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff8d25cf787449bcb514762a71ebf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &965861661
 GameObject:
   m_ObjectHideFlags: 0
@@ -6355,6 +6366,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1828746587}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: HelpUI
+      value: 
+      objectReference: {fileID: 1848838025}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: bossHP
       value: 
       objectReference: {fileID: 1627272538}
@@ -6362,6 +6377,10 @@ PrefabInstance:
       propertyPath: timerUI
       value: 
       objectReference: {fileID: 1419243324}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: ExitButton
+      value: 
+      objectReference: {fileID: 1269675229}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: controller
       value: 
@@ -7819,17 +7838,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269675229}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1385148080}
-  m_Father: {fileID: 1883730982}
+  m_Children: []
+  m_Father: {fileID: 1385148080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -13, y: 7}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 140, y: 32}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1269675231
@@ -7875,7 +7893,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1269675232}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 957331840}
+        m_TargetAssemblyTypeName: StageCenter, Assembly-CSharp
+        m_MethodName: OnClickExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1269675232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8325,7 +8355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1385148080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8333,18 +8363,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385148079}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1269675230}
+  m_Children:
+  - {fileID: 1269675230}
+  m_Father: {fileID: 1883730982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -13, y: 7}
   m_SizeDelta: {x: 140, y: 32}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &1385148081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10777,6 +10808,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1848838025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 375595683912803205, guid: 5ba60c1e9117a4bdf9c15cdb04a2ae51, type: 3}
+  m_PrefabInstance: {fileID: 1006271100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1871645466
 GameObject:
   m_ObjectHideFlags: 0
@@ -10936,7 +10972,7 @@ RectTransform:
   - {fileID: 1419243323}
   - {fileID: 1058750237}
   - {fileID: 1072317081}
-  - {fileID: 1269675230}
+  - {fileID: 1385148080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

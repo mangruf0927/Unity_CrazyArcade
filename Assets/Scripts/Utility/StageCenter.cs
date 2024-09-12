@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StageCenter : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class StageCenter : MonoBehaviour
     [SerializeField]        private Animator profileUIAnimator;
     [SerializeField]        private BossController boss;
     [SerializeField]        private GameObject HelpUI;
+    [SerializeField]        private GameObject ExitButton;
     public BossHP bossHP;
 
     public int nextSceneNum;
@@ -56,6 +58,7 @@ public class StageCenter : MonoBehaviour
     private void TrapPlayer()
     {
         HelpUI.SetActive(true);
+        ExitButton.SetActive(false);
     }
 
     private void PlayerDead()
@@ -65,7 +68,14 @@ public class StageCenter : MonoBehaviour
             enemy.isPlayerDead = true;
         }
         HelpUI.SetActive(false);
+        ExitButton.SetActive(true);
+
         LoseStage();
+    }
+
+    public void OnClickExitButton()
+    {
+        SceneManager.LoadScene(lobbySceneNum);
     }
 
     private IEnumerator ShowClearMessage()
