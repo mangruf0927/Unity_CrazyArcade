@@ -12,6 +12,8 @@ public class BossWaitState : IBossState
         stateMachine = _stateMachine;
         bossController = stateMachine.bossController;
     }
+
+    Coroutine coroutine;
     
     public void Update()
     {
@@ -25,11 +27,18 @@ public class BossWaitState : IBossState
 
     public void OnEnter()
     {
-        bossController.StartCoroutine(ChangeBossState());
+        if (bossController == null)
+        {
+            Debug.LogError("bossController is null in BossWaitState!");
+            return;
+        }
+
+        coroutine = bossController.StartCoroutine(ChangeBossState());
     }
 
     public void OnExit()
     {
+        bossController.StopCoroutine(coroutine);
     }
 
     private IEnumerator ChangeBossState()

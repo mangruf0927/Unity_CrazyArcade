@@ -10,6 +10,8 @@ public class StageCenter : MonoBehaviour
     [SerializeField]        private ShowMessage gameStateUI;
     [SerializeField]        private Timer timerUI;
     [SerializeField]        private Animator profileUIAnimator;
+    [SerializeField]        private BossController boss;
+    public BossHP bossHP;
 
     public int nextSceneNum;
     public int lobbySceneNum;
@@ -20,6 +22,9 @@ public class StageCenter : MonoBehaviour
     
     private void Awake() 
     {
+        boss.stat.AddObserver<IObserver>(boss.stat.hpObserverList, bossHP);
+
+
         playerFactory = new PlayerFactory(controller, playerData[(int)DataManager.Instance.GetCharacterType()], profileUIAnimator);
         playerFactory.CreatePlayer();
     }

@@ -13,34 +13,40 @@ public class BossStat : MonoBehaviour, ISubject
 
     [Header("보스 HP")]
     public int maxHP = 100;
-    private int curHP;
+
+    private int _currentHP;
+    public int currentHP
+    {
+        get { return _currentHP; }
+        set
+        {
+            _currentHP = value;
+            NotifyObservers(hpObserverList);
+        }
+    }
 
     public delegate void BossHandler();
-    public event BossHandler OnTrapState;
+    public event BossHandler OnTrap;
 
-    public List<IObserver> observerList = new List<IObserver>();
+    public List<IObserver> hpObserverList = new List<IObserver>();
 
     private void Start() 
     {
-        curHP = maxHP;    
+        currentHP = maxHP;    
     }
 
     // >>
-    public int GetCurrentHP()
+    public void GetDamage()
     {
-        return curHP;
-    }
-
-    public void DamageUp()
-    {
-        curHP -= 5;
+        currentHP -= 5;
         
-        if(curHP <= 0)
+        if(currentHP <= 0)
         {
-            curHP = 0;
-            // OnTrapState?.Invoke();
-            Debug.Log("HP = 0");
+            currentHP = 0;
+            OnTrap?.Invoke();
         }
+
+        Debug.Log("보스 HP : " + currentHP);
     }
 
 

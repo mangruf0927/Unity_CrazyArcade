@@ -4296,6 +4296,7 @@ GameObject:
   - component: {fileID: 669723883}
   - component: {fileID: 669723882}
   - component: {fileID: 669723889}
+  - component: {fileID: 669723891}
   - component: {fileID: 669723888}
   m_Layer: 9
   m_Name: Boss
@@ -4488,12 +4489,10 @@ MonoBehaviour:
   - {fileID: 12898919}
   - {fileID: 1005300702}
   - {fileID: 1945386283}
-  moveSpeed: 3
-  idleAttackPopLength: 15
-  attackPopLength: 3
+  stat: {fileID: 669723891}
   isHit: 0
-  maxHP: 100
   curAttack: {fileID: 0}
+  curAniClip: 
 --- !u!70 &669723890
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4529,6 +4528,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 2.3, y: 3.1}
   m_Direction: 0
+--- !u!114 &669723891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669723881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9fa584cf9e14cefabd7e19fc46f2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  idleAttackPopLength: 15
+  attackPopLength: 3
+  maxHP: 100
 --- !u!1 &672266189
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,9 +6422,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 669723889}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: enemy
       value: 
       objectReference: {fileID: 1828746587}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: bossHP
+      value: 
+      objectReference: {fileID: 1627272538}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: timerUI
       value: 
@@ -9318,6 +9341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627272536}
   - component: {fileID: 1627272537}
+  - component: {fileID: 1627272538}
   m_Layer: 9
   m_Name: Slider
   m_TagString: Untagged
@@ -9397,6 +9421,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1627272538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627272535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f861b553c9a4f93ac396e52b399436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 1627272537}
 --- !u!1 &1639196893
 GameObject:
   m_ObjectHideFlags: 0

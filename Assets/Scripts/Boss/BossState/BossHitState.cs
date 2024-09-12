@@ -13,8 +13,27 @@ public class BossHitState : IBossState
         bossController = stateMachine.bossController;
     }
     
+    float time;
+
     public void Update()
     {
+        if (bossController.stat.currentHP <= 0)
+        {
+            bossController.stateMachine.ChangeState(BossStateEnums.TRAP);
+            return;
+        }
+        if(bossController.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f &&
+            bossController.animator.GetCurrentAnimatorStateInfo(0).IsName(bossController.curAniClip))
+        {
+            time += Time.deltaTime;
+
+            if(time > 1f)
+            {
+                bossController.stateMachine.ChangeState(BossStateEnums.WAIT);
+                bossController.isHit = false;
+                return;
+            }
+        }
     }
 
     public void FixedUpdate()
@@ -23,16 +42,16 @@ public class BossHitState : IBossState
     }
 
     public void OnEnter()
-    {
+    {   
+        time = 0;
+
         bossController.rigid.velocity = Vector2.zero;
-        bossController.stat.DamageUp();
+        bossController.stat.GetDamage();
         bossController.PlayHitAnimation();
-        bossController.StartCoroutine(bossController.ChangeStateAfterAnimation(BossStateEnums.WAIT));
     }
 
     public void OnExit()
     {
-        bossController.isHit = false;
     }
 }
 

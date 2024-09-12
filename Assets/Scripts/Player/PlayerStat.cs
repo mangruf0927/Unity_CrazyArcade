@@ -25,7 +25,7 @@ public class PlayerStat : MonoBehaviour, ISubject
     public int popLength;
     
     public ItemTypeEnums itmeType;
-    public List<IObserver> observerList = new List<IObserver>();
+    public List<IObserver> itemObserverList = new List<IObserver>();
 
     private void Start() 
     {
@@ -57,7 +57,7 @@ public class PlayerStat : MonoBehaviour, ISubject
         {
             balloonNum ++;
             itmeType = ItemTypeEnums.BALLOON;
-            NotifyObservers(observerList);  // 풍선 개수 변화 알림
+            NotifyObservers(itemObserverList);  // 풍선 개수 변화 알림
         }
     }
 
@@ -67,7 +67,7 @@ public class PlayerStat : MonoBehaviour, ISubject
         {
             moveSpeed ++;
             itmeType = ItemTypeEnums.SKATE;
-            NotifyObservers(observerList);  // 스피드 개수 변화 알림
+            NotifyObservers(itemObserverList);  // 스피드 개수 변화 알림
         }
     }
 
@@ -77,7 +77,7 @@ public class PlayerStat : MonoBehaviour, ISubject
         {
             popLength++;
             itmeType = ItemTypeEnums.POTION;
-            NotifyObservers(observerList); // 물약 개수 변화 알림
+            NotifyObservers(itemObserverList); // 물약 개수 변화 알림
         }
     }
 

@@ -17,10 +17,11 @@ public class BossStateMachine : MonoBehaviour
             {BossStateEnums.MOVE, new BossMoveState(this)},
             {BossStateEnums.ATTACK, new BossAttackState(this)},
             {BossStateEnums.WAIT, new BossWaitState(this)},
-            {BossStateEnums.HIT, new BossHitState(this)}
+            {BossStateEnums.HIT, new BossHitState(this)},
+            {BossStateEnums.TRAP, new BossTrapState(this)}
         };
 
-        if(stateDictionary.TryGetValue(BossStateEnums.MOVE, out IBossState newState))
+        if(stateDictionary.TryGetValue(BossStateEnums.IDLEATTACK, out IBossState newState))
         {
             curState = newState;
             newState.OnEnter();
@@ -29,11 +30,12 @@ public class BossStateMachine : MonoBehaviour
 
     public void ChangeState(BossStateEnums newStateType)
     {
-        if(curState == null) return;
+        if (curState == null) return;
+        if (CheckCurState(newStateType)) return;
 
         curState.OnExit();
 
-        if(stateDictionary.TryGetValue(newStateType, out IBossState newState))
+        if (stateDictionary.TryGetValue(newStateType, out IBossState newState))
         {
             curState = newState;
             curState.OnEnter();

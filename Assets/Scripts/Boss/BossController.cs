@@ -40,15 +40,11 @@ public class BossController : MonoBehaviour
     public delegate bool BossHandler(Vector2 pos);
     public event BossHandler OnCheckShotPosition;
 
+    [HideInInspector]
     public bool isHit = false;
 
     private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
     private int spawnIndex = 0;
-
-    private void Start() 
-    {
-        // stat.OnTrapState += ChangeTrapState;    
-    }
 
     private void Update() 
     { 
@@ -114,7 +110,9 @@ public class BossController : MonoBehaviour
     }
 
     // >> Move
+    [HideInInspector]
     public BossAttackInstruction curAttack;
+
     public void Move()
     {
         // 현재 웨이포인트로 이동
@@ -313,24 +311,34 @@ public class BossController : MonoBehaviour
         }
     }
 
+    public string curAniClip;
     // >> Hit
     public void PlayHitAnimation()
     {
         if (Vector2.Distance(moveDirection, Vector2.up) < 0.05f)
         {
             animator.Play("Hit_Up");
+            curAniClip = "Hit_Up";
         }
         else if (Vector2.Distance(moveDirection, Vector2.down) < 0.05f)
         {
             animator.Play("Hit_Down");
+            curAniClip = "Hit_Down";
         }
         else if (Vector2.Distance(moveDirection, Vector2.right) < 0.05f)
         {
             animator.Play("Hit_Right");
+            curAniClip = "Hit_Right";
         }
         else if (Vector2.Distance(moveDirection, Vector2.left) < 0.05f)
         {
             animator.Play("Hit_Left");
+            curAniClip = "Hit_Left";
+        }
+        else
+        {
+            animator.Play("Trap");
+            Debug.Log(moveDirection);
         }
     }
 
@@ -343,15 +351,29 @@ public class BossController : MonoBehaviour
                 isHit = true;
                 stateMachine.ChangeState(BossStateEnums.HIT);
             }
-        }    
+        }
+
+
+        // >> Trap
+        // if(stateMachine.CheckCurState(BossStateEnums.TRAP))
+        // {
+        //     if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        //     {
+        //         stateMachine.ChangeState(BossStateEnums.DEAD);
+        //     }
+        // }    
     }
 
-    public IEnumerator ChangeStateAfterAnimation(BossStateEnums state)
-    {
-        yield return new WaitForSeconds(0.1f); // 애니메이션이 시작될 시간을 확보
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        yield return new WaitForSeconds(0.05f);
+    // public IEnumerator ChangeStateAfterAnimation()
+    // {
+    //     yield return new WaitForSeconds(0.1f); // 애니메이션이 시작될 시간을 확보
+    //     yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+    //     yield return new WaitForSeconds(0.05f);
+        
+    //     if(stat.GetCurrentHP() > 0) 
+    //         stateMachine.ChangeState(BossStateEnums.WAIT);
+    //     else
+    //         stateMachine.ChangeState(BossStateEnums.TRAP);
+    // }
 
-        stateMachine.ChangeState(state);
-    }
 }

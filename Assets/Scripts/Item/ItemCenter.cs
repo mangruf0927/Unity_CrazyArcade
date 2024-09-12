@@ -17,7 +17,7 @@ public class ItemCenter : MonoBehaviour
 
     private void Awake() 
     {
-        player.stat.AddObserver<IObserver>(player.stat.observerList, getItem);
+        player.stat.AddObserver<IObserver>(player.stat.itemObserverList, getItem);
     }
 
     public void GetSpeed()
