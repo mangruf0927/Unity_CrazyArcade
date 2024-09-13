@@ -18,7 +18,7 @@ public class RotatingEnemyType : EnemyType
 
     public override void RoamOnEnter()
     {
-        
+        StartCoroutine(SpeedUp());
     }
 
     public override void RoamOnExit()
@@ -27,6 +27,12 @@ public class RotatingEnemyType : EnemyType
     }
 
     // >> 
+    private IEnumerator SpeedUp()
+    {
+        yield return new WaitForSeconds(60f);
+        enemyController.moveSpeed *= 1.5f;
+    }
+
     private bool isClockwise = true;
 
     public void CheckForPlayer()

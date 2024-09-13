@@ -6,6 +6,11 @@ public class EnemyType : MonoBehaviour
 {
     public EnemyController enemyController;
 
+    public virtual void MoveOnExit()
+    {
+
+    }
+
     public virtual void RoamUpdate()
     {
 

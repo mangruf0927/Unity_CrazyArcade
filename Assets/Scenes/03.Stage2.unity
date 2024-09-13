@@ -1095,8 +1095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471843999c8074ea4997b601d43bb8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  getItem: {fileID: 0}
+  player: {fileID: 1909802362}
+  getItem: {fileID: 904066282}
 --- !u!1 &248556243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1300,7 @@ MonoBehaviour:
   rigid: {fileID: 248556247}
   animator: {fileID: 248556246}
   spriteRenderer: {fileID: 248556249}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: -1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -3004,7 +3004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &451254762
 Transform:
   m_ObjectHideFlags: 0
@@ -3185,7 +3185,7 @@ MonoBehaviour:
   rigid: {fileID: 451254765}
   animator: {fileID: 451254764}
   spriteRenderer: {fileID: 451254767}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 0, y: 1}
   sensingRange: 1.2
   rayDistance: 0.7
@@ -6654,7 +6654,7 @@ MonoBehaviour:
   stageBlock: {fileID: 1885306197}
   stageMap: {fileID: 887869721}
   stageEnemy: {fileID: 1828746587}
-  playerController: {fileID: 0}
+  playerController: {fileID: 1909802362}
   bossController: {fileID: 0}
 --- !u!4 &597938440
 Transform:
@@ -8381,7 +8381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &820597376
 Transform:
   m_ObjectHideFlags: 0
@@ -8562,7 +8562,7 @@ MonoBehaviour:
   rigid: {fileID: 820597379}
   animator: {fileID: 820597378}
   spriteRenderer: {fileID: 820597381}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 0, y: -1}
   sensingRange: 1.2
   rayDistance: 0.7
@@ -8679,7 +8679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &849101744
 Transform:
   m_ObjectHideFlags: 0
@@ -8860,7 +8860,7 @@ MonoBehaviour:
   rigid: {fileID: 849101747}
   animator: {fileID: 849101746}
   spriteRenderer: {fileID: 849101749}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 1, y: 0}
   sensingRange: 1
   rayDistance: 0.5
@@ -9448,6 +9448,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &904066282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2810839086253904935, guid: 5ba60c1e9117a4bdf9c15cdb04a2ae51, type: 3}
+  m_PrefabInstance: {fileID: 1909802361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aafd0e48240c4b50bf93b38cf245376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920696564
 GameObject:
   m_ObjectHideFlags: 0
@@ -9732,7 +9743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &952913970
 Transform:
   m_ObjectHideFlags: 0
@@ -9913,7 +9924,7 @@ MonoBehaviour:
   rigid: {fileID: 952913973}
   animator: {fileID: 952913972}
   spriteRenderer: {fileID: 952913975}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 0, y: -1}
   sensingRange: 1
   rayDistance: 0.5
@@ -11437,7 +11448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1120700414
 Transform:
   m_ObjectHideFlags: 0
@@ -11618,7 +11629,7 @@ MonoBehaviour:
   rigid: {fileID: 1120700417}
   animator: {fileID: 1120700416}
   spriteRenderer: {fileID: 1120700419}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 0, y: 1}
   sensingRange: 1
   rayDistance: 0.5
@@ -14032,7 +14043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1385616417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14050,7 +14061,7 @@ MonoBehaviour:
   rigid: {fileID: 1385616420}
   animator: {fileID: 1385616419}
   spriteRenderer: {fileID: 1385616418}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 0, y: 1}
   sensingRange: 1.2
   rayDistance: 0.7
@@ -17189,7 +17200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1778603112
 Transform:
   m_ObjectHideFlags: 0
@@ -17370,7 +17381,7 @@ MonoBehaviour:
   rigid: {fileID: 1778603115}
   animator: {fileID: 1778603114}
   spriteRenderer: {fileID: 1778603117}
-  moveSpeed: 0
+  moveSpeed: 2
   moveDirection: {x: 0, y: -1}
   sensingRange: 1.2
   rayDistance: 0.7

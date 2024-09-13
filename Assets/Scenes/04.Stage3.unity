@@ -4431,7 +4431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9fa584cf9e14cefabd7e19fc46f2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2.5
   idleAttackPopLength: 15
   attackPopLength: 3
   maxHP: 100
