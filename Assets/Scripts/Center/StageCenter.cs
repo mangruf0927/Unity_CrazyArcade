@@ -23,6 +23,7 @@ public class StageCenter : MonoBehaviour
 
     [Header("타이머")]
     [SerializeField]        private Timer timer;
+    
 
     [Header("씬 전환 번호")]
     public int nextSceneNum;
@@ -96,7 +97,7 @@ public class StageCenter : MonoBehaviour
 
     public void OnClickExitButton()
     {
-        SceneManager.LoadScene(lobbySceneNum);
+        hudCenter.FadeOutAndLoadScene(lobbySceneNum);
     }
 
     private IEnumerator ShowClearMessage()
@@ -114,6 +115,6 @@ public class StageCenter : MonoBehaviour
         hudCenter.PlayProfileAnimation();
         yield return StartCoroutine(hudCenter.ShowLoseMessage());
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(lobbySceneNum);
+        hudCenter.FadeOutAndLoadScene(lobbySceneNum);
     }
 }

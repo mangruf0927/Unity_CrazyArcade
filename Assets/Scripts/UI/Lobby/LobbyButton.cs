@@ -25,12 +25,15 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject exitPopUp;
     public GameObject exitMessage;
 
+    [Header("FadeInOut")]
+    public FadeInOut fade;
+
     private bool isMenuActive = false;
 
     // Start Button
     public void OnClickStart()
     {
-        SceneManager.LoadScene(nextSceneNum);
+        fade.StartFadeOutAndLoadScene(nextSceneNum); 
     }
 
     // Menu Button
