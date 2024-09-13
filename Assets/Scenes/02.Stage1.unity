@@ -13575,7 +13575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyController: {fileID: 0}
+  enemyController: {fileID: 1478034120}
 --- !u!1 &1486984375
 GameObject:
   m_ObjectHideFlags: 0
@@ -20633,7 +20633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6a45dbccf634f4d8d056bf414a2a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyController: {fileID: 0}
+  enemyController: {fileID: 2113332129}
 --- !u!1 &2130354885
 GameObject:
   m_ObjectHideFlags: 0

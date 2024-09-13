@@ -30,7 +30,7 @@ public class BalloonSetState : IBalloonState
 
         waterBalloon.transform.position = balloonController.transform.position;
         balloonController.currentWaterBalloon = waterBalloon;
-        
+
         balloonController.StartChangeState(BalloonStateEnums.WAIT, 0.1f);
     }
 

@@ -56,6 +56,8 @@ public class StageCenter : MonoBehaviour
     {
         isClear = true;
         StartCoroutine(ShowClearMessage());
+        
+        playerController.stateMachine.ChangeState(PlayerStateEnums.CLEAR);
     }
 
     private void ChangeBossState()
