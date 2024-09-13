@@ -21,7 +21,11 @@ public class BossHP : MonoBehaviour, IObserver
             {
                 fillImage.sprite = hpSprite;
             }
-            
+
+            if(bossStat.currentHP <= 0)
+            {
+                gameObject.SetActive(false);
+            } 
         }
     }
 }
