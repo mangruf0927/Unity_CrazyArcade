@@ -45,6 +45,10 @@ public class BossController : MonoBehaviour
     public delegate bool BossHandler(Vector2 pos);
     public event BossHandler OnCheckShotPosition;
 
+    // 보스 dead 이벤트
+    public delegate void BossDeadHandler();
+    public event BossDeadHandler OnDeadBoss;
+
     [HideInInspector]
     public bool isHit = false;
 
@@ -397,5 +401,21 @@ public class BossController : MonoBehaviour
             sprite.color = originalColor;
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    // >> Trap && Dead
+    public IEnumerator ChangeStateAfterAnimation(BossStateEnums state)
+    {
+        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        stateMachine.ChangeState(state);
+    }
+
+    public IEnumerator DestroyBoss()
+    {
+        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        OnDeadBoss?.Invoke();
+        Destroy(gameObject, 0.1f);
     }
 }

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossTrapState : IBossState
+public class BossDeadState : IBossState
 {
     public BossController bossController{get; set;}
     public BossStateMachine stateMachine{get; set;}
 
-    public BossTrapState(BossStateMachine _stateMachine)
+    public BossDeadState(BossStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
         bossController = stateMachine.bossController;
@@ -15,7 +15,6 @@ public class BossTrapState : IBossState
     
     public void Update()
     {
-        Debug.Log("Trap");
     }
 
     public void FixedUpdate()
@@ -25,12 +24,12 @@ public class BossTrapState : IBossState
 
     public void OnEnter()
     {
-        bossController.animator.Play("Trap");
-        bossController.StartCoroutine(bossController.ChangeStateAfterAnimation(BossStateEnums.DEAD));
+        bossController.animator.Play("Dead");
+        bossController.StartCoroutine(bossController.DestroyBoss());
     }
 
     public void OnExit()
     {
-
+        
     }
 }

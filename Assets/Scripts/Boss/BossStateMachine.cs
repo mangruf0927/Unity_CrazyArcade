@@ -19,7 +19,8 @@ public class BossStateMachine : MonoBehaviour
             {BossStateEnums.WAIT, new BossWaitState(this)},
             {BossStateEnums.HIT, new BossHitState(this)},
             {BossStateEnums.TRAP, new BossTrapState(this)},
-            {BossStateEnums.ANGRY, new BossAngryState(this)}
+            {BossStateEnums.ANGRY, new BossAngryState(this)},
+            {BossStateEnums.DEAD, new BossDeadState(this)}
         };
 
         if(stateDictionary.TryGetValue(BossStateEnums.MOVE, out IBossState newState))

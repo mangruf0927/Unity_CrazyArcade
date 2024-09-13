@@ -38,7 +38,7 @@ public class BossStat : MonoBehaviour, ISubject
     // >>
     public void GetDamage()
     {
-        currentHP -= 10;
+        currentHP -= 100;
         
         if(currentHP <= 0)
         {

@@ -21,6 +21,7 @@ public class BossHP : MonoBehaviour, IObserver
             {
                 fillImage.sprite = hpSprite;
             }
+            
         }
     }
 }

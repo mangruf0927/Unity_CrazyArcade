@@ -50,6 +50,8 @@ public class StageCenter : MonoBehaviour
         
         playerController.OnPlayerDead += PlayerDead;
         playerController.hitScan.OnTrapPlayer += TrapPlayer;
+
+        if(bossController != null) bossController.OnDeadBoss += ClearStage;
     }
 
     private void ClearStage()
