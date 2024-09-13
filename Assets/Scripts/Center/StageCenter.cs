@@ -41,9 +41,11 @@ public class StageCenter : MonoBehaviour
 
     private void Start()
     {   
-        hudCenter.ShowStartMessage();
+        StartCoroutine(hudCenter.ShowStartMessage());
 
         enemy.OnClearStage += ClearStage;
+        enemy.OnEnemyDeath += ChangeBossState; 
+
         timer.OnEndTime += LoseStage;
         
         playerController.OnPlayerDead += PlayerDead;
@@ -54,6 +56,14 @@ public class StageCenter : MonoBehaviour
     {
         isClear = true;
         StartCoroutine(ShowClearMessage());
+    }
+
+    private void ChangeBossState()
+    {
+        if(bossController.stateMachine.CheckCurState(BossStateEnums.IDLEATTACK))
+        {
+            bossController.stateMachine.ChangeState(BossStateEnums.MOVE);
+        }
     }
 
     private void LoseStage()
@@ -88,8 +98,8 @@ public class StageCenter : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         playerController.StageClear();
-        hudCenter.ShowClearMessage();
-        yield return new WaitForSeconds(7f);
+        yield return StartCoroutine(hudCenter.ShowClearMessage());
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(nextSceneNum);
     }
 
@@ -97,8 +107,8 @@ public class StageCenter : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         hudCenter.PlayProfileAnimation();
-        hudCenter.ShowLoseMessage();
-        yield return new WaitForSeconds(7f);
+        yield return StartCoroutine(hudCenter.ShowLoseMessage());
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(lobbySceneNum);
     }
 }

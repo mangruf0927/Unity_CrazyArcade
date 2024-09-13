@@ -52,6 +52,11 @@ public class EnemyController : MonoBehaviour
     private Vector2 currentPosition;
     private Vector2 previousPosition;
 
+    private void Start()
+    {
+        previousPosition = transform.position;
+    }
+
     private void Update() 
     {
         if(stateMachine.curState != null)
@@ -85,11 +90,8 @@ public class EnemyController : MonoBehaviour
         // 현재 위치와 이전 위치가 다를 경우에만 업데이트
         if (position != currentPosition)
         {
-            // 이전 위치가 존재할 경우 해당 위치 삭제 이벤트 호출
-            if (previousPosition != null)
-            {
-                OnRemovePosition?.Invoke(previousPosition);
-            }
+            // 이전 위치 삭제 이벤트 호출
+            OnRemovePosition?.Invoke(previousPosition);
 
             // 새로운 위치 등록 이벤트 호출
             currentPosition = position;
@@ -196,13 +198,8 @@ public class EnemyController : MonoBehaviour
             stateMachine.ChangeState(EnemyStateEnums.DEAD);
         }
     }
-
-    public void StartDestroyEnemy()
-    {
-        StartCoroutine(DestroyEnemy());
-    }
     
-    private IEnumerator DestroyEnemy()
+    public IEnumerator DestroyEnemy()
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         OnRemoveEnemy?.Invoke(transform.position, this);
@@ -237,57 +234,3 @@ public class EnemyController : MonoBehaviour
     }
 }
 
-
-
-
-
-
-
-
-
-
-/*
-    public delegate bool CheckObstacleHandler(Vector2 pos);
-    public event CheckObstacleHandler OnCheckObstacle;
-
-    public void CheckForObstacleTest()
-    {
-        // 이동하려는 방향의 좌표를 계산
-        Vector2 targetPosition = currentPosition + moveDirection;
-
-        // 장애물 체크 이벤트 호출
-        if (OnCheckObstacle.Invoke(targetPosition))
-        {
-            SetDirectionTest();
-        }
-    }
-
-    public void SetDirectionTest()
-    {
-        Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-        List<Vector2> directionList = new List<Vector2>();
-
-        foreach (Vector2 direction in directions)
-        {
-            Vector2 checkPosition = currentPosition + direction;
-
-            // 장애물이 없는 방향을 수집
-            if (OnCheckObstacle != null && !OnCheckObstacle.Invoke(checkPosition))
-            {
-                directionList.Add(direction);
-            }
-        }
-
-        // 가능한 방향 중 랜덤으로 선택
-        if (directionList.Count > 0)
-        {
-            isConfined = false;
-            moveDirection = directionList[Random.Range(0, directionList.Count)];
-        }
-        else
-        {
-            isConfined = true;
-            Debug.Log("가능한 방향 없음");
-        }
-    }
-    */

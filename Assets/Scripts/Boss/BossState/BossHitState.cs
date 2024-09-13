@@ -27,7 +27,7 @@ public class BossHitState : IBossState
         {
             time += Time.deltaTime;
 
-            if(time > 1f)
+            if(time > 0.5f)
             {
                 // bossController.isHit = false;
                 bossController.stateMachine.ChangeState(BossStateEnums.WAIT);

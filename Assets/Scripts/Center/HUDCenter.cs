@@ -17,19 +17,19 @@ public class HUDCenter : MonoBehaviour
     [Header("플레이어 프로필 애니메이터")]
     [SerializeField]        public Animator profileUIAnimator;
 
-    public void ShowStartMessage()
+    public IEnumerator ShowStartMessage()
     {
-        StartCoroutine(gameMessageUI.ShowStartMessage());
+        return gameMessageUI.ShowStartMessage();
     }
 
-    public void ShowClearMessage()
+    public IEnumerator ShowClearMessage()
     {
-        StartCoroutine(gameMessageUI.ShowClearMessage());
+        return gameMessageUI.ShowClearMessage();
     }
     
-    public void ShowLoseMessage()
+    public IEnumerator ShowLoseMessage()
     {
-        StartCoroutine(gameMessageUI.ShowLoseMessage());
+        return gameMessageUI.ShowLoseMessage();
     }
 
     public void PlayerTrapUI(bool isActive)
