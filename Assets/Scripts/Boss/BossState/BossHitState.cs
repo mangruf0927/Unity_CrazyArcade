@@ -55,7 +55,7 @@ public class BossHitState : IBossState
        if (bossController.stat.currentHP > 0)
        {
             bossController.isHit = false;
-            Debug.Log(bossController.isHit);
+            // Debug.Log(bossController.isHit);
        }
     }
 }

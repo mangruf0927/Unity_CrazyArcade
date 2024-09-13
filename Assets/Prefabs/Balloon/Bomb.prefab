@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 3020889413693100060}
-  balloonPrefab: {fileID: 2621648777414964752, guid: 489660c8e301a490d9b3dd00c04f1ccb, type: 3}
-  bossBalloonPrefab: {fileID: 7738112627400584165, guid: 2ebcf2f32f77244619c711f1a5939e28, type: 3}
+  balloonPrefab: {fileID: 0}
   setPosition: {x: 0, y: 0, z: 0}
   popPrefab: {fileID: 1110975763763297319, guid: f2cf5af6e2fe745b7b8a69305818b64e, type: 3}
   balloonCollider: {fileID: 8663420039068810203}

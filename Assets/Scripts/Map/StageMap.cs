@@ -54,7 +54,7 @@ public class StageMap : MonoBehaviour
         map[x, -y].HasObject = false;
     }
 
-    public bool CheckObjectInstallation(int x, int y)
+    public bool CheckObjectInstallation(int x, int y) // object가 있으면 true
     {
         return map[x, -y].HasObject;
     }

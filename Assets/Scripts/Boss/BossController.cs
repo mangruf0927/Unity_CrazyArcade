@@ -51,7 +51,7 @@ public class BossController : MonoBehaviour
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
 
-        Debug.Log(stateMachine.curState);
+        // Debug.Log(stateMachine.curState);
     }
 
     private void FixedUpdate() 
@@ -268,11 +268,16 @@ public class BossController : MonoBehaviour
         {
             if (OnCheckShotPosition?.Invoke(curPos) ?? false)
             {
-                return curPos - moveDirection;
+                return curPos;
             }
-
             curPos += moveDirection;
         }
+
+        if (OnCheckShotPosition?.Invoke(endPos) ?? false)
+        {
+            return endPos - moveDirection;
+        }
+
         return endPos;
     }
 

@@ -21,7 +21,7 @@ public class BossStateMachine : MonoBehaviour
             {BossStateEnums.TRAP, new BossTrapState(this)}
         };
 
-        if(stateDictionary.TryGetValue(BossStateEnums.IDLEATTACK, out IBossState newState))
+        if(stateDictionary.TryGetValue(BossStateEnums.MOVE, out IBossState newState))
         {
             curState = newState;
             newState.OnEnter();
