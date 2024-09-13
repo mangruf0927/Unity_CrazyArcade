@@ -36,7 +36,8 @@ public class PlayerDeadState : IPlayerState
     {
         playerController.animator.Play("Dead");
         playerController.rigid.velocity = Vector2.zero;
-        playerController.OnPlayerDead?.Invoke();
+        
+        playerController.StartCoroutine(playerController.DestroyPlayer());
     }
 
     public void OnExit()

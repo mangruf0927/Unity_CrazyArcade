@@ -158,6 +158,14 @@ public class PlayerController : MonoBehaviour
         stateMachine.ChangeLogicState(state);
     }
 
+    public IEnumerator DestroyPlayer()
+    {
+        OnPlayerDead?.Invoke();
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject, 0.5f);
+    }
+
     private void Hit()
     {
         isTrap = true;
