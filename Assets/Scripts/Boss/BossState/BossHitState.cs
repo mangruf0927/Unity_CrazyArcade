@@ -20,6 +20,12 @@ public class BossHitState : IBossState
         if (bossController.stat.currentHP <= 0)
         {
             bossController.stateMachine.ChangeState(BossStateEnums.TRAP);
+            Debug.Log("ggg " + bossController.stat.currentHP);
+            return;
+        }
+        if(bossController.stat.currentHP == 30)
+        {
+            bossController.stateMachine.ChangeState(BossStateEnums.ANGRY);
             return;
         }
         if(bossController.animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f &&

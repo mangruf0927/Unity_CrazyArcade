@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossTrapState : IBossState
+// FFAFAF
+
+public class BossAngryState : IBossState
 {
     public BossController bossController{get; set;}
     public BossStateMachine stateMachine{get; set;}
 
-    public BossTrapState(BossStateMachine _stateMachine)
+    public BossAngryState(BossStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
         bossController = stateMachine.bossController;
@@ -15,7 +17,7 @@ public class BossTrapState : IBossState
     
     public void Update()
     {
-        Debug.Log("Trap");
+        bossController.PlayAttackAnimation();
     }
 
     public void FixedUpdate()
@@ -25,11 +27,13 @@ public class BossTrapState : IBossState
 
     public void OnEnter()
     {
-        bossController.animator.Play("Trap");
+        bossController.isHit = true;
+        bossController.rigid.velocity = Vector2.zero;
+        bossController.StartCoroutine(bossController.Angry());
     }
 
     public void OnExit()
     {
-        
+        bossController.isHit = false;
     }
 }

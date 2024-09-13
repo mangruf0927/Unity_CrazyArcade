@@ -4,6 +4,7 @@ public enum BossStateEnums
     MOVE,
     ATTACK,
     WAIT,
+    ANGRY,
     HIT,
     TRAP,
     DEAD

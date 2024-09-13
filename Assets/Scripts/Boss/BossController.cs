@@ -13,6 +13,11 @@ public class BossController : MonoBehaviour
     [Header("리지드 바디")]
     public Rigidbody2D rigid;
 
+    [Header("스프라이트")]
+    public SpriteRenderer sprite;
+    private Color originalColor;
+    private Color blinkColor = new Color(255f / 255f, 175f / 255f, 175f / 255f); 
+
     [Header("물풍선 관련 프리팹")]
     public GameObject waterBalloonPrefab;
     public GameObject bossBalloonPrefab;
@@ -51,7 +56,7 @@ public class BossController : MonoBehaviour
         if(stateMachine.curState != null)
             stateMachine.curState.Update();
 
-        // Debug.Log(stateMachine.curState);
+         Debug.Log(stateMachine.curState);
     }
 
     private void FixedUpdate() 
@@ -367,5 +372,30 @@ public class BossController : MonoBehaviour
                 stateMachine.ChangeState(BossStateEnums.DEAD);
             }
         }    
+    }
+
+    // >> Angry
+    public IEnumerator Angry()
+    {
+        yield return StartCoroutine(BlinkEffect());
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(HoopAttack());
+        Debug.Log("Hoop");
+    }
+
+    private IEnumerator BlinkEffect()
+    {
+        originalColor = sprite.color;
+        Debug.Log("blink");
+
+        for(int i = 0; i < 3; i++)
+        {
+            sprite.color = blinkColor;
+            yield return new WaitForSeconds(0.2f);
+
+            sprite.color = originalColor;
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }
