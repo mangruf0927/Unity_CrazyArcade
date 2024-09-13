@@ -56,7 +56,7 @@ public class StageCenter : MonoBehaviour
     {
         isClear = true;
         StartCoroutine(ShowClearMessage());
-        
+
         playerController.stateMachine.ChangeState(PlayerStateEnums.CLEAR);
     }
 
@@ -86,6 +86,7 @@ public class StageCenter : MonoBehaviour
         foreach(EnemyController enemy in enemy.enemyList)
         {
             enemy.isPlayerDead = true;
+            enemy.StartChangeState(EnemyStateEnums.GAMEOVER, 2f);
         }
         hudCenter.PlayerTrapUI(false);
         LoseStage();

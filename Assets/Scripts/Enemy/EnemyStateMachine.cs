@@ -18,6 +18,7 @@ public class EnemyStateMachine : MonoBehaviour
             {EnemyStateEnums.ROAM, new EnemyRoamState(this)},
             {EnemyStateEnums.MOVE, new EnemyMoveState(this)},
             {EnemyStateEnums.DEAD, new EnemyDeadState(this)},
+            {EnemyStateEnums.GAMEOVER, new EnemyGameOverState(this)},
         };
 
         if(stateDictionary.TryGetValue(EnemyStateEnums.READY, out IEnemyState newState))
