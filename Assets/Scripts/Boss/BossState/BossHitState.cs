@@ -17,13 +17,13 @@ public class BossHitState : IBossState
 
     public void Update()
     {
-        if (bossController.stat.currentHP <= 0)
+        if (bossController.hitScan.currentHP <= 0)
         {
             bossController.stateMachine.ChangeState(BossStateEnums.TRAP);
-            Debug.Log("ggg " + bossController.stat.currentHP);
+            Debug.Log("ggg " + bossController.hitScan.currentHP);
             return;
         }
-        if(bossController.stat.currentHP == 30)
+        if(bossController.hitScan.currentHP == 30)
         {
             bossController.stateMachine.ChangeState(BossStateEnums.ANGRY);
             return;
@@ -52,13 +52,13 @@ public class BossHitState : IBossState
         time = 0;
 
         bossController.rigid.velocity = Vector2.zero;
-        bossController.stat.GetDamage();
+        bossController.hitScan.GetDamage();
         bossController.PlayHitAnimation();
     }
 
     public void OnExit()
     {
-       if (bossController.stat.currentHP > 0)
+       if (bossController.hitScan.currentHP > 0)
        {
             bossController.isHit = false;
             // Debug.Log(bossController.isHit);

@@ -12,17 +12,17 @@ public class BossHP : MonoBehaviour, IObserver
     // IObserver 인터페이스의 Notify 메서드 구현
     public void Notify(ISubject subject)
     {
-        if(subject is BossStat bossStat)
+        if(subject is BossHitScan hitScan)
         {
-            hpSlider.maxValue = bossStat.maxHP;
-            hpSlider.value = bossStat.currentHP;
+            hpSlider.maxValue = hitScan.maxHP;
+            hpSlider.value = hitScan.currentHP;
 
-            if(bossStat.currentHP <= 30)
+            if(hitScan.currentHP <= 30)
             {
                 fillImage.sprite = hpSprite;
             }
 
-            if(bossStat.currentHP <= 0)
+            if(hitScan.currentHP <= 0)
             {
                 gameObject.SetActive(false);
             } 

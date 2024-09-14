@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStat : MonoBehaviour, ISubject
+public class BossHitScan : MonoBehaviour, ISubject
 {
-    [Header("보스 스피드")]
-    public float moveSpeed = 2;
-
-    [Header("보스 물줄기 길이")]
-    public int idleAttackPopLength = 14;
-    public int attackPopLength = 3;
+    public delegate void HitScanHandler();
+    public HitScanHandler OnBalloonCollision;
+    public HitScanHandler OnPlayerCollision;
 
     [Header("보스 HP")]
     public int maxHP = 100;
@@ -43,6 +40,19 @@ public class BossStat : MonoBehaviour, ISubject
         }
 
         Debug.Log("보스 HP : " + currentHP);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        {
+            OnBalloonCollision?.Invoke();
+        }    
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            OnPlayerCollision?.Invoke();
+        }
     }
 
 

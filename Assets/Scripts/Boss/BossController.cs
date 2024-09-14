@@ -30,8 +30,16 @@ public class BossController : MonoBehaviour
     public Transform[] wayPointArray;
     private int currentWaypoint;
 
-    [Header("보스 스탯")]
-    public BossStat stat;
+    [Header("보스 hitScan")]
+    public BossHitScan hitScan;
+    
+    [Header("보스 스피드")]
+    public float moveSpeed = 2.5f;
+
+    [Header("보스 물줄기 길이")]
+    public int idleAttackPopLength = 14;
+    public int attackPopLength = 3;
+
 
     // balloonController 등록 이벤트
     public delegate void BalloonControllerHandler(Vector2 pos, BalloonController balloon);
@@ -55,6 +63,12 @@ public class BossController : MonoBehaviour
 
     private Vector2[] spawnPositions = new Vector2[] { new Vector2(0f, -5f), new Vector2(14f, -5f) }; // 생성 위치 배열
     private int spawnIndex = 0;
+
+    private void Start() 
+    {
+        hitScan.OnBalloonCollision += CheckBalloonCollision;    
+        hitScan.OnPlayerCollision += CheckPlayerCollision;
+    }
 
     private void Update() 
     { 
@@ -91,7 +105,7 @@ public class BossController : MonoBehaviour
         Vector2 direction = directions[index]; // 좌우 방향 설정
 
         // 반복문을 통해 풍선 생성 및 애니메이션 적용
-        for (int i = 0; i < stat.idleAttackPopLength; i++)
+        for (int i = 0; i < idleAttackPopLength; i++)
         {
             Vector2 spawnPosition = startPosition + direction * i;
             SetBalloonAnimation(i, spawnPosition, popEdgeAnimation[index], popAnimation[index]);
@@ -109,7 +123,7 @@ public class BossController : MonoBehaviour
         {
             animator.Play("Pop_Center");
         }
-        else if (index == stat.idleAttackPopLength - 1) // 마지막 풍선은 방향에 따른 Edge 애니메이션
+        else if (index == idleAttackPopLength - 1) // 마지막 풍선은 방향에 따른 Edge 애니메이션
         {
             animator.Play(popEdgeAnimation);
         }
@@ -130,7 +144,7 @@ public class BossController : MonoBehaviour
         {
             Transform targetWaypoint = wayPointArray[currentWaypoint];
             moveDirection = (targetWaypoint.position - transform.position).normalized;
-            rigid.velocity = moveDirection * stat.moveSpeed;
+            rigid.velocity = moveDirection * moveSpeed;
 
             // 웨이포인트에 도달하면 다음 웨이포인트로 이동
             if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
@@ -230,7 +244,7 @@ public class BossController : MonoBehaviour
 
             GameObject waterBalloon = Instantiate(waterBalloonPrefab, startPos, Quaternion.identity);
             BalloonController balloonController = waterBalloon.GetComponent<BalloonController>();
-            balloonController.InitializerBalloon(bossBalloonPrefab, stat.attackPopLength, true);
+            balloonController.InitializerBalloon(bossBalloonPrefab, attackPopLength, true);
             
             yield return StartCoroutine(moveBalloon(waterBalloon, startPos, endPos));
 
@@ -334,8 +348,10 @@ public class BossController : MonoBehaviour
         }
     }
 
-    public string curAniClip;
     // >> Hit
+    [HideInInspector]
+    public string curAniClip;
+    
     public void PlayHitAnimation()
     {
         if (Vector2.Distance(moveDirection, Vector2.up) < 0.05f)
@@ -364,25 +380,22 @@ public class BossController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void CheckBalloonCollision()
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        if(!isHit)
         {
-            if(!isHit)
-            {
-                isHit = true;
-                stateMachine.ChangeState(BossStateEnums.HIT);
-            }
+            isHit = true;
+            stateMachine.ChangeState(BossStateEnums.HIT);
         }
+    }
 
 
-        // >> Trap
+    // >> Trap
+    private void CheckPlayerCollision()
+    {
         if(stateMachine.CheckCurState(BossStateEnums.TRAP))
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
-            {
-                stateMachine.ChangeState(BossStateEnums.DEAD);
-            }
+            stateMachine.ChangeState(BossStateEnums.DEAD);
         }    
     }
 

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerHitScan : MonoBehaviour
 {
-    [Header("충돌 콜라이더")]
-    public Collider2D playerCollider;
+    [Header("물풍선 충돌 체크용 콜라이더")]
+    public Collider2D trapCollider; 
+
+    [Header("적 충돌 체크용 콜라이더")]
+    public Collider2D bodyCollider;  
 
     [Header("겹치는 면적")]
     [Range(0,1)]
@@ -20,63 +23,61 @@ public class PlayerHitScan : MonoBehaviour
 
     public bool isBossTrap = false;
 
-
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        // 물풍선 충돌 체크용 콜라이더로 감지하는 경우
+        if (trapCollider.IsTouching(other) && other.gameObject.layer == LayerMask.NameToLayer("Pop"))
         {
             popColliderList.Add(other);
             CheckTotalOverlap();
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        // 적 충돌 체크용 콜라이더로 감지하는 경우
+        if (bodyCollider.IsTouching(other) && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            OnTouchEnemy?.Invoke();
+            OnTouchEnemy?.Invoke();  // 적과 충돌 처리
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Boss") && !isBossTrap)
+        // 보스 충돌 체크용
+        if (!isBossTrap && bodyCollider.IsTouching(other) && other.gameObject.layer == LayerMask.NameToLayer("Boss"))
         {
-            OnTouchEnemy?.Invoke();
+            OnTouchEnemy?.Invoke();  // 보스와 충돌 처리
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        if (trapCollider.IsTouching(other) && other.gameObject.layer == LayerMask.NameToLayer("Pop"))
         {
             popColliderList.Remove(other);
-            CheckTotalOverlap();
         }
     }
 
     private void CheckTotalOverlap()
     {
         float totalOverlapArea = 0f;
-        float playerArea = playerCollider.bounds.size.x * playerCollider.bounds.size.y;
+        float playerArea = trapCollider.bounds.size.x * trapCollider.bounds.size.y;
 
         foreach (Collider2D popCollider in popColliderList)
         {
-            totalOverlapArea += CalculateOverlapArea(playerCollider, popCollider);
+            totalOverlapArea += CalculateOverlapArea(trapCollider, popCollider);
         }
 
-        if (totalOverlapArea >= overlapPercent * playerArea) // 66% 이상 겹치는 경우
+        if (totalOverlapArea >= overlapPercent * playerArea)
         {
-            // Debug.Log(totalOverlapArea / playerArea + " % 충돌 !");
-            OnTrapPlayer?.Invoke();
+            OnTrapPlayer?.Invoke();  // 플레이어가 트랩에 갇혔을 때 처리
         }
     }
 
     public float CalculateOverlapArea(Collider2D player, Collider2D balloon)
     {
-        // 플레이어와 물풍선의 겹치는 영역을 계산 Bounds : 경계영역
         Bounds playerBounds = player.bounds;
         Bounds balloonBounds = balloon.bounds;
 
         float overlapWidth = Mathf.Max(0, Mathf.Min(playerBounds.max.x, balloonBounds.max.x) - Mathf.Max(playerBounds.min.x, balloonBounds.min.x));
         float overlapHeight = Mathf.Max(0, Mathf.Min(playerBounds.max.y, balloonBounds.max.y) - Mathf.Max(playerBounds.min.y, balloonBounds.min.y));
 
-        return overlapWidth * overlapHeight; // 겹치는 면적 반환
+        return overlapWidth * overlapHeight;
     }
 }
-
 

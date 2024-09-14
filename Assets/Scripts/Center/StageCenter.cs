@@ -41,7 +41,7 @@ public class StageCenter : MonoBehaviour
         playerFactory = new PlayerFactory(playerController, playerData[(int)DataManager.Instance.GetCharacterType()], hudCenter.profileUIAnimator);
         playerFactory.CreatePlayer();
 
-        if(bossController != null) bossController.stat.AddObserver<IObserver>(bossController.stat.hpObserverList, bossHP);
+        if(bossController != null) bossController.hitScan.AddObserver<IObserver>(bossController.hitScan.hpObserverList, bossHP);
     }
 
     private void Start()
