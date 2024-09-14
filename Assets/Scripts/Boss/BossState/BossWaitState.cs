@@ -27,12 +27,6 @@ public class BossWaitState : IBossState
 
     public void OnEnter()
     {
-        if (bossController == null)
-        {
-            Debug.LogError("bossController is null in BossWaitState!");
-            return;
-        }
-
         coroutine = bossController.StartCoroutine(ChangeBossState());
     }
 
@@ -49,6 +43,7 @@ public class BossWaitState : IBossState
         if (bossController.curAttack == null)
         {
             bossController.stateMachine.ChangeState(BossStateEnums.MOVE);
+            Debug.Log("WaitState 1");
             yield break;
         }
 
@@ -59,6 +54,7 @@ public class BossWaitState : IBossState
         else
         {
             bossController.stateMachine.ChangeState(BossStateEnums.MOVE);
+            Debug.Log("WaitState 2");
         }
     }
 }

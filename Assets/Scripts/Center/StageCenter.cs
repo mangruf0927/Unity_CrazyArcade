@@ -79,6 +79,7 @@ public class StageCenter : MonoBehaviour
         if(bossController.stateMachine.CheckCurState(BossStateEnums.IDLEATTACK))
         {
             bossController.stateMachine.ChangeState(BossStateEnums.MOVE);
+            Debug.Log("StageCenter");
         }
     }
 
@@ -104,6 +105,8 @@ public class StageCenter : MonoBehaviour
         }
         hudCenter.PlayerTrapUI(false);
         LoseStage();
+
+        if(bossController != null) bossController.stateMachine.ChangeState(BossStateEnums.WIN);
     }
 
     private void TrapBoss()
@@ -132,7 +135,7 @@ public class StageCenter : MonoBehaviour
             SceneManager.LoadScene(nextSceneNum);
         }
     }
-    
+
     private IEnumerator ShowLoseMessage()
     {
         yield return new WaitForSeconds(1f);

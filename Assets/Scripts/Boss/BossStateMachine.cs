@@ -20,7 +20,8 @@ public class BossStateMachine : MonoBehaviour
             {BossStateEnums.HIT, new BossHitState(this)},
             {BossStateEnums.TRAP, new BossTrapState(this)},
             {BossStateEnums.ANGRY, new BossAngryState(this)},
-            {BossStateEnums.DEAD, new BossDeadState(this)}
+            {BossStateEnums.DEAD, new BossDeadState(this)},
+            {BossStateEnums.WIN, new BossWinState(this)}
         };
 
         if(stateDictionary.TryGetValue(BossStateEnums.MOVE, out IBossState newState))

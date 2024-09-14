@@ -7,5 +7,6 @@ public enum BossStateEnums
     ANGRY,
     HIT,
     TRAP,
-    DEAD
+    DEAD,
+    WIN
 }

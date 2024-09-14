@@ -172,6 +172,9 @@ public class BossController : MonoBehaviour
     }
 
     // >> Attack
+    [HideInInspector]
+    public Coroutine attackCoroutine;
+
     public IEnumerator HoopAttack()
     {
         yield return new WaitForSeconds(0.1f);
@@ -210,7 +213,7 @@ public class BossController : MonoBehaviour
     {
         moveDirection = direction;
         Vector2 startPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) + moveDirection * 3;
-        StartCoroutine(ShootBalloon(startPosition, 3));
+        attackCoroutine = StartCoroutine(ShootBalloon(startPosition, 3));
     }
 
     private IEnumerator ShootBalloon(Vector2 startPos, int num)

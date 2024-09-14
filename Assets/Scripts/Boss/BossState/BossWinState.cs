@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMoveState : IBossState
+public class BossWinState : IBossState
 {
     public BossController bossController{get; set;}
     public BossStateMachine stateMachine{get; set;}
 
-    public BossMoveState(BossStateMachine _stateMachine)
+    public BossWinState(BossStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
         bossController = stateMachine.bossController;
@@ -15,21 +15,23 @@ public class BossMoveState : IBossState
     
     public void Update()
     {
-        bossController.PlayMoveAnimation();
+        
     }
 
     public void FixedUpdate()
     {
-        bossController.Move();
+
     }
 
     public void OnEnter()
-    {
+    {   
+        bossController.rigid.velocity = Vector2.zero;
+        bossController.animator.Play("Win");
     }
 
     public void OnExit()
     {
-
     }
 }
+
 

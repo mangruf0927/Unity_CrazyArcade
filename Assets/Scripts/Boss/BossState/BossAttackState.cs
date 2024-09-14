@@ -33,12 +33,13 @@ public class BossAttackState : IBossState
         }
         else if(bossController.curAttack.attackType == BossAttackTypeEnums.HOOP)
         {
-            bossController.StartCoroutine(bossController.HoopAttack());
+            bossController.attackCoroutine = bossController.StartCoroutine(bossController.HoopAttack());
         }
     }
 
     public void OnExit()
     {
         bossController.curAttack.attackCount--;
+        bossController.StopCoroutine(bossController.attackCoroutine);
     }
 }

@@ -28,6 +28,7 @@ public class BossIdleAttackState : IBossState
         if (time >= 30f)
         {
             stateMachine.ChangeState(BossStateEnums.MOVE);
+            Debug.Log("IDLE ATTACK");
         }
         // 풍선을 3초마다 생성
         if (time - lastSpawnTime >= 1.2f)
