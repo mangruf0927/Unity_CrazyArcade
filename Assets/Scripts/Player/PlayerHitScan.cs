@@ -18,6 +18,9 @@ public class PlayerHitScan : MonoBehaviour
 
     private List<Collider2D> popColliderList = new List<Collider2D>();
 
+    public bool isBossTrap = false;
+
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Pop"))
@@ -26,8 +29,12 @@ public class PlayerHitScan : MonoBehaviour
             CheckTotalOverlap();
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy") 
-        || other.gameObject.layer == LayerMask.NameToLayer("Boss"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            OnTouchEnemy?.Invoke();
+        }
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("Boss") && !isBossTrap)
         {
             OnTouchEnemy?.Invoke();
         }

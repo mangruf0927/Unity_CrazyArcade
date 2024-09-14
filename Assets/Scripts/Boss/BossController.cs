@@ -42,12 +42,13 @@ public class BossController : MonoBehaviour
     public event BalloonPositionHandler OnSetBalloon; 
 
     // 물풍선 설치 위치 확인 이벤트
-    public delegate bool BossHandler(Vector2 pos);
-    public event BossHandler OnCheckShotPosition;
+    public delegate bool BossBoolHandler(Vector2 pos);
+    public event BossBoolHandler OnCheckShotPosition;
 
-    // 보스 dead 이벤트
-    public delegate void BossDeadHandler();
-    public event BossDeadHandler OnDeadBoss;
+    // 보스 State 이벤트
+    public delegate void BossHandler();
+    public event BossHandler OnDeadBoss;
+    public event BossHandler OnTrapBoss;
 
     [HideInInspector]
     public bool isHit = false;
@@ -417,5 +418,10 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         OnDeadBoss?.Invoke();
         Destroy(gameObject, 0.1f);
+    }
+
+    public void TrapBoss()
+    {
+        OnTrapBoss?.Invoke();
     }
 }

@@ -26,6 +26,7 @@ public class BossTrapState : IBossState
     public void OnEnter()
     {
         bossController.animator.Play("Trap");
+        bossController.TrapBoss();
         bossController.StartCoroutine(bossController.ChangeStateAfterAnimation(BossStateEnums.DEAD));
     }
 

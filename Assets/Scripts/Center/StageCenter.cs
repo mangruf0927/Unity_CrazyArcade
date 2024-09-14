@@ -52,7 +52,12 @@ public class StageCenter : MonoBehaviour
         playerController.OnPlayerDead += PlayerDead;
         playerController.hitScan.OnTrapPlayer += TrapPlayer;
 
-        if(bossController != null) bossController.OnDeadBoss += ClearStage;
+        if(bossController != null)
+        {
+            bossController.OnDeadBoss += ClearStage;
+            bossController.OnTrapBoss += TrapBoss;
+        } 
+            
     }
 
     private void ClearStage()
@@ -93,6 +98,11 @@ public class StageCenter : MonoBehaviour
         }
         hudCenter.PlayerTrapUI(false);
         LoseStage();
+    }
+
+    private void TrapBoss()
+    {
+        playerController.hitScan.isBossTrap = true;
     }
 
     public void OnClickExitButton()
