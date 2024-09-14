@@ -291,10 +291,15 @@ public class BossController : MonoBehaviour
         return endPos;
     }
 
+
     private IEnumerator moveBalloon(GameObject balloon, Vector2 startPos, Vector2 endPos)
     {
+        float moveSpeed = 15f; 
+
+        float distance = Vector2.Distance(startPos, endPos);
+        
+        float moveDuration = distance / moveSpeed;
         float elapsedTime = 0f;
-        float moveDuration = 0.3f;
 
         while (elapsedTime < moveDuration)
         {
@@ -352,8 +357,7 @@ public class BossController : MonoBehaviour
         }
         else
         {
-            animator.Play("Trap");
-            Debug.Log(moveDirection);
+            Debug.Log("Hit 애니메이션 안나옴" + moveDirection);
         }
     }
 

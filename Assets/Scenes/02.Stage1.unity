@@ -2020,7 +2020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1936636164}
-  timeToFade: 1
+  timeToFade: 0.7
 --- !u!1 &243723740
 GameObject:
   m_ObjectHideFlags: 0
@@ -21037,6 +21037,10 @@ PrefabInstance:
       propertyPath: timerUI
       value: 
       objectReference: {fileID: 1419243324}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: StageNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: hudCenter
       value: 

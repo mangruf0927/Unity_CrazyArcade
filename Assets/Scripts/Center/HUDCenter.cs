@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class HUDCenter : MonoBehaviour
 {
-    public int StageNum;
-
     [Header("게임 메세지 UI")]
     [SerializeField]        private ShowMessage gameMessageUI;
 
@@ -21,12 +19,6 @@ public class HUDCenter : MonoBehaviour
 
     [Header("FadeInOut")]
     [SerializeField]        private FadeInOut fade;
-
-    private void Start() 
-    {
-        if(StageNum == 1)
-            fade.StartFadeIn();    
-    }
 
     public IEnumerator ShowStartMessage()
     {
@@ -57,5 +49,10 @@ public class HUDCenter : MonoBehaviour
     public void FadeOutAndLoadScene(int num)
     {
         fade.StartFadeOutAndLoadScene(num);
+    }
+
+    public void FadeIn()
+    {
+        fade.StartFadeIn();
     }
 }

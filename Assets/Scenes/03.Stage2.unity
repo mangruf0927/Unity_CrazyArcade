@@ -18620,6 +18620,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1419243324}
     - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
+      propertyPath: StageNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309117989292327681, guid: 423ab1fa78d3f455d8f3de4d5a45aeea, type: 3}
       propertyPath: hudCenter
       value: 
       objectReference: {fileID: 1882049758}

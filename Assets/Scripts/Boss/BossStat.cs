@@ -25,9 +25,6 @@ public class BossStat : MonoBehaviour, ISubject
         }
     }
 
-    public delegate void BossHandler();
-    public event BossHandler OnTrap;
-
     public List<IObserver> hpObserverList = new List<IObserver>();
 
     private void Start() 
@@ -38,12 +35,11 @@ public class BossStat : MonoBehaviour, ISubject
     // >>
     public void GetDamage()
     {
-        currentHP -= 100;
+        currentHP -= 5;
         
         if(currentHP <= 0)
         {
             currentHP = 0;
-            OnTrap?.Invoke();
         }
 
         Debug.Log("보스 HP : " + currentHP);

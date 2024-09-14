@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -29,6 +30,9 @@ public class StageCenter : MonoBehaviour
     public int nextSceneNum;
     public int lobbySceneNum;
 
+    [Header("해당 스테이지 넘버")]
+    public int StageNum;
+
     private bool isClear = false;
     private PlayerFactory playerFactory;
     
@@ -42,6 +46,8 @@ public class StageCenter : MonoBehaviour
 
     private void Start()
     {   
+        if(StageNum == 1) hudCenter.FadeIn();
+
         StartCoroutine(hudCenter.ShowStartMessage());
 
         enemy.OnClearStage += ClearStage;
@@ -52,7 +58,7 @@ public class StageCenter : MonoBehaviour
         playerController.OnPlayerDead += PlayerDead;
         playerController.hitScan.OnTrapPlayer += TrapPlayer;
 
-        if(bossController != null)
+        if(bossController != null) 
         {
             bossController.OnDeadBoss += ClearStage;
             bossController.OnTrapBoss += TrapBoss;
@@ -116,9 +122,17 @@ public class StageCenter : MonoBehaviour
         playerController.StageClear();
         yield return StartCoroutine(hudCenter.ShowClearMessage());
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(nextSceneNum);
+        
+        if(StageNum == 3) 
+        {
+            hudCenter.FadeOutAndLoadScene(lobbySceneNum);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextSceneNum);
+        }
     }
-
+    
     private IEnumerator ShowLoseMessage()
     {
         yield return new WaitForSeconds(1f);
