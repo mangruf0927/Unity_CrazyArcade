@@ -47,7 +47,7 @@ public class PlayerHitScan : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (trapCollider.IsTouching(other) && other.gameObject.layer == LayerMask.NameToLayer("Pop"))
+        if (other != null && trapCollider.IsTouching(other) && other.gameObject.layer == LayerMask.NameToLayer("Pop"))
         {
             popColliderList.Remove(other);
         }

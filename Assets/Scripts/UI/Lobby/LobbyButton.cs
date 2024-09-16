@@ -33,12 +33,16 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Start Button
     public void OnClickStart()
     {
+        SoundManager.Instance.PlaySFX("GameStart");
+
         fade.StartFadeOutAndLoadScene(nextSceneNum); 
     }
 
     // Menu Button
     public void OnClickMenu()
     {
+        SoundManager.Instance.PlaySFX("Click");
+
         menuMessage.SetActive(false);
         
         isMenuActive = !isMenuActive; 
@@ -51,6 +55,8 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Exit Button
     public void OnClickExit()
     {
+        SoundManager.Instance.PlaySFX("Click");
+
         exitMessage.SetActive(false);
         exitPopUp.SetActive(true);
     }
@@ -58,6 +64,8 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Message Active & Deactivate
     public void OnPointerEnter(PointerEventData eventData)
     {
+        SoundManager.Instance.PlaySFX("Hover");
+
         if (eventData.pointerEnter == menuButton.gameObject && !isMenuActive)
         {
             menuButton.image.sprite = highlightedImage;

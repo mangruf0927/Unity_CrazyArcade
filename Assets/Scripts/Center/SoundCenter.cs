@@ -64,6 +64,8 @@ public class SoundCenter : MonoBehaviour
 
     public void OnClickConfirm()
     {
+        SoundManager.Instance.PlaySFX("Cancle");
+
         originalBGMVolume = bgmSlider.value;
         originalSFXVolume = bgmSlider.value;
 
@@ -72,6 +74,8 @@ public class SoundCenter : MonoBehaviour
 
     public void OnClickCancel()
     {
+        SoundManager.Instance.PlaySFX("Cancle");
+
         bgmSlider.value = originalBGMVolume;
         sfxSlider.value = originalSFXVolume;
 

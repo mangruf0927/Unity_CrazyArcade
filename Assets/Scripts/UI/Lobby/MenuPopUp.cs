@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuPopUp : MonoBehaviour
@@ -10,6 +8,7 @@ public class MenuPopUp : MonoBehaviour
     // Option Button
     public void OnClickOption()
     {
+        SoundManager.Instance.PlaySFX("Select");
         optionPopUp.SetActive(true);
         this.gameObject.SetActive(false);
     }
@@ -17,7 +16,9 @@ public class MenuPopUp : MonoBehaviour
     // ExitButton
     public void OnClickExit()
     {
+        SoundManager.Instance.PlaySFX("Select");
         exitPopUp.SetActive(true);
         this.gameObject.SetActive(false);
     }
+
 }

@@ -1,8 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CharacterSelection : MonoBehaviour
+
+public class CharacterSelection : MonoBehaviour, IPointerEnterHandler
 {
     [Header("배찌 선택 이미지")]
     public GameObject[] bazziSelectedImageArray;
@@ -39,6 +40,8 @@ public class CharacterSelection : MonoBehaviour
 
     private void OnBazziChanged(bool isOn)
     {
+        SoundManager.Instance.PlaySFX("Select");
+
         foreach(GameObject bazzi in bazziSelectedImageArray)
         {
             bazzi.SetActive(isOn);
@@ -49,6 +52,8 @@ public class CharacterSelection : MonoBehaviour
 
     private void OnDaoChanged(bool isOn)
     {
+        SoundManager.Instance.PlaySFX("Select");
+
         foreach(GameObject dao in daoSelectedImageArray)
         {
             dao.SetActive(isOn);
@@ -59,6 +64,8 @@ public class CharacterSelection : MonoBehaviour
 
     private void OnMaridChanged(bool isOn)
     {
+        SoundManager.Instance.PlaySFX("Select");
+        
         foreach(GameObject marid in maridSelectedImageArray)
         {
             marid.SetActive(isOn);
@@ -69,6 +76,8 @@ public class CharacterSelection : MonoBehaviour
 
     private void OnRandomChanged(bool isOn)
     {
+        SoundManager.Instance.PlaySFX("Select");
+
         foreach(GameObject random in randomSelectedImageArray)
         {
             random.SetActive(isOn);
@@ -83,4 +92,8 @@ public class CharacterSelection : MonoBehaviour
         return randomType;
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SoundManager.Instance.PlaySFX("CharacterButton");
+    }
 }

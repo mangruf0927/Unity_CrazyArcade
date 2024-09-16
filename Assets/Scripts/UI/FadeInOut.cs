@@ -49,4 +49,15 @@ public class FadeInOut : MonoBehaviour
         canvasGroup.alpha = 0;
         isFading = false;
     }
+
+    public IEnumerator FadeOut()
+    {
+        isFading = true;
+        while (canvasGroup.alpha < 1)
+        {
+            canvasGroup.alpha += timeToFade * Time.deltaTime;
+            yield return null;
+        }
+        canvasGroup.alpha = 1;
+    }
 }
