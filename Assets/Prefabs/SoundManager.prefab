@@ -70,6 +70,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 732b4c85ee8cf4c1784464e776e77ecd, type: 3}
   - soundName: GameStart
     audioClip: {fileID: 8300000, guid: 553192d9146d9451caa9d2a9c8c35ff4, type: 3}
+  - soundName: GameExit
+    audioClip: {fileID: 8300000, guid: f6b7e9bbf3618420ba914ad52909aad0, type: 3}
   - soundName: Lose
     audioClip: {fileID: 8300000, guid: f5dd33b7d134e423d8bc8778be9878fc, type: 3}
   - soundName: Win
@@ -78,14 +80,16 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: ee1c4f6c938564cba90b826663131702, type: 3}
   - soundName: Timer
     audioClip: {fileID: 8300000, guid: ebeca4496a55b457da26b5d0fe103e56, type: 3}
-  - soundName: Bubble_Set
+  - soundName: Balloon_Pop
     audioClip: {fileID: 8300000, guid: 54010bc22e37a4dbeba6233ca16c8a2b, type: 3}
-  - soundName: Bubble_Pop
+  - soundName: Balloon_Set
     audioClip: {fileID: 8300000, guid: 96384bad89ae44df4b7e32e51bf05a06, type: 3}
   - soundName: PlayerDie
     audioClip: {fileID: 8300000, guid: 22a5100a54ca6403d819d1e66b552b33, type: 3}
-  - soundName: GetItem
-    audioClip: {fileID: 8300000, guid: 1aff9a90c98e241129201c95c562b538, type: 3}
   - soundName: PlayerTrap
     audioClip: {fileID: 8300000, guid: 42092ed9515154ad08876ce81b53b954, type: 3}
-  channels: 16
+  - soundName: GetItem
+    audioClip: {fileID: 8300000, guid: 1aff9a90c98e241129201c95c562b538, type: 3}
+  - soundName: EnemyDie
+    audioClip: {fileID: 8300000, guid: 496628223d8f34ca2a74f6de2d640dd1, type: 3}
+  channels: 18

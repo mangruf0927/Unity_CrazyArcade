@@ -2150,7 +2150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1936636164}
-  timeToFade: 0.7
+  timeToFade: 5
 --- !u!1 &243723740
 GameObject:
   m_ObjectHideFlags: 0
@@ -5260,6 +5260,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612396172}
   m_CullTransparentMesh: 1
+--- !u!1001 &615267401
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2155046613968322483, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155046613968322483, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828680022286133667, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: channels
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[11].soundName
+      value: Balloon_Pop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[12].soundName
+      value: Balloon_Set
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[13].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1aff9a90c98e241129201c95c562b538, type: 3}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[13].soundName
+      value: GetItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[14].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 22a5100a54ca6403d819d1e66b552b33, type: 3}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[14].soundName
+      value: PlayerDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[16].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 496628223d8f34ca2a74f6de2d640dd1, type: 3}
+    - target: {fileID: 7127948006119929339, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
+      propertyPath: sfxList.Array.data[16].soundName
+      value: EnemyDie
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a4c137e5d18854ef99f208a4fa580693, type: 3}
 --- !u!1 &615329084
 GameObject:
   m_ObjectHideFlags: 0
@@ -5606,6 +5707,7 @@ GameObject:
   - component: {fileID: 670877639}
   - component: {fileID: 670877641}
   - component: {fileID: 670877640}
+  - component: {fileID: 670877642}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -5671,6 +5773,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670877638}
   m_CullTransparentMesh: 1
+--- !u!114 &670877642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670877638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c93b0aaf24a45d2b5557bd539c71fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672266189
 GameObject:
   m_ObjectHideFlags: 0
@@ -22136,6 +22250,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1076515399}
+  - {fileID: 615267401}
   - {fileID: 606225712}
   - {fileID: 7666801589925331959}
   - {fileID: 1828746586}

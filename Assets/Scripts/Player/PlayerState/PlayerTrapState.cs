@@ -40,6 +40,8 @@ public class PlayerTrapState : IPlayerState
 
     public void OnEnter()
     {
+        SoundManager.Instance.PlaySFX("PlayerTrap");
+        
         playerController.animator.Play("Trap");
         playerController.StartChangeState(PlayerStateEnums.DEAD);
     }

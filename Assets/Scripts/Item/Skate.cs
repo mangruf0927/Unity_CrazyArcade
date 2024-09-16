@@ -23,6 +23,8 @@ public class Skate : MonoBehaviour
             {
                 isGet = true;
                 OnSpeedUp?.Invoke();
+
+                SoundManager.Instance.PlaySFX("GetItem");
                 Destroy(gameObject, 0.1f);
             }
         }

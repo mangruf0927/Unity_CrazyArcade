@@ -85,6 +85,8 @@ public class BalloonController : MonoBehaviour
 
     public void Explode()
     {
+        SoundManager.Instance.PlaySFX("Balloon_Pop");
+
         // 중앙 팝 오브젝트 생성
         CreateWaterStream(transform.position, "Pop_Center");
 

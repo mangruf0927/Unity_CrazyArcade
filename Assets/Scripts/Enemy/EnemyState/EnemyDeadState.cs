@@ -28,6 +28,8 @@ public class EnemyDeadState : IEnemyState
         enemyController.rigid.velocity = Vector2.zero;
         enemyController.animator.Play("Dead");
         
+        SoundManager.Instance.PlaySFX("EnemyDie");
+        
         enemyController.StartCoroutine(enemyController.DestroyEnemy());
     }
 

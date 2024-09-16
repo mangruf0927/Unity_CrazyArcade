@@ -1,8 +1,6 @@
 using System.Collections;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class StageCenter : MonoBehaviour
 {
@@ -47,6 +45,7 @@ public class StageCenter : MonoBehaviour
     private void Start()
     {   
         if(StageNum == 1) hudCenter.FadeIn();
+        else SoundManager.Instance.PlaySFX("Ready");
 
         StartCoroutine(hudCenter.ShowStartMessage());
 
@@ -116,12 +115,15 @@ public class StageCenter : MonoBehaviour
 
     public void OnClickExitButton()
     {
+        // SoundManager.Instance.PlaySFX("Click");
         hudCenter.FadeOutAndLoadScene(lobbySceneNum);
     }
 
     private IEnumerator ShowClearMessage()
     {
+        SoundManager.Instance.StopBGM();
         yield return new WaitForSeconds(1f);
+        SoundManager.Instance.PlaySFX("Win");
         playerController.StageClear();
         yield return StartCoroutine(hudCenter.ShowClearMessage());
         yield return new WaitForSeconds(3f);
@@ -138,7 +140,9 @@ public class StageCenter : MonoBehaviour
 
     private IEnumerator ShowLoseMessage()
     {
+        SoundManager.Instance.StopBGM();
         yield return new WaitForSeconds(1f);
+        SoundManager.Instance.PlaySFX("Lose");
         hudCenter.PlayProfileAnimation();
         yield return StartCoroutine(hudCenter.ShowLoseMessage());
         yield return new WaitForSeconds(3f);

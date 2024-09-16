@@ -128,6 +128,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                SoundManager.Instance.PlaySFX("Balloon_Set");
+
                 OnSetBalloon?.Invoke(ObjectTypeEnums.BALLOON, setPosition);
                 stat.UseBalloon();
 

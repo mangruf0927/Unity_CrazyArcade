@@ -23,6 +23,8 @@ public class Potion : MonoBehaviour
             {
                 isGet = true;
                 OnPowerUp?.Invoke();
+
+                SoundManager.Instance.PlaySFX("GetItem");
                 Destroy(gameObject, 0.1f);
             }
         }

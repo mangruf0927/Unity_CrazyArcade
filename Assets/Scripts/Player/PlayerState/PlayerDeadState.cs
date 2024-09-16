@@ -34,6 +34,8 @@ public class PlayerDeadState : IPlayerState
 
     public void OnEnter()
     {
+        SoundManager.Instance.PlaySFX("PlayerDie");
+
         playerController.animator.Play("Dead");
         playerController.rigid.velocity = Vector2.zero;
         

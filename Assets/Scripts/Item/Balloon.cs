@@ -23,6 +23,8 @@ public class Balloon : MonoBehaviour
             {
                 isGet = true;
                 OnBalloonUp?.Invoke();
+
+                SoundManager.Instance.PlaySFX("GetItem");
                 Destroy(gameObject, 0.1f);
             }
         }

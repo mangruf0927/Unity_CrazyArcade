@@ -57,7 +57,10 @@ public class PlayerHitScan : MonoBehaviour
     {
         float totalOverlapArea = 0f;
         float playerArea = trapCollider.bounds.size.x * trapCollider.bounds.size.y;
-
+        
+        // popColliderList에서 null 또는 파괴된 콜라이더를 제거
+        popColliderList.RemoveAll(item => item == null);
+        
         foreach (Collider2D popCollider in popColliderList)
         {
             totalOverlapArea += CalculateOverlapArea(trapCollider, popCollider);
@@ -71,6 +74,8 @@ public class PlayerHitScan : MonoBehaviour
 
     public float CalculateOverlapArea(Collider2D player, Collider2D balloon)
     {
+        if(player == null || balloon == null) return 0f;
+
         Bounds playerBounds = player.bounds;
         Bounds balloonBounds = balloon.bounds;
 

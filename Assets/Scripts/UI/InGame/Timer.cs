@@ -28,10 +28,12 @@ public class Timer : MonoBehaviour
     {
         while(totaltime > 0)
         {
-        totaltime -= 1f;
-        UpdateTimerImage();
+            totaltime -= 1f;
+            UpdateTimerImage();
 
-        yield return new WaitForSeconds(1f);
+            if(totaltime == 10f) SoundManager.Instance.PlaySFX("Timer");   
+
+            yield return new WaitForSeconds(1f);
         }
 
         if(totaltime == 0) OnEndTime?.Invoke();     
