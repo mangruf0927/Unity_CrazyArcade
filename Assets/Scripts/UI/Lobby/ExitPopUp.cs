@@ -25,7 +25,7 @@ public class ExitPopUp : MonoBehaviour
         SoundManager.Instance.PlaySFX("GameExit");
 
         yield return StartCoroutine(fade.FadeOut());
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         // 게임이 에디터에서 실행 중일 때는 플레이 모드를 종료
         #if UNITY_EDITOR
