@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEditor.PackageManager;
 
 public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -34,7 +34,6 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnClickStart()
     {
         SoundManager.Instance.PlaySFX("GameStart");
-
         fade.StartFadeOutAndLoadScene(nextSceneNum); 
     }
 
@@ -49,6 +48,12 @@ public class LobbyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         menuPopUp.SetActive(isMenuActive); 
 
         // 메뉴 버튼 이미지 설정
+        menuButton.image.sprite = isMenuActive ? selectedImage : defaultImage;
+    }
+
+    public void SetIsMenuActive(bool isActive)
+    {
+        isMenuActive = isActive;
         menuButton.image.sprite = isMenuActive ? selectedImage : defaultImage;
     }
 

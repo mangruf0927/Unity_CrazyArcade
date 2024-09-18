@@ -10,6 +10,7 @@ public class SoundCenter : MonoBehaviour
     public Slider sfxSlider;
 
     public GameObject optionPopUp;
+    public LobbyButton menuButton;
 
     private float originalBGMVolume;
     private float originalSFXVolume;
@@ -69,6 +70,7 @@ public class SoundCenter : MonoBehaviour
         originalBGMVolume = bgmSlider.value;
         originalSFXVolume = bgmSlider.value;
 
+        menuButton.SetIsMenuActive(false);
         optionPopUp.SetActive(false);
     }
 
@@ -81,7 +83,8 @@ public class SoundCenter : MonoBehaviour
 
         SoundManager.Instance.ChangeBGMVolume(originalBGMVolume);
         SoundManager.Instance.ChangeSFXVolume(originalSFXVolume);
-    
+
+        menuButton.SetIsMenuActive(false);
         optionPopUp.SetActive(false);
     }
 }

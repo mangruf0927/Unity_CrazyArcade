@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuPopUp : MonoBehaviour
 {
@@ -10,15 +11,18 @@ public class MenuPopUp : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX("Select");
         optionPopUp.SetActive(true);
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     // ExitButton
     public void OnClickExit()
     {
         SoundManager.Instance.PlaySFX("Select");
+
+        EventSystem.current.SetSelectedGameObject(null);
+        
         exitPopUp.SetActive(true);
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 }

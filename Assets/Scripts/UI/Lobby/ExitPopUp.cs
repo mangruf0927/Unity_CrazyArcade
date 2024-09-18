@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExitPopUp : MonoBehaviour
 {
     public FadeInOut fade;
+    public LobbyButton menuButton;
 
     // Quit Button
     public void OnClickQuit()
@@ -16,7 +17,8 @@ public class ExitPopUp : MonoBehaviour
     public void OnClickCancle()
     {
         SoundManager.Instance.PlaySFX("Cancle");
-        this.gameObject.SetActive(false);
+        menuButton.SetIsMenuActive(false);
+        gameObject.SetActive(false);
     }
 
     private IEnumerator ExitGame()
