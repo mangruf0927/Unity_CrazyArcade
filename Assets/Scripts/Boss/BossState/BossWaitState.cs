@@ -33,7 +33,10 @@ public class BossWaitState : IBossState
     public void OnExit()
     {
         if(coroutine != null)
+        {
             bossController.StopCoroutine(coroutine);
+            coroutine = null;
+        }
     }
 
     private IEnumerator ChangeBossState()

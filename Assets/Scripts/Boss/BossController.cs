@@ -37,7 +37,7 @@ public class BossController : MonoBehaviour
     public float moveSpeed = 2.5f;
 
     [Header("보스 물줄기 길이")]
-    public int idleAttackPopLength = 14;
+    public int idleAttackPopLength = 15;
     public int attackPopLength = 3;
 
 
@@ -354,22 +354,22 @@ public class BossController : MonoBehaviour
     
     public void PlayHitAnimation()
     {
-        if (Vector2.Distance(moveDirection, Vector2.up) < 0.05f)
+        if (Vector2.Distance(moveDirection, Vector2.up) < 0.1f)
         {
             animator.Play("Hit_Up");
             curAniClip = "Hit_Up";
         }
-        else if (Vector2.Distance(moveDirection, Vector2.down) < 0.05f)
+        else if (Vector2.Distance(moveDirection, Vector2.down) < 0.1f)
         {
             animator.Play("Hit_Down");
             curAniClip = "Hit_Down";
         }
-        else if (Vector2.Distance(moveDirection, Vector2.right) < 0.05f)
+        else if (Vector2.Distance(moveDirection, Vector2.right) < 0.1f)
         {
             animator.Play("Hit_Right");
             curAniClip = "Hit_Right";
         }
-        else if (Vector2.Distance(moveDirection, Vector2.left) < 0.05f)
+        else if (Vector2.Distance(moveDirection, Vector2.left) < 0.1f)
         {
             animator.Play("Hit_Left");
             curAniClip = "Hit_Left";

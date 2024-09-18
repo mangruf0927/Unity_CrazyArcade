@@ -39,7 +39,7 @@ public class BossHitScan : MonoBehaviour, ISubject
             currentHP = 0;
         }
 
-        Debug.Log("보스 HP : " + currentHP);
+        // Debug.Log("보스 HP : " + currentHP);
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

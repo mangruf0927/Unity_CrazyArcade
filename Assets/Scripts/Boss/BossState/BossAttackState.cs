@@ -40,6 +40,11 @@ public class BossAttackState : IBossState
     public void OnExit()
     {
         bossController.curAttack.attackCount--;
-        bossController.StopCoroutine(bossController.attackCoroutine);
+        
+        if(bossController.attackCoroutine != null)
+        {
+           bossController.StopCoroutine(bossController.attackCoroutine);
+           bossController.attackCoroutine = null;
+        }
     }
 }
