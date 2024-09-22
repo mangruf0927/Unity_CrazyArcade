@@ -15,6 +15,8 @@ public class InputHandler : MonoBehaviour
     public delegate void InputVectorHandler(Vector2 value);
     public event InputVectorHandler OnCheckDirection; 
 
+    private bool isSpacePressed = false;
+
     private void Update() 
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -44,7 +46,15 @@ public class InputHandler : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space))
         {
-            OnWaterBalloonSet?.Invoke();
+            if(!isSpacePressed)
+            {
+                OnWaterBalloonSet?.Invoke();
+                isSpacePressed = true;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isSpacePressed = false; 
         }
     }
 }
