@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HUDCenter : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class HUDCenter : MonoBehaviour
     [SerializeField]        private GameObject HelpUI;
 
     [Header("나가기 버튼")]
-    [SerializeField]        private GameObject exitButton;
+    [SerializeField]        private Button exitButton;
 
     [Header("플레이어 프로필 애니메이터")]
     [SerializeField]        public Animator profileUIAnimator;
@@ -38,7 +37,7 @@ public class HUDCenter : MonoBehaviour
     public void PlayerTrapUI(bool isActive)
     {
         HelpUI.SetActive(isActive);
-        exitButton.SetActive(!isActive);
+        exitButton.interactable = !isActive;
     }
 
     public void PlayProfileAnimation()
