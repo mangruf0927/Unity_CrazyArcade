@@ -5,9 +5,10 @@
 Unity로 제작한 **크레이지 아케이드 : 문어 대습격 모드 모작**입니다.      
 문어 대습격 모드는 총 3개의 스테이지로 구성되어 있으며 각 스테이지마다 등장하는 버럭이와 쫄쫄이 몬스터들을 물리치면 마지막 보스 스테이지로 진입할 수 있습니다. 
 
-유니티 버전 : **Unity 2022.3.9f1**
+유니티 버전 : **Unity 2022.3.9f1**   
 
-[📄 개발 문서](https://drive.google.com/file/d/1AalFayMw489h6CwfuIeX4-A-lIlrWLlh/view?usp=drive_link)
+[🎮 플레이 영상](https://www.youtube.com/watch?v=mxeJWvXusBQ)   
+[📄 개발 문서](https://drive.google.com/file/d/1iaQQgqZrtdyEXk91NMVVFYbqH5sVrqhz/view?usp=sharing)
 
 
 ## 🔧 주요 구현 내용
