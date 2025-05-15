@@ -7,7 +7,6 @@ Unity로 제작한 **크레이지 아케이드 : 문어 대습격 모드 모작*
 
 유니티 버전 : Unity 2022.3.9f1
 
-[🎮 시연 영상]
 [📄 개발 문서](https://drive.google.com/file/d/1AalFayMw489h6CwfuIeX4-A-lIlrWLlh/view?usp=drive_link)
 
 
